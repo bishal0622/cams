@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Angular Testing</title>
+        <style>
+            .done {
+                text-decoration: line-through;
+                color: #6f6f6f;
+            }
+        </style>
+    </head>
+    <body ng-app='app'>
+    <div ng-controller="TodoController">
+        <form name="todoForm" ng-submit="add()">
+            <input
+                    name="newTodo"
+                    type="text"
+                    ng-model="newTodo"
+                    required
+            />
+            <button ng-disabled="todoForm.$invalid">Go</button>
+        </form>
+        <button ng-click="clearCompleted()">Clear Completed</button>
+        <hr/>
+        <ul>
+            <li ng-repeat="todo in todos">
+                <label>
+                    <input type="checkbox" ng-model="todo.done"/>
+                    <span ng-class="{'done' : todo.done}">
+                        {{todo.title}}
+                    </span>
+                </label>
+            </li>
+        </ul>
+
+    </div>
+        <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+        <script type="text/javascript" src="scripts/app.js"></script>
+        <script type="text/javascript" src="scripts/controller/todo.controller.js"></script>
+    </body>
+</html>
