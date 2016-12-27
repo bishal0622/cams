@@ -3,40 +3,38 @@
     <head>
         <meta charset="utf-8">
         <title>Angular Testing</title>
-        <style>
-            .done {
-                text-decoration: line-through;
-                color: #6f6f6f;
-            }
-        </style>
+
     </head>
     <body ng-app='app'>
-    <div ng-controller="TodoController">
-        <form name="todoForm" ng-submit="add()">
-            <input
-                    name="newTodo"
-                    type="text"
-                    ng-model="newTodo"
-                    required
-            />
-            <button ng-disabled="todoForm.$invalid">Go</button>
-        </form>
-        <button ng-click="clearCompleted()">Clear Completed</button>
-        <hr/>
-        <ul>
-            <li ng-repeat="todo in todos">
-                <label>
-                    <input type="checkbox" ng-model="todo.done"/>
-                    <span ng-class="{'done' : todo.done}">
-                        {{todo.title}}
-                    </span>
-                </label>
-            </li>
+
+    <nav class="navbar navbar-inverse" role="navigation">
+        <div class="navbar-header">
+            <a class="navbar-brand" ui-sref="#">AngularUI Router</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a ui-sref="a">Home</a></li>
+            <li><a ui-sref="b">About</a></li>
         </ul>
+    </nav>
+
+    <div class="container">
+
+        <div ui-view></div>
 
     </div>
-        <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
-        <script type="text/javascript" src="scripts/app.js"></script>
-        <script type="text/javascript" src="scripts/controller/todo.controller.js"></script>
+
+
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+
+    <script  src="app.js"></script>
+
+    <!--<script src="config/state.handler.js"></script>-->
+
+    <script src="service/service.js"></script>
+    <script src="a/todo.controller.js"></script>
+
     </body>
 </html>
