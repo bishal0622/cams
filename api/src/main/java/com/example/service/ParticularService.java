@@ -1,6 +1,7 @@
 package com.example.service;
 
 import com.example.domain.Particular;
+import com.example.domain.ParticularBilling;
 import com.example.repository.ParticularRepository;
 import com.example.service.dto.ParticularDTO;
 import org.slf4j.Logger;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,8 +26,12 @@ public class ParticularService {
 
     public Particular saveParticular(ParticularDTO particularDTO){
         Particular particular=new Particular();
+
+        particular.setId(particularDTO.getId());
         particular.setParticularName(particularDTO.getParticularName());
         particular.setParticularRate(particularDTO.getParticularRate());
+
+
         particularRepository.save(particular);
         log.debug("Created Information for Particular: {}", particular);
         return particular;
@@ -36,22 +42,22 @@ public class ParticularService {
         return particulars;
     }
 
-    public void updateParticular(Long id, String particularName, Double particularRate){
-        particularRepository.findOneById(id).ifPresent(particular->{
-            particular.setId(id);
+    public void updateParticular(Integer particularId, String particularName, double particularRate, Collection<ParticularBilling> particularBillingsByParticularId){
+        particularRepository.findOneById(particularId).ifPresent(particular->{
             particular.setParticularName(particularName);
             particular.setParticularRate(particularRate);
+            particular.setParticularBillingsByParticularId(particularBillingsByParticularId);
             log.debug("Updated Particular Information: {}", particular);
             particularRepository.save(particular);
         });
     }
 
-    public Optional<Particular> getParticularById(Long id){
+    public Optional<Particular> getParticularById(Integer id){
         Optional<Particular> particular=particularRepository.findOneById(id);
         return particular;
     }
 
-    public void deleteParticular(Long id){
+    public void deleteParticular(Integer id){
         particularRepository.findOneById(id).ifPresent(particular -> {
             particularRepository.delete(particular);
             log.debug("Deleted Information for Particlar:{}", particular);

@@ -9,8 +9,8 @@ import java.util.Optional;
 /**
  * Created by BiSAl MhRzn on 12/23/2016.
  */
-public interface NotificationLogRepository extends JpaRepository<NotificationLog,Long> {
+public interface NotificationLogRepository extends JpaRepository<NotificationLog,Integer> {
     List<NotificationLog> findAll();
-    Optional<NotificationLog> findOneById(long id);
+    Optional<NotificationLog> findOneById(Integer id);
     void delete(NotificationLog d);
 }

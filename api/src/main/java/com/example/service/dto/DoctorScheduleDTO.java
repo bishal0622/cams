@@ -1,41 +1,47 @@
 package com.example.service.dto;
 
+import com.example.domain.Appointment;
 import com.example.domain.Doctor;
 import com.example.domain.DoctorSchedule;
 
 import java.sql.Timestamp;
+import java.util.Collection;
 
 /**
  * Created by japnica on 12/25/2016.
  */
 public class DoctorScheduleDTO {
-    private Long id;
-    private Doctor doctor;
+    private Integer id;
+    private Integer doctorId;
     private Timestamp doctorScheduleTo;
     private Timestamp doctorScheduleFrom;
     private Integer dayOfWeek;
-
-    public DoctorScheduleDTO(Long id, Doctor doctor, Timestamp doctorScheduleTo, Timestamp doctorScheduleFrom, Integer dayOfWeek) {
-        this.id = id;
-        this.doctor = doctor;
-        this.doctorScheduleTo = doctorScheduleTo;
-        this.doctorScheduleFrom = doctorScheduleFrom;
-        this.dayOfWeek = dayOfWeek;
-    }
+    private Collection<Appointment> appointmentsByDoctorScheduleId;
+    private Doctor doctorByDoctorId;
 
     public DoctorScheduleDTO() {
     }
 
-    public DoctorScheduleDTO(DoctorSchedule doctorSchedule){
-        this(doctorSchedule.getId(), doctorSchedule.getDoctor(), doctorSchedule.getDoctorScheduleTo(), doctorSchedule.getDoctorScheduleFrom(), doctorSchedule.getDayOfWeek());
+    public DoctorScheduleDTO(Integer id, Integer doctorId, Timestamp doctorScheduleTo, Timestamp doctorScheduleFrom, Integer dayOfWeek, Collection<Appointment> appointmentsByDoctorScheduleId, Doctor doctorByDoctorId) {
+        this.id = id;
+        this.doctorId = doctorId;
+        this.doctorScheduleTo = doctorScheduleTo;
+        this.doctorScheduleFrom = doctorScheduleFrom;
+        this.dayOfWeek = dayOfWeek;
+        this.appointmentsByDoctorScheduleId = appointmentsByDoctorScheduleId;
+        this.doctorByDoctorId = doctorByDoctorId;
     }
 
-    public Long getId() {
+    public DoctorScheduleDTO(DoctorSchedule doctorSchedule){
+        this(doctorSchedule.getId(),doctorSchedule.getDoctorId(),doctorSchedule.getDoctorScheduleTo(),doctorSchedule.getDoctorScheduleFrom(),doctorSchedule.getDayOfWeek(),doctorSchedule.getAppointmentsByDoctorScheduleId(),doctorSchedule.getDoctorByDoctorId());
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public Doctor getDoctor() {
-        return doctor;
+    public Integer getDoctorId() {
+        return doctorId;
     }
 
     public Timestamp getDoctorScheduleTo() {
@@ -50,14 +56,24 @@ public class DoctorScheduleDTO {
         return dayOfWeek;
     }
 
+    public Collection<Appointment> getAppointmentsByDoctorScheduleId() {
+        return appointmentsByDoctorScheduleId;
+    }
+
+    public Doctor getDoctorByDoctorId() {
+        return doctorByDoctorId;
+    }
+
     @Override
     public String toString() {
         return "DoctorScheduleDTO{" +
                 "id=" + id +
-                ", doctor=" + doctor +
+                ", doctorId=" + doctorId +
                 ", doctorScheduleTo=" + doctorScheduleTo +
                 ", doctorScheduleFrom=" + doctorScheduleFrom +
                 ", dayOfWeek=" + dayOfWeek +
+                ", appointmentsByDoctorScheduleId=" + appointmentsByDoctorScheduleId +
+                ", doctorByDoctorId=" + doctorByDoctorId +
                 '}';
     }
 }

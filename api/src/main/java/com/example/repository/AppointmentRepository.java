@@ -9,8 +9,8 @@ import java.util.Optional;
 /**
  * Created by BiSAl MhRzn on 12/23/2016.
  */
-public interface AppointmentRepository extends JpaRepository<Appointment,Long>{
+public interface AppointmentRepository extends JpaRepository<Appointment,Integer>{
     List<Appointment> findAll();
-    Optional<Appointment> findOneById(long id);
+    Optional<Appointment> findOneById(Integer id);
     void delete(Appointment d);
 }

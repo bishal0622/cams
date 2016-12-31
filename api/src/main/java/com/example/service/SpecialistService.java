@@ -28,6 +28,7 @@ public class SpecialistService {
     public Specialist saveSpecialist(SpecialistDTO specialistDTO){
         Specialist specialist=new Specialist();
         specialist.setSpecialistName(specialistDTO.getSpecialistName());
+        specialist.setDoctorsBySpecialistId(specialistDTO.getDoctorsBySpecialistId());
 
         specialistRepository.save(specialist);
 
@@ -41,21 +42,21 @@ public class SpecialistService {
         return specialist;
     }
 
-    public void updateSpecialist(Long id, String specialistName){
-        specialistRepository.findOneById(id).ifPresent(specialist->{
-            specialist.setId(id);
+    public void updateSpecialist(Integer specialistId, String specialistName, Collection<Doctor> doctorsBySpecialistId){
+        specialistRepository.findOneById(specialistId).ifPresent(specialist->{
             specialist.setSpecialistName(specialistName);
+            specialist.setDoctorsBySpecialistId(doctorsBySpecialistId);
             log.debug("Updated specialist information:{}", specialist);
             specialistRepository.save(specialist);
         });
     }
 
-    public Optional<Specialist> getSpecialistById(Long id){
+    public Optional<Specialist> getSpecialistById(Integer id){
         Optional<Specialist> specialist=specialistRepository.findOneById(id);
         return specialist;
     }
 
-    public void deleteSpecialist(Long id){
+    public void deleteSpecialist(Integer id){
         specialistRepository.findOneById(id).ifPresent(specialist->{
             specialistRepository.delete(specialist);
             log.debug("Deleted Information:{}", specialist);

@@ -1,5 +1,7 @@
 package com.example.service;
 
+import com.example.domain.AuthorityStaff;
+import com.example.domain.Billing;
 import com.example.domain.Staff;
 import com.example.repository.StaffRepository;
 import com.example.service.dto.StaffDTO;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,6 +34,9 @@ public class StaffService {
         staff.setStaffName(staffDTO.getStaffName());
         staff.setPassword(staffDTO.getPassword());
         staff.setStaffContact(staffDTO.getStaffContact());
+        staff.setBillingbillId(staffDTO.getBillingbillId());
+        staff.setAuthorityStaffsByStaffId(staffDTO.getAuthorityStaffsByStaffId());
+        staff.setBillingsByStaffId(staffDTO.getBillingsByStaffId());
 
         staffRepository.save(staff);
 
@@ -44,23 +50,27 @@ public class StaffService {
         return staff;
     }
 
-    public void updateStaff(Long id, String staffName,String password,String staffContact ){
-        staffRepository.findOneById(id).ifPresent(staff->{
-            staff.setId(id);
+    public void updateStaff(Integer staffId, String staffName, String staffContact, String password, Integer billingbillId, Collection<AuthorityStaff> authorityStaffsByStaffId, Collection<Billing> billingsByStaffId ){
+        staffRepository.findOneById(staffId).ifPresent(staff->{
+
             staff.setStaffName(staffName);
             staff.setPassword(password);
             staff.setStaffContact(staffContact);
+            staff.setBillingbillId(billingbillId);
+            staff.setAuthorityStaffsByStaffId(authorityStaffsByStaffId);
+            staff.setBillingsByStaffId(billingsByStaffId);
+
             log.debug("Updated staff information:{}", staff);
             staffRepository.save(staff);
         });
     }
 
-    public Optional<Staff> getStaffById(Long id){
+    public Optional<Staff> getStaffById(Integer id){
         Optional<Staff> staff=staffRepository.findOneById(id);
         return staff;
     }
 
-    public void deleteStaff(Long id){
+    public void deleteStaff(Integer id){
         staffRepository.findOneById(id).ifPresent(staff->{
             staffRepository.delete(staff);
             log.debug("Deleted Information:{}", staff);

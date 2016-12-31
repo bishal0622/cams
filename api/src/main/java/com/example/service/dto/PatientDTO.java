@@ -1,9 +1,6 @@
 package com.example.service.dto;
 
-import com.example.domain.Billing;
-import com.example.domain.Doctor;
-import com.example.domain.Patient;
-import com.example.domain.PatientAppointment;
+import com.example.domain.*;
 
 import java.util.Collection;
 
@@ -11,36 +8,38 @@ import java.util.Collection;
  * Created by japnica on 12/22/2016.
  */
 public class PatientDTO {
-    private Long id;
+    private Integer id;
     private String patientName;
     private String patientAddress;
     private String patientContact;
-    private Long age;
+    private Integer age;
     private String gender;
+    private Integer weight;
     private String patientEmail;
-//    private Collection<Billing> billings;
-//    private  Collection<PatientAppointment> patientAppointments;
+    private Collection<Appointment> appointmentsByPatientId;
+    private Collection<Billing> billingsByPatientId;
 
-    public PatientDTO(Long id, String patientName, String patientAddress, String patientContact, Long age, String gender, String patientEmail) {
+    public PatientDTO() {
+    }
+
+    public PatientDTO(Integer id, String patientName, String patientAddress, String patientContact, Integer age, String gender, Integer weight, String patientEmail, Collection<Appointment> appointmentsByPatientId, Collection<Billing> billingsByPatientId) {
         this.id = id;
         this.patientName = patientName;
         this.patientAddress = patientAddress;
         this.patientContact = patientContact;
         this.age = age;
         this.gender = gender;
+        this.weight = weight;
         this.patientEmail = patientEmail;
-//        this.billings = billings;
-//        this.patientAppointments = patientAppointments;
-    }
-
-    public PatientDTO() {
+        this.appointmentsByPatientId = appointmentsByPatientId;
+        this.billingsByPatientId = billingsByPatientId;
     }
 
     public PatientDTO(Patient patient){
-        this(patient.getId(), patient.getPatientName(), patient.getPatientAddress(),patient.getPatientContact(),patient.getAge(),patient.getGender(),patient.getPatientEmail());
+        this(patient.getId(),patient.getPatientName(),patient.getPatientAddress(),patient.getPatientContact(),patient.getAge(),patient.getGender(),patient.getWeight(),patient.getPatientEmail(),patient.getAppointmentsByPatientId(),patient.getBillingsByPatientId());
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -56,7 +55,7 @@ public class PatientDTO {
         return patientContact;
     }
 
-    public Long getAge() {
+    public Integer getAge() {
         return age;
     }
 
@@ -64,17 +63,21 @@ public class PatientDTO {
         return gender;
     }
 
+    public Integer getWeight() {
+        return weight;
+    }
+
     public String getPatientEmail() {
         return patientEmail;
     }
 
-//    public Collection<Billing> getBillings() {
-//        return billings;
-//    }
-//
-//    public Collection<PatientAppointment> getPatientAppointments() {
-//        return patientAppointments;
-//    }
+    public Collection<Appointment> getAppointmentsByPatientId() {
+        return appointmentsByPatientId;
+    }
+
+    public Collection<Billing> getBillingsByPatientId() {
+        return billingsByPatientId;
+    }
 
     @Override
     public String toString() {
@@ -85,9 +88,10 @@ public class PatientDTO {
                 ", patientContact='" + patientContact + '\'' +
                 ", age=" + age +
                 ", gender='" + gender + '\'' +
+                ", weight=" + weight +
                 ", patientEmail='" + patientEmail + '\'' +
-//                ", billings=" + billings +
-//                ", patientAppointments=" + patientAppointments +
+                ", appointmentsByPatientId=" + appointmentsByPatientId +
+                ", billingsByPatientId=" + billingsByPatientId +
                 '}';
     }
 }

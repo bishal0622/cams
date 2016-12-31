@@ -20,6 +20,7 @@ import java.util.logging.Logger;
 @Service
 @Transactional
 public class AuthorityStaffService {
+
     @Inject
     AuthorityStaffRepository authorityStaffRepository;
 
@@ -28,8 +29,10 @@ public class AuthorityStaffService {
     public AuthorityStaff saveAuthorityStaff(AuthorityStaffDTO authorityStaffDTO ){
         AuthorityStaff authorityStaff=new AuthorityStaff();
 
-        authorityStaff.setAuthority(authorityStaffDTO.getAuthority());
-        authorityStaff.setStaff(authorityStaffDTO.getStaff());
+        authorityStaff.setAuthorityauthorityId(authorityStaffDTO.getAuthorityauthorityId());
+        authorityStaff.setStaffstaffId(authorityStaffDTO.getStaffstaffId());
+        authorityStaff.setAuthorityByAuthorityauthorityId(authorityStaffDTO.getAuthorityByAuthorityauthorityId());
+        authorityStaff.setStaffByStaffstaffId(authorityStaffDTO.getStaffByStaffstaffId());
 
         authorityStaffRepository.save(authorityStaff);
         return authorityStaff;
@@ -40,23 +43,25 @@ public class AuthorityStaffService {
         return authorityStaffs;
     }
 
-    public void updateAuthorityStaff(Long id, Authority authority, Staff staff) {
+    public void updateAuthorityStaff(Integer id,Integer authorityStaffid,Integer staffstaffId, Authority authority, Staff staff) {
         authorityStaffRepository.findOneById(id).ifPresent(authorityStaff -> {
             authorityStaff.setId(id);
-            authorityStaff.setAuthority(authority);
-            authorityStaff.setStaff(staff);
+            authorityStaff.setAuthorityauthorityId(authorityStaffid);
+            authorityStaff.setStaffstaffId(staffstaffId);
+            authorityStaff.setAuthorityByAuthorityauthorityId(authority);
+            authorityStaff.setStaffByStaffstaffId(staff);
 
             log.debug("Updated:{}", authorityStaff);
             authorityStaffRepository.save(authorityStaff);
         });
     }
 
-    public Optional<AuthorityStaff>getauthorityStaffById(Long id){
+    public Optional<AuthorityStaff>getauthorityStaffById(Integer id){
         Optional<AuthorityStaff> authorityStaff=authorityStaffRepository.findOneById(id);
         return authorityStaff;
     }
 
-    public void deleteAuthorityStaff(Long id) {
+    public void deleteAuthorityStaff(Integer id) {
         authorityStaffRepository.findOneById(id).ifPresent(authorityStaff -> {
             authorityStaffRepository.delete(authorityStaff);
             log.debug("Deleted Information:{}", authorityStaff);

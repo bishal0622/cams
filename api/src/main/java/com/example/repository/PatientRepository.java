@@ -9,8 +9,8 @@ import java.util.Optional;
 /**
  * Created by japnica on 12/23/2016.
  */
-public interface PatientRepository extends JpaRepository<Patient, Long>{
+public interface PatientRepository extends JpaRepository<Patient, Integer>{
     List<Patient> findAll();
-    Optional<Patient> findOneById(Long id);
+    Optional<Patient> findOneById(Integer id);
     void delete(Patient p);
 }

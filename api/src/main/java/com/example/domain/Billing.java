@@ -5,59 +5,44 @@ import java.sql.Timestamp;
 import java.util.Collection;
 
 /**
- * Created by japnica on 12/20/2016.
+ * Created by BiSAl MhRzn on 12/29/2016.
  */
 @Entity
-@Table(name="billing")
 public class Billing {
-    @Id
-    @GeneratedValue
-    @Column(name="billId")
-    private Long id;
-
-    @OneToOne
-    @JoinColumn(name="patientId", referencedColumnName = "patientId")
-    private Patient patient;
-
-    @Column(name="billingDate", nullable = false)
+    private Integer id;
+    private Integer patientId;
     private Timestamp billingDate;
+    private Integer staffId;
+    private double discount;
+    private double tax;
+    private double grandTotal;
+    private double amount;
+    private Patient patientByPatientId;
+    private Staff staffByStaffId;
+    private Collection<ParticularBilling> particularBillingsByBillId;
 
-    @ManyToOne
-    @JoinColumn(name="staffId", referencedColumnName = "staffId")
-    private  Staff staff;
-
-    @Column(name="discount")
-    private Double discount;
-
-    @Column(name="tax")
-    private  Double tax;
-
-    @Column(name="grandTotal", nullable = false)
-    private Double grandTotal;
-
-    @Column(name="amount", nullable = false)
-    private Double amount;
-
-//    @OneToMany(mappedBy = "billing")
-//    private Collection<ParticularBilling> particularBillings;
-
-
-    public Long getId() {
+    @Id
+    @Column(name = "bill_id", nullable = false)
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public Patient getPatient() {
-        return patient;
+    @Basic
+    @Column(name = "patient_id", nullable = false)
+    public Integer getPatientId() {
+        return patientId;
     }
 
-    public void setPatient(Patient patient) {
-        this.patient = patient;
+    public void setPatientId(Integer patientId) {
+        this.patientId = patientId;
     }
 
+    @Basic
+    @Column(name = "billing_date", nullable = false)
     public Timestamp getBillingDate() {
         return billingDate;
     }
@@ -66,57 +51,120 @@ public class Billing {
         this.billingDate = billingDate;
     }
 
-    public Staff getStaff() {
-        return staff;
+    @Basic
+    @Column(name = "staff_id", nullable = false)
+    public Integer getStaffId() {
+        return staffId;
     }
 
-    public void setStaff(Staff staff) {
-        this.staff = staff;
+    public void setStaffId(Integer staffId) {
+        this.staffId = staffId;
     }
 
-    public Double getDiscount() {
+    @Basic
+    @Column(name = "discount", nullable = false, precision = 0)
+    public double getDiscount() {
         return discount;
     }
 
-    public void setDiscount(Double discount) {
+    public void setDiscount(double discount) {
         this.discount = discount;
     }
 
-    public Double getTax() {
+    @Basic
+    @Column(name = "tax", nullable = false, precision = 0)
+    public double getTax() {
         return tax;
     }
 
-    public void setTax(Double tax) {
+    public void setTax(double tax) {
         this.tax = tax;
     }
 
-    public Double getGrandTotal() {
+    @Basic
+    @Column(name = "grand_total", nullable = false, precision = 0)
+    public double getGrandTotal() {
         return grandTotal;
     }
 
-    public void setGrandTotal(Double grandTotal) {
+    public void setGrandTotal(double grandTotal) {
         this.grandTotal = grandTotal;
     }
 
-    public Double getAmount() {
+    @Basic
+    @Column(name = "amount", nullable = false, precision = 0)
+    public double getAmount() {
         return amount;
     }
 
-    public void setAmount(Double amount) {
+    public void setAmount(double amount) {
         this.amount = amount;
     }
 
     @Override
-    public String toString() {
-        return "Billing{" +
-                "id=" + id +
-                ", patient=" + patient +
-                ", billingDate=" + billingDate +
-                ", staff=" + staff +
-                ", discount=" + discount +
-                ", tax=" + tax +
-                ", grandTotal=" + grandTotal +
-                ", amount=" + amount +
-                '}';
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Billing billing = (Billing) o;
+
+        if (id != billing.id) return false;
+        if (patientId != billing.patientId) return false;
+        if (staffId != billing.staffId) return false;
+        if (Double.compare(billing.discount, discount) != 0) return false;
+        if (Double.compare(billing.tax, tax) != 0) return false;
+        if (Double.compare(billing.grandTotal, grandTotal) != 0) return false;
+        if (Double.compare(billing.amount, amount) != 0) return false;
+        if (billingDate != null ? !billingDate.equals(billing.billingDate) : billing.billingDate != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = id;
+        result = 31 * result + patientId;
+        result = 31 * result + (billingDate != null ? billingDate.hashCode() : 0);
+        result = 31 * result + staffId;
+        temp = Double.doubleToLongBits(discount);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(tax);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(grandTotal);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(amount);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        return result;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "patient_id", referencedColumnName = "patient_id", nullable = false, insertable = false, updatable = false)
+    public Patient getPatientByPatientId() {
+        return patientByPatientId;
+    }
+
+    public void setPatientByPatientId(Patient patientByPatientId) {
+        this.patientByPatientId = patientByPatientId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "staff_id", referencedColumnName = "staff_id", nullable = false, insertable = false, updatable = false)
+    public Staff getStaffByStaffId() {
+        return staffByStaffId;
+    }
+
+    public void setStaffByStaffId(Staff staffByStaffId) {
+        this.staffByStaffId = staffByStaffId;
+    }
+
+    @OneToMany(mappedBy = "billingByBillingbillId")
+    public Collection<ParticularBilling> getParticularBillingsByBillId() {
+        return particularBillingsByBillId;
+    }
+
+    public void setParticularBillingsByBillId(Collection<ParticularBilling> particularBillingsByBillId) {
+        this.particularBillingsByBillId = particularBillingsByBillId;
     }
 }

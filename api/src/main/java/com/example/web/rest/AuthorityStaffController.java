@@ -58,7 +58,7 @@ public class AuthorityStaffController {
             produces = MediaType.APPLICATION_JSON_VALUE)
 
     public ResponseEntity<AuthorityStaff> updateAuthorityStaff(@RequestBody AuthorityStaffDTO authorityStaffDTO) {
-        authorityStaffService.updateAuthorityStaff(authorityStaffDTO.getId(),authorityStaffDTO.getAuthority(),authorityStaffDTO.getStaff());
+        authorityStaffService.updateAuthorityStaff(authorityStaffDTO.getId(),authorityStaffDTO.getAuthorityauthorityId(),authorityStaffDTO.getStaffstaffId(),authorityStaffDTO.getAuthorityByAuthorityauthorityId(),authorityStaffDTO.getStaffByStaffstaffId());
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
@@ -66,7 +66,7 @@ public class AuthorityStaffController {
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
 
-    public ResponseEntity<?> getAuthorityStaff(@PathVariable Long id)
+    public ResponseEntity<?> getAuthorityStaff(@PathVariable Integer id)
             throws URISyntaxException {
         System.out.println("get one staff");
 
@@ -79,9 +79,9 @@ public class AuthorityStaffController {
             method= RequestMethod.DELETE,
             produces = MediaType.APPLICATION_JSON_VALUE)
 
-    public void deleteAuthorityStaff(@PathVariable Long id) {
+    public void deleteAuthorityStaff(@PathVariable Integer id) {
         System.out.println("delete");
-        authorityStaffService.getauthorityStaffById(id);
+        authorityStaffService.deleteAuthorityStaff(id);
     }
 
 }

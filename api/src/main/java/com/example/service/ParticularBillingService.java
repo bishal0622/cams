@@ -27,8 +27,13 @@ public class ParticularBillingService {
 
     public ParticularBilling saveParticularBilling(ParticularBillingDTO particularBillingDTO){
         ParticularBilling particularBilling=new ParticularBilling();
-        particularBilling.setParticular(particularBillingDTO.getParticular());
-        particularBilling.setBilling(particularBillingDTO.getBilling());
+
+        particularBilling.setBillingbillId(particularBillingDTO.getBillingbillId());
+        particularBilling.setParticularparticularId(particularBillingDTO.getParticularparticularId());
+        particularBilling.setBillingbillId(particularBillingDTO.getBillingbillId());
+        particularBilling.setParticularByParticularparticularId(particularBillingDTO.getParticularByParticularparticularId());
+        particularBilling.setBillingByBillingbillId(particularBillingDTO.getBillingByBillingbillId());
+
         particularBillingRepository.save(particularBilling);
         log.debug("Created Information for particularbilling: {}", particularBilling);
         return particularBilling;
@@ -39,23 +44,24 @@ public class ParticularBillingService {
         return particularBillings;
     }
 
-    public void updateParticularBilling(Long id, Particular particular, Billing billing){
-        particularBillingRepository.findOneById(id).ifPresent(particularBilling -> {
-            particularBilling.setId(id);
-            particularBilling.setParticular(particular);
-            particularBilling.setBilling(billing);
+    public void updateParticularBilling(Integer particularBillingId, Integer particularparticularId, Integer billingbillId, Particular particularByParticularparticularId, Billing billingByBillingbillId){
+        particularBillingRepository.findOneById(particularBillingId).ifPresent(particularBilling -> {
+           particularBilling.setParticularparticularId(particularparticularId);
+            particularBilling.setBillingbillId(billingbillId);
+            particularBilling.setParticularByParticularparticularId(particularByParticularparticularId);
+            particularBilling.setBillingByBillingbillId(billingByBillingbillId);
 
             log.debug("Updated particular billing information: {}", particularBilling);
             particularBillingRepository.save(particularBilling);
         });
     }
 
-    public Optional<ParticularBilling> getParticularBillingById(Long id){
+    public Optional<ParticularBilling> getParticularBillingById(Integer id){
         Optional<ParticularBilling> particularBilling=particularBillingRepository.findOneById(id);
         return particularBilling;
     }
 
-    public void deleteParticularBilling(Long id){
+    public void deleteParticularBilling(Integer id){
         particularBillingRepository.findOneById(id).ifPresent(particularBilling -> {
             particularBillingRepository.delete(particularBilling);
             log.debug("Deleted Information: {}", particularBilling);

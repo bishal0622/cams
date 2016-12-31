@@ -5,48 +5,41 @@ import java.sql.Timestamp;
 import java.util.Collection;
 
 /**
- * Created by japnica on 12/20/2016.
+ * Created by BiSAl MhRzn on 12/29/2016.
  */
 @Entity
-@Table(name="doctorSchedule")
+@Table(name = "doctor_schedule", schema = "clinic", catalog = "")
 public class DoctorSchedule {
-    @Id
-    @GeneratedValue
-    @Column(name="doctorScheduleId")
-    private  Long id;
-
-    @ManyToOne
-    @JoinColumn(name="doctorId", referencedColumnName = "doctorId", nullable = false)
-    private Doctor doctor;
-
-    @Column(name="doctorScheduleTo", nullable = false)
+    private Integer id;
+    private Integer doctorId;
     private Timestamp doctorScheduleTo;
-
-    @Column(name="doctorScheduleFrom", nullable = false)
     private Timestamp doctorScheduleFrom;
-
-    @Column(name="dayOfWeek", nullable = false)
     private Integer dayOfWeek;
+    private Collection<Appointment> appointmentsByDoctorScheduleId;
+    private Doctor doctorByDoctorId;
 
-//    @OneToMany(mappedBy = "doctorSchedule")
-//    private Collection<Appointment> appointments;
-
-    public Long getId() {
+    @Id
+    @Column(name = "doctor_schedule_id", nullable = false)
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public Doctor getDoctor() {
-        return doctor;
+    @Basic
+    @Column(name = "doctor_id", nullable = false)
+    public Integer getDoctorId() {
+        return doctorId;
     }
 
-    public void setDoctor(Doctor doctor) {
-        this.doctor = doctor;
+    public void setDoctorId(Integer doctorId) {
+        this.doctorId = doctorId;
     }
 
+    @Basic
+    @Column(name = "doctor_schedule_to", nullable = false)
     public Timestamp getDoctorScheduleTo() {
         return doctorScheduleTo;
     }
@@ -55,6 +48,8 @@ public class DoctorSchedule {
         this.doctorScheduleTo = doctorScheduleTo;
     }
 
+    @Basic
+    @Column(name = "doctor_schedule_from", nullable = false)
     public Timestamp getDoctorScheduleFrom() {
         return doctorScheduleFrom;
     }
@@ -63,6 +58,8 @@ public class DoctorSchedule {
         this.doctorScheduleFrom = doctorScheduleFrom;
     }
 
+    @Basic
+    @Column(name = "day_of_week", nullable = false)
     public Integer getDayOfWeek() {
         return dayOfWeek;
     }
@@ -71,23 +68,50 @@ public class DoctorSchedule {
         this.dayOfWeek = dayOfWeek;
     }
 
-//    public Collection<Appointment> getAppointments() {
-//        return appointments;
-//    }
-//
-//    public void setAppointments(Collection<Appointment> appointments) {
-//        this.appointments = appointments;
-//    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        DoctorSchedule that = (DoctorSchedule) o;
+
+        if (id != that.id) return false;
+        if (doctorId != that.doctorId) return false;
+        if (dayOfWeek != that.dayOfWeek) return false;
+        if (doctorScheduleTo != null ? !doctorScheduleTo.equals(that.doctorScheduleTo) : that.doctorScheduleTo != null)
+            return false;
+        if (doctorScheduleFrom != null ? !doctorScheduleFrom.equals(that.doctorScheduleFrom) : that.doctorScheduleFrom != null)
+            return false;
+
+        return true;
+    }
 
     @Override
-    public String toString() {
-        return "DoctorSchedule{" +
-                "id=" + id +
-                ", doctor=" + doctor +
-                ", doctorScheduleTo=" + doctorScheduleTo +
-                ", doctorScheduleFrom=" + doctorScheduleFrom +
-                ", dayOfWeek=" + dayOfWeek +
-//                ", appointments=" + appointments +
-                '}';
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + doctorId;
+        result = 31 * result + (doctorScheduleTo != null ? doctorScheduleTo.hashCode() : 0);
+        result = 31 * result + (doctorScheduleFrom != null ? doctorScheduleFrom.hashCode() : 0);
+        result = 31 * result + dayOfWeek;
+        return result;
+    }
+
+    @OneToMany(mappedBy = "doctorScheduleByDoctorScheduleId")
+    public Collection<Appointment> getAppointmentsByDoctorScheduleId() {
+        return appointmentsByDoctorScheduleId;
+    }
+
+    public void setAppointmentsByDoctorScheduleId(Collection<Appointment> appointmentsByDoctorScheduleId) {
+        this.appointmentsByDoctorScheduleId = appointmentsByDoctorScheduleId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "doctor_id", referencedColumnName = "doctor_id", nullable = false, insertable = false, updatable = false)
+    public Doctor getDoctorByDoctorId() {
+        return doctorByDoctorId;
+    }
+
+    public void setDoctorByDoctorId(Doctor doctorByDoctorId) {
+        this.doctorByDoctorId = doctorByDoctorId;
     }
 }

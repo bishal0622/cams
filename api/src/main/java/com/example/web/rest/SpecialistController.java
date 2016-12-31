@@ -19,6 +19,7 @@ import java.util.List;
  * Created by japnica on 12/22/2016.
  */
 @RestController
+@CrossOrigin(origins = "http://localhost:9000")
 @RequestMapping("/api")
 public class SpecialistController {
     @Inject
@@ -27,7 +28,7 @@ public class SpecialistController {
     @RequestMapping(value="/specialist",
             method = RequestMethod.POST,
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.TEXT_PLAIN_VALUE})
-    public ResponseEntity<?> insertDoctor(@RequestBody SpecialistDTO specialistDTO, HttpServletRequest httpServletRequest){
+    public ResponseEntity<?> insertSpecialist(@RequestBody SpecialistDTO specialistDTO, HttpServletRequest httpServletRequest){
         System.out.println("usercontroller");
         System.out.println(specialistDTO.toString());
 
@@ -38,11 +39,12 @@ public class SpecialistController {
 
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
     @RequestMapping(value = "/specialist",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
 
-    public ResponseEntity<?> getAllUsers()
+    public ResponseEntity<?> getAllSpecialist()
             throws URISyntaxException {
 
         List<Specialist> val=specialistService.getAllSpecialist();
@@ -55,8 +57,8 @@ public class SpecialistController {
             method = RequestMethod.PUT,
             produces = MediaType.APPLICATION_JSON_VALUE)
 
-    public ResponseEntity<DoctorDTO> updateUser(@RequestBody SpecialistDTO specialistDTO) {
-        specialistService.updateSpecialist(specialistDTO.getId(),specialistDTO.getSpecialistName());
+    public ResponseEntity<DoctorDTO> updateSpecialist(@RequestBody SpecialistDTO specialistDTO) {
+        specialistService.updateSpecialist(specialistDTO.getId(),specialistDTO.getSpecialistName(),specialistDTO.getDoctorsBySpecialistId());
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
@@ -64,7 +66,7 @@ public class SpecialistController {
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
 
-    public ResponseEntity<?> getUsers(@PathVariable Long id)
+    public ResponseEntity<?> getSpecialist(@PathVariable Integer id)
             throws URISyntaxException {
         System.out.println("get one user");
 
@@ -77,7 +79,7 @@ public class SpecialistController {
             method= RequestMethod.DELETE,
             produces = MediaType.APPLICATION_JSON_VALUE)
 
-    public void deleteUser(@PathVariable Long id) {
+    public void deleteSpecialist(@PathVariable Integer id) {
         System.out.println("delete");
         specialistService.deleteSpecialist(id);
     }

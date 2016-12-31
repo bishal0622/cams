@@ -4,34 +4,30 @@ import javax.persistence.*;
 import java.util.Collection;
 
 /**
- * Created by HELLZ on 12/20/2016.
+ * Created by BiSAl MhRzn on 12/29/2016.
  */
 @Entity
-@Table(name="staff")
 public class Staff {
-    @Id
-    @GeneratedValue
-    @Column(name="staffId")
-    private Long id;
-
-    @Column(name="staffName", nullable = false)
+    private Integer id;
     private String staffName;
-
-    @Column(name="staffContact", nullable = false)
     private String staffContact;
-
-    @Column(name="password", nullable = false)
     private String password;
+    private Integer billingbillId;
+    private Collection<AuthorityStaff> authorityStaffsByStaffId;
+    private Collection<Billing> billingsByStaffId;
 
-
-    public Long getId() {
+    @Id
+    @Column(name = "staff_id", nullable = false)
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "staff_name", nullable = false, length = 100)
     public String getStaffName() {
         return staffName;
     }
@@ -40,6 +36,8 @@ public class Staff {
         this.staffName = staffName;
     }
 
+    @Basic
+    @Column(name = "staff_contact", nullable = false, length = 255)
     public String getStaffContact() {
         return staffContact;
     }
@@ -48,6 +46,8 @@ public class Staff {
         this.staffContact = staffContact;
     }
 
+    @Basic
+    @Column(name = "password", nullable = false, length = 255)
     public String getPassword() {
         return password;
     }
@@ -56,15 +56,57 @@ public class Staff {
         this.password = password;
     }
 
+    @Basic
+    @Column(name = "billingbill_id", nullable = false)
+    public Integer getBillingbillId() {
+        return billingbillId;
+    }
 
+    public void setBillingbillId(Integer billingbillId) {
+        this.billingbillId = billingbillId;
+    }
 
     @Override
-    public String toString() {
-        return "Staff{" +
-                "id=" + id +
-                ", staffName='" + staffName + '\'' +
-                ", staffContact=" + staffContact +
-                ", password='" + password + '\'' +
-                '}';
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Staff staff = (Staff) o;
+
+        if (id != staff.id) return false;
+        if (billingbillId != staff.billingbillId) return false;
+        if (staffName != null ? !staffName.equals(staff.staffName) : staff.staffName != null) return false;
+        if (staffContact != null ? !staffContact.equals(staff.staffContact) : staff.staffContact != null) return false;
+        if (password != null ? !password.equals(staff.password) : staff.password != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (staffName != null ? staffName.hashCode() : 0);
+        result = 31 * result + (staffContact != null ? staffContact.hashCode() : 0);
+        result = 31 * result + (password != null ? password.hashCode() : 0);
+        result = 31 * result + billingbillId;
+        return result;
+    }
+
+    @OneToMany(mappedBy = "staffByStaffstaffId")
+    public Collection<AuthorityStaff> getAuthorityStaffsByStaffId() {
+        return authorityStaffsByStaffId;
+    }
+
+    public void setAuthorityStaffsByStaffId(Collection<AuthorityStaff> authorityStaffsByStaffId) {
+        this.authorityStaffsByStaffId = authorityStaffsByStaffId;
+    }
+
+    @OneToMany(mappedBy = "staffByStaffId")
+    public Collection<Billing> getBillingsByStaffId() {
+        return billingsByStaffId;
+    }
+
+    public void setBillingsByStaffId(Collection<Billing> billingsByStaffId) {
+        this.billingsByStaffId = billingsByStaffId;
     }
 }

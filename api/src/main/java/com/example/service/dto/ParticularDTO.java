@@ -1,29 +1,34 @@
 package com.example.service.dto;
 
 import com.example.domain.Particular;
+import com.example.domain.ParticularBilling;
+
+import java.util.Collection;
 
 /**
  * Created by japnica on 12/25/2016.
  */
 public class ParticularDTO {
-    private Long id;
+    private Integer id;
     private String particularName;
-    private Double particularRate;
-
-    public ParticularDTO(Long id, String particularName, Double particularRate) {
-        this.id = id;
-        this.particularName = particularName;
-        this.particularRate = particularRate;
-    }
+    private double particularRate;
+    private Collection<ParticularBilling> particularBillingsByParticularId;
 
     public ParticularDTO() {
     }
 
-    public ParticularDTO(Particular particular){
-        this(particular.getId(),particular.getParticularName(),particular.getParticularRate());
+    public ParticularDTO(Integer id, String particularName, double particularRate, Collection<ParticularBilling> particularBillingsByParticularId) {
+        this.id = id;
+        this.particularName = particularName;
+        this.particularRate = particularRate;
+        this.particularBillingsByParticularId = particularBillingsByParticularId;
     }
 
-    public Long getId() {
+    public ParticularDTO(Particular particular){
+        this(particular.getId(),particular.getParticularName(),particular.getParticularRate(),particular.getParticularBillingsByParticularId());
+    }
+
+    public Integer getId() {
         return id;
     }
 
@@ -31,8 +36,12 @@ public class ParticularDTO {
         return particularName;
     }
 
-    public Double getParticularRate() {
+    public double getParticularRate() {
         return particularRate;
+    }
+
+    public Collection<ParticularBilling> getParticularBillingsByParticularId() {
+        return particularBillingsByParticularId;
     }
 
     @Override
@@ -41,6 +50,7 @@ public class ParticularDTO {
                 "id=" + id +
                 ", particularName='" + particularName + '\'' +
                 ", particularRate=" + particularRate +
+                ", particularBillingsByParticularId=" + particularBillingsByParticularId +
                 '}';
     }
 }

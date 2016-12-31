@@ -57,7 +57,7 @@ public class StaffController {
             produces = MediaType.APPLICATION_JSON_VALUE)
 
     public ResponseEntity<StaffDTO> updateStaff(@RequestBody StaffDTO staffDTO) {
-        staffService.updateStaff(staffDTO.getId(),staffDTO.getStaffName(),staffDTO.getPassword(),staffDTO.getStaffContact());
+        staffService.updateStaff(staffDTO.getId(),staffDTO.getStaffName(),staffDTO.getStaffContact(),staffDTO.getPassword(),staffDTO.getBillingbillId(),staffDTO.getAuthorityStaffsByStaffId(),staffDTO.getBillingsByStaffId());
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
@@ -65,7 +65,7 @@ public class StaffController {
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
 
-    public ResponseEntity<?> getStaff(@PathVariable Long id)
+    public ResponseEntity<?> getStaff(@PathVariable Integer id)
             throws URISyntaxException {
         System.out.println("get one staff");
 
@@ -78,7 +78,7 @@ public class StaffController {
             method= RequestMethod.DELETE,
             produces = MediaType.APPLICATION_JSON_VALUE)
 
-    public void deleteStaff(@PathVariable Long id) {
+    public void deleteStaff(@PathVariable Integer id) {
         System.out.println("delete");
         staffService.deleteStaff(id);
     }

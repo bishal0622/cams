@@ -31,7 +31,9 @@ public class NotificationLogService {
         NotificationLog notify=new NotificationLog();
 
         notify.setNotificationDatetime(notificationLogDTO.getNotificationDatetime());
+        notify.setAppointmentId(notificationLogDTO.getAppointmentId());
         notify.setConfirmedDatetime(notificationLogDTO.getConfirmedDatetime());
+        notify.setAppointmentByAppointmentId(notificationLogDTO.getAppointmentByAppointmentId());
 
         notificationLogRepository.save(notify);
 
@@ -45,11 +47,11 @@ public class NotificationLogService {
         return notification;
     }
 
-    public void updateNotification(Long id, Timestamp notificationDatetime,  Timestamp confirmedDatetime){
-        notificationLogRepository.findOneById(id).ifPresent(notification->{
-          notification.setId(id);
+    public void updateNotification(Integer notificationId, Timestamp notificationDatetime, Integer appointmentId, Timestamp confirmedDatetime, Appointment appointmentByAppointmentId){
+        notificationLogRepository.findOneById(notificationId).ifPresent(notification->{
             notification.setNotificationDatetime(notificationDatetime);
             notification.setConfirmedDatetime(confirmedDatetime);
+
 
 
             log.debug("Updated doctor Information:{}", notification);
@@ -57,12 +59,12 @@ public class NotificationLogService {
         });
     }
 
-    public Optional<NotificationLog> getNotificationById(long id){
+    public Optional<NotificationLog> getNotificationById(Integer id){
         Optional<NotificationLog> notify=notificationLogRepository.findOneById(id);
         return notify;
     }
 
-    public void deleteNotification(long id){
+    public void deleteNotification(Integer id){
         notificationLogRepository.findOneById(id).ifPresent(notify->{
             notificationLogRepository.delete(notify);
             log.debug("Deleted Information:{}",notify);

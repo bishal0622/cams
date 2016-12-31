@@ -1,18 +1,41 @@
 package com.example.service.dto;
 
+import com.example.domain.AuthorityStaff;
+import com.example.domain.Billing;
 import com.example.domain.Staff;
+
+import java.util.Collection;
 
 /**
  * Created by BiSAl MhRzn on 12/25/2016.
  */
 public class StaffDTO {
 
-    private Long id;
+    private Integer id;
     private String staffName;
     private String staffContact;
     private String password;
+    private Integer billingbillId;
+    private Collection<AuthorityStaff> authorityStaffsByStaffId;
+    private Collection<Billing> billingsByStaffId;
 
-    public Long getId() {
+    public StaffDTO(){}
+
+    public StaffDTO(Integer id, String staffName, String staffContact, String password, Integer billingbillId, Collection<AuthorityStaff> authorityStaffsByStaffId, Collection<Billing> billingsByStaffId) {
+        this.id = id;
+        this.staffName = staffName;
+        this.staffContact = staffContact;
+        this.password = password;
+        this.billingbillId = billingbillId;
+        this.authorityStaffsByStaffId = authorityStaffsByStaffId;
+        this.billingsByStaffId = billingsByStaffId;
+    }
+
+    public StaffDTO(Staff staff){
+        this(staff.getId(),staff.getStaffName(),staff.getStaffContact(),staff.getPassword(),staff.getBillingbillId(),staff.getAuthorityStaffsByStaffId(),staff.getBillingsByStaffId());
+    }
+
+    public Integer getId() {
         return id;
     }
 
@@ -28,17 +51,16 @@ public class StaffDTO {
         return password;
     }
 
-    public StaffDTO(){}
-
-    public StaffDTO(Long id, String staffName, String staffContact, String password) {
-        this.id = id;
-        this.staffName = staffName;
-        this.staffContact = staffContact;
-        this.password = password;
+    public Integer getBillingbillId() {
+        return billingbillId;
     }
 
-    public StaffDTO(Staff staff){
-        this(staff.getId(),staff.getStaffName(),staff.getStaffContact(),staff.getPassword());
+    public Collection<AuthorityStaff> getAuthorityStaffsByStaffId() {
+        return authorityStaffsByStaffId;
+    }
+
+    public Collection<Billing> getBillingsByStaffId() {
+        return billingsByStaffId;
     }
 
     @Override
@@ -48,6 +70,9 @@ public class StaffDTO {
                 ", staffName='" + staffName + '\'' +
                 ", staffContact='" + staffContact + '\'' +
                 ", password='" + password + '\'' +
+                ", billingbillId=" + billingbillId +
+                ", authorityStaffsByStaffId=" + authorityStaffsByStaffId +
+                ", billingsByStaffId=" + billingsByStaffId +
                 '}';
     }
 }

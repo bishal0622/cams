@@ -57,7 +57,7 @@ public class DoctorController {
             produces = MediaType.APPLICATION_JSON_VALUE)
 
     public ResponseEntity<DoctorDTO> updateUser(@RequestBody DoctorDTO doctorDTO) {
-        doctorService.updateDoctor(doctorDTO.getDoctorId(),doctorDTO.getDoctorName(),doctorDTO.getDoctorAddress(),doctorDTO.getDoctorContact(),doctorDTO.getDoctorEmail(),doctorDTO.getHospitalsAssociated());
+        doctorService.updateDoctor(doctorDTO.getId(),doctorDTO.getDoctorName(),doctorDTO.getDoctorAddress(),doctorDTO.getDoctorContact(),doctorDTO.getDoctorEmail(),doctorDTO.getHospitalsAssociated(),doctorDTO.getSpecialistId(),doctorDTO.getSpecialistBySpecialistId(),doctorDTO.getDoctorSchedulesByDoctorId());
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
@@ -65,7 +65,7 @@ public class DoctorController {
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
 
-    public ResponseEntity<?> getUsers(@PathVariable Long id)
+    public ResponseEntity<?> getUsers(@PathVariable Integer id)
             throws URISyntaxException {
         System.out.println("get one user");
 
@@ -78,7 +78,7 @@ public class DoctorController {
             method= RequestMethod.DELETE,
             produces = MediaType.APPLICATION_JSON_VALUE)
 
-    public void deleteUser(@PathVariable Long id) {
+    public void deleteUser(@PathVariable Integer id) {
         System.out.println("delete");
         doctorService.deleteDoctor(id);
     }

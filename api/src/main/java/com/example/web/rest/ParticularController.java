@@ -26,7 +26,7 @@ public class ParticularController {
     @RequestMapping(value="/particular",
             method = RequestMethod.POST,
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.TEXT_PLAIN_VALUE})
-    public ResponseEntity<?> insertDoctor(@RequestBody ParticularDTO particularDTO, HttpServletRequest httpServletRequest){
+    public ResponseEntity<?> insertParticular(@RequestBody ParticularDTO particularDTO, HttpServletRequest httpServletRequest){
         System.out.println("usercontroller");
         System.out.println(particularDTO.toString());
 
@@ -42,7 +42,7 @@ public class ParticularController {
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
 
-    public ResponseEntity<?> getAllUsers()
+    public ResponseEntity<?> getAllParticular()
             throws URISyntaxException {
 
         List<Particular> val=particularService.getAllParticular();
@@ -55,8 +55,8 @@ public class ParticularController {
             method = RequestMethod.PUT,
             produces = MediaType.APPLICATION_JSON_VALUE)
 
-    public ResponseEntity<ParticularDTO> updateUser(@RequestBody ParticularDTO particularDTO) {
-        particularService.updateParticular(particularDTO.getId(),particularDTO.getParticularName(),particularDTO.getParticularRate());
+    public ResponseEntity<ParticularDTO> updateParticular(@RequestBody ParticularDTO particularDTO) {
+        particularService.updateParticular(particularDTO.getId(),particularDTO.getParticularName(),particularDTO.getParticularRate(),particularDTO.getParticularBillingsByParticularId());
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
@@ -64,7 +64,7 @@ public class ParticularController {
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
 
-    public ResponseEntity<?> getUsers(@PathVariable Long id)
+    public ResponseEntity<?> getParticular(@PathVariable Integer id)
             throws URISyntaxException {
         System.out.println("get one user");
 
@@ -77,7 +77,7 @@ public class ParticularController {
             method= RequestMethod.DELETE,
             produces = MediaType.APPLICATION_JSON_VALUE)
 
-    public void deleteUser(@PathVariable Long id) {
+    public void deleteParticular(@PathVariable Integer id) {
         System.out.println("delete");
         particularService.deleteParticular(id);
     }

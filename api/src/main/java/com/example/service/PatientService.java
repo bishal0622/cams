@@ -1,8 +1,8 @@
 package com.example.service;
 
+import com.example.domain.Appointment;
 import com.example.domain.Billing;
 import com.example.domain.Patient;
-import com.example.domain.PatientAppointment;
 import com.example.repository.PatientRepository;
 import com.example.service.dto.PatientDTO;
 import org.slf4j.Logger;
@@ -33,9 +33,10 @@ public class PatientService {
         patient.setPatientContact(patientDTO.getPatientContact());
         patient.setAge(patientDTO.getAge());
         patient.setGender(patientDTO.getGender());
+        patient.setWeight(patientDTO.getWeight());
         patient.setPatientEmail(patientDTO.getPatientEmail());
-//        patient.setBillings(patientDTO.getBillings());
-//        patient.setPatientAppointments(patientDTO.getPatientAppointments());
+        patient.setAppointmentsByPatientId(patientDTO.getAppointmentsByPatientId());
+        patient.setBillingsByPatientId(patientDTO.getBillingsByPatientId());
 
         patientRepository.save(patient);
         log.debug("created information for patient: {}", patient);
@@ -48,28 +49,31 @@ public class PatientService {
         return patient;
     }
 
-    public void updatePatient(Long id, String patientName, String patientAddress, String patientContact, Long age, String gender, String patientEmail){
-        patientRepository.findOneById(id).ifPresent(patient->{
-            patient.setId(id);
+    public void updatePatient(Integer patientId, String patientName, String patientAddress, String patientContact, Integer age, String gender, Integer weight, String patientEmail, Collection<Appointment> appointmentsByPatientId, Collection<Billing> billingsByPatientId){
+        patientRepository.findOneById(patientId).ifPresent(patient->{
+
             patient.setPatientName(patientName);
             patient.setPatientAddress(patientAddress);
             patient.setPatientContact(patientContact);
             patient.setAge(age);
             patient.setGender(gender);
             patient.setPatientEmail(patientEmail);
-//            patient.setBillings(billings);
-//            patient.setPatientAppointments(patientAppointments);
+            patient.setWeight(weight);
+            patient.setAppointmentsByPatientId(appointmentsByPatientId);
+            patient.setBillingsByPatientId(billingsByPatientId);
+
+
             log.debug("Updated Patient Information:{}",patient);
             patientRepository.save(patient);
         });
     }
 
-    public Optional<Patient> getPatientById(Long id){
+    public Optional<Patient> getPatientById(Integer id){
         Optional<Patient> patient=patientRepository.findOneById(id);
         return patient;
     }
 
-    public void deletePatient(Long id){
+    public void deletePatient(Integer id){
         patientRepository.findOneById(id).ifPresent(patient->{
             patientRepository.delete(patient);
             log.debug("Deleted Information:{}", patient);

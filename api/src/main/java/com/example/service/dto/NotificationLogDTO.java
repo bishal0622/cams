@@ -10,24 +10,27 @@ import java.sql.Timestamp;
  */
 public class NotificationLogDTO {
 
-    private Long id;
+    private Integer id;
     private Timestamp notificationDatetime;
+    private Integer appointmentId;
     private Timestamp confirmedDatetime;
-
+    private Appointment appointmentByAppointmentId;
 
     public NotificationLogDTO(){}
 
-    public NotificationLogDTO(Long id, Timestamp notificationDatetime, Timestamp confirmedDatetime) {
+    public NotificationLogDTO(Integer id, Timestamp notificationDatetime, Integer appointmentId, Timestamp confirmedDatetime, Appointment appointmentByAppointmentId) {
         this.id = id;
         this.notificationDatetime = notificationDatetime;
+        this.appointmentId = appointmentId;
         this.confirmedDatetime = confirmedDatetime;
+        this.appointmentByAppointmentId = appointmentByAppointmentId;
     }
 
     public NotificationLogDTO(NotificationLog notificationLog){
-        this(notificationLog.getId(),notificationLog.getNotificationDatetime(),notificationLog.getConfirmedDatetime());
+        this(notificationLog.getId(),notificationLog.getNotificationDatetime(),notificationLog.getAppointmentId(),notificationLog.getConfirmedDatetime(),notificationLog.getAppointmentByAppointmentId());
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -35,17 +38,26 @@ public class NotificationLogDTO {
         return notificationDatetime;
     }
 
+    public Integer getAppointmentId() {
+        return appointmentId;
+    }
+
     public Timestamp getConfirmedDatetime() {
         return confirmedDatetime;
     }
 
+    public Appointment getAppointmentByAppointmentId() {
+        return appointmentByAppointmentId;
+    }
 
     @Override
     public String toString() {
         return "NotificationLogDTO{" +
                 "id=" + id +
                 ", notificationDatetime=" + notificationDatetime +
+                ", appointmentId=" + appointmentId +
                 ", confirmedDatetime=" + confirmedDatetime +
+                ", appointmentByAppointmentId=" + appointmentByAppointmentId +
                 '}';
     }
 }

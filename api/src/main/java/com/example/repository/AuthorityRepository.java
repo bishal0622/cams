@@ -12,9 +12,9 @@ import java.util.Optional;
  * Package clinic com.example.repository
  */
 
-public interface AuthorityRepository extends JpaRepository<Authority,Long> {
+public interface AuthorityRepository extends JpaRepository<Authority,Integer> {
     List<Authority> findAll();
-    Optional<Authority> findOneById(long id);
+    Optional<Authority> findOneById(Integer id);
     void delete(Authority d);
 }
 

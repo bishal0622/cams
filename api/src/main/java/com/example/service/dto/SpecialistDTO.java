@@ -1,5 +1,6 @@
 package com.example.service.dto;
 
+import com.example.domain.Doctor;
 import com.example.domain.Specialist;
 
 import java.util.Collection;
@@ -8,22 +9,24 @@ import java.util.Collection;
  * Created by japnica on 12/22/2016.
  */
 public class SpecialistDTO {
-    private Long id;
+    private Integer id;
     private String specialistName;
-
-    public SpecialistDTO(Long id, String specialistName) {
-        this.id = id;
-        this.specialistName = specialistName;
-    }
+    private Collection<Doctor> doctorsBySpecialistId;
 
     public SpecialistDTO() {
     }
 
-    public SpecialistDTO(Specialist specialist){
-        this(specialist.getId(), specialist.getSpecialistName());
+    public SpecialistDTO(Integer id, String specialistName, Collection<Doctor> doctorsBySpecialistId) {
+        this.id = id;
+        this.specialistName = specialistName;
+        this.doctorsBySpecialistId = doctorsBySpecialistId;
     }
 
-    public Long getId() {
+    public SpecialistDTO(Specialist specialist){
+        this(specialist.getId(),specialist.getSpecialistName(),specialist.getDoctorsBySpecialistId());
+    }
+
+    public Integer getId() {
         return id;
     }
 
@@ -31,12 +34,16 @@ public class SpecialistDTO {
         return specialistName;
     }
 
+    public Collection<Doctor> getDoctorsBySpecialistId() {
+        return doctorsBySpecialistId;
+    }
 
     @Override
     public String toString() {
         return "SpecialistDTO{" +
                 "id=" + id +
                 ", specialistName='" + specialistName + '\'' +
+                ", doctorsBySpecialistId=" + doctorsBySpecialistId +
                 '}';
     }
 }

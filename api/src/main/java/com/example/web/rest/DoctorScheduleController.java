@@ -26,7 +26,7 @@ public class DoctorScheduleController {
     @RequestMapping(value="/doctorSchedule",
             method = RequestMethod.POST,
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.TEXT_PLAIN_VALUE})
-    public ResponseEntity<?> insertDoctor(@RequestBody DoctorScheduleDTO doctorScheduleDTO, HttpServletRequest httpServletRequest){
+    public ResponseEntity<?> insertDoctorSchedule(@RequestBody DoctorScheduleDTO doctorScheduleDTO, HttpServletRequest httpServletRequest){
         System.out.println("usercontroller");
         System.out.println(doctorScheduleDTO.toString());
 
@@ -42,7 +42,7 @@ public class DoctorScheduleController {
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
 
-    public ResponseEntity<?> getAllUsers()
+    public ResponseEntity<?> getAllDoctorSchedule()
             throws URISyntaxException {
 
         List<DoctorSchedule> val=doctorScheduleService.getAllSchedule();
@@ -55,8 +55,8 @@ public class DoctorScheduleController {
             method = RequestMethod.PUT,
             produces = MediaType.APPLICATION_JSON_VALUE)
 
-    public ResponseEntity<DoctorScheduleDTO> updateUser(@RequestBody DoctorScheduleDTO doctorScheduleDTO) {
-        doctorScheduleService.updateSchedule(doctorScheduleDTO.getId(),doctorScheduleDTO.getDoctor(),doctorScheduleDTO.getDoctorScheduleTo(),doctorScheduleDTO.getDoctorScheduleFrom(),doctorScheduleDTO.getDayOfWeek());
+    public ResponseEntity<DoctorScheduleDTO> updateDoctorSchedule(@RequestBody DoctorScheduleDTO doctorScheduleDTO) {
+        doctorScheduleService.updateSchedule(doctorScheduleDTO.getId(),doctorScheduleDTO.getDoctorId(),doctorScheduleDTO.getDoctorScheduleTo(),doctorScheduleDTO.getDoctorScheduleFrom(),doctorScheduleDTO.getDayOfWeek(),doctorScheduleDTO.getAppointmentsByDoctorScheduleId(),doctorScheduleDTO.getDoctorByDoctorId());
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
@@ -64,7 +64,7 @@ public class DoctorScheduleController {
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
 
-    public ResponseEntity<?> getUsers(@PathVariable Long id)
+    public ResponseEntity<?> getDoctorSchedule(@PathVariable Integer id)
             throws URISyntaxException {
         System.out.println("get one user");
 
@@ -77,7 +77,7 @@ public class DoctorScheduleController {
             method= RequestMethod.DELETE,
             produces = MediaType.APPLICATION_JSON_VALUE)
 
-    public void deleteUser(@PathVariable Long id) {
+    public void deleteDoctorSchedule(@PathVariable Integer id) {
         System.out.println("delete");
         doctorScheduleService.deleteSchedule(id);
     }

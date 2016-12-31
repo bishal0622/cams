@@ -42,7 +42,7 @@ public class PatientController {
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
 
-    public ResponseEntity<?> getAllUsers()
+    public ResponseEntity<?> getAllPatient()
             throws URISyntaxException {
 
         List<Patient> val=patientService.getAllPatient();
@@ -55,8 +55,8 @@ public class PatientController {
             method = RequestMethod.PUT,
             produces = MediaType.APPLICATION_JSON_VALUE)
 
-    public ResponseEntity<PatientDTO> updateUser(@RequestBody PatientDTO patientDTO) {
-        patientService.updatePatient(patientDTO.getId(), patientDTO.getPatientName(), patientDTO.getPatientAddress(),patientDTO.getPatientContact(),patientDTO.getAge(),patientDTO.getGender(),patientDTO.getPatientEmail());
+    public ResponseEntity<PatientDTO> updatePatient(@RequestBody PatientDTO patientDTO) {
+        patientService.updatePatient(patientDTO.getId(),patientDTO.getPatientName(),patientDTO.getPatientAddress(),patientDTO.getPatientContact(),patientDTO.getAge(),patientDTO.getGender(),patientDTO.getWeight(),patientDTO.getPatientEmail(),patientDTO.getAppointmentsByPatientId(),patientDTO.getBillingsByPatientId());
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
@@ -64,7 +64,7 @@ public class PatientController {
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
 
-    public ResponseEntity<?> getUsers(@PathVariable Long id)
+    public ResponseEntity<?> getPatient(@PathVariable Integer id)
             throws URISyntaxException {
         System.out.println("get one user");
 
@@ -77,7 +77,7 @@ public class PatientController {
             method= RequestMethod.DELETE,
             produces = MediaType.APPLICATION_JSON_VALUE)
 
-    public void deleteUser(@PathVariable Long id) {
+    public void deletePatient(@PathVariable Integer id) {
         System.out.println("delete");
         patientService.deletePatient(id);
     }

@@ -1,6 +1,8 @@
 package com.example.service;
 
 import com.example.domain.Doctor;
+import com.example.domain.DoctorSchedule;
+import com.example.domain.Specialist;
 import com.example.service.dto.DoctorDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,10 +31,13 @@ public class DoctorService {
     public Doctor saveDoctor(DoctorDTO doctorDTO){
         Doctor doctor=new Doctor();
         doctor.setDoctorName(doctorDTO.getDoctorName());
-        doctor.setDoctorEmail(doctorDTO.getDoctorEmail());
-        doctor.setDoctorContact(doctorDTO.getDoctorContact());
         doctor.setDoctorAddress(doctorDTO.getDoctorAddress());
+        doctor.setDoctorContact(doctorDTO.getDoctorContact());
+        doctor.setDoctorEmail(doctorDTO.getDoctorEmail());
         doctor.setHospitalsAssociated(doctorDTO.getHospitalsAssociated());
+        doctor.setSpecialistId(doctorDTO.getSpecialistId());
+        doctor.setSpecialistBySpecialistId(doctorDTO.getSpecialistBySpecialistId());
+        doctor.setDoctorSchedulesByDoctorId(doctorDTO.getDoctorSchedulesByDoctorId());
 
         doctorRepository.save(doctor);
 
@@ -46,26 +51,29 @@ public class DoctorService {
         return doctor;
     }
 
-    public void updateDoctor(Long id, String doctorName, String doctorAddress, String doctorContact, String doctorEmail, String hospitalsAssociated ){
-        doctorRepository.findOneById(id).ifPresent(doctor->{
-            doctor.setId(id);
+    public void updateDoctor(Integer doctorId, String doctorName, String doctorAddress, String doctorContact, String doctorEmail, String hospitalsAssociated, Integer specialistId, Specialist specialistBySpecialistId, Collection<DoctorSchedule> doctorSchedulesByDoctorId){
+        doctorRepository.findOneById(doctorId).ifPresent(doctor->{
+            doctor.setId(doctorId);
             doctor.setDoctorName(doctorName);
             doctor.setDoctorAddress(doctorAddress);
             doctor.setDoctorContact(doctorContact);
             doctor.setDoctorEmail(doctorEmail);
             doctor.setHospitalsAssociated(hospitalsAssociated);
+            doctor.setSpecialistId(specialistId);
+            doctor.setSpecialistBySpecialistId(specialistBySpecialistId);
+            doctor.setDoctorSchedulesByDoctorId(doctorSchedulesByDoctorId);
 
             log.debug("Updated doctor Information:{}", doctor);
             doctorRepository.save(doctor);
         });
     }
 
-    public Optional<Doctor> getDoctorById(long id){
+    public Optional<Doctor> getDoctorById(Integer id){
         Optional<Doctor> doctor=doctorRepository.findOneById(id);
         return doctor;
     }
 
-    public void deleteDoctor(long id){
+    public void deleteDoctor(Integer id){
         doctorRepository.findOneById(id).ifPresent(doctor->{
             doctorRepository.delete(doctor);
             log.debug("Deleted Information:{}",doctor);

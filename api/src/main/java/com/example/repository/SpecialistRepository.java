@@ -9,8 +9,8 @@ import java.util.Optional;
 /**
  * Created by japnica on 12/22/2016.
  */
-public interface SpecialistRepository extends JpaRepository<Specialist, Long>{
+public interface SpecialistRepository extends JpaRepository<Specialist, Integer>{
     List<Specialist> findAll();
-    Optional<Specialist> findOneById(Long id);
+    Optional<Specialist> findOneById(Integer id);
     void delete(Specialist s);
 }

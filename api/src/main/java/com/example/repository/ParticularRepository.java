@@ -9,8 +9,8 @@ import java.util.Optional;
 /**
  * Created by japnica on 12/25/2016.
  */
-public interface ParticularRepository extends JpaRepository<Particular, Long> {
+public interface ParticularRepository extends JpaRepository<Particular, Integer> {
     List<Particular> findAll();
-    Optional<Particular> findOneById(Long id);
+    Optional<Particular> findOneById(Integer id);
     void delete(Particular p);
 }

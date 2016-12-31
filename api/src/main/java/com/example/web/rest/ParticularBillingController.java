@@ -26,7 +26,7 @@ public class ParticularBillingController {
     @RequestMapping(value="/particularBilling",
             method = RequestMethod.POST,
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.TEXT_PLAIN_VALUE})
-    public ResponseEntity<?> insertDoctor(@RequestBody ParticularBillingDTO particularBillingDTO, HttpServletRequest httpServletRequest){
+    public ResponseEntity<?> insertParticularBilling(@RequestBody ParticularBillingDTO particularBillingDTO, HttpServletRequest httpServletRequest){
         System.out.println("usercontroller");
         System.out.println(particularBillingDTO.toString());
 
@@ -42,7 +42,7 @@ public class ParticularBillingController {
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
 
-    public ResponseEntity<?> getAllUsers()
+    public ResponseEntity<?> getAllParticularBilling()
             throws URISyntaxException {
 
         List<ParticularBilling> val=particularBillingService.getAllParticularBilling();
@@ -55,8 +55,8 @@ public class ParticularBillingController {
             method = RequestMethod.PUT,
             produces = MediaType.APPLICATION_JSON_VALUE)
 
-    public ResponseEntity<ParticularBillingDTO> updateUser(@RequestBody ParticularBillingDTO particularBillingDTO) {
-        particularBillingService.updateParticularBilling(particularBillingDTO.getId(),particularBillingDTO.getParticular(),particularBillingDTO.getBilling());
+    public ResponseEntity<ParticularBillingDTO> updateParticularBilling(@RequestBody ParticularBillingDTO particularBillingDTO) {
+        particularBillingService.updateParticularBilling(particularBillingDTO.getId(),particularBillingDTO.getParticularparticularId(),particularBillingDTO.getBillingbillId(),particularBillingDTO.getParticularByParticularparticularId(),particularBillingDTO.getBillingByBillingbillId());
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
@@ -64,7 +64,7 @@ public class ParticularBillingController {
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
 
-    public ResponseEntity<?> getUsers(@PathVariable Long id)
+    public ResponseEntity<?> getParticularBilling(@PathVariable Integer id)
             throws URISyntaxException {
         System.out.println("get one user");
 
@@ -77,7 +77,7 @@ public class ParticularBillingController {
             method= RequestMethod.DELETE,
             produces = MediaType.APPLICATION_JSON_VALUE)
 
-    public void deleteUser(@PathVariable Long id) {
+    public void deleteParticularBilling(@PathVariable Integer id) {
         System.out.println("delete");
         particularBillingService.deleteParticularBilling(id);
     }

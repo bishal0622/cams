@@ -4,46 +4,32 @@ import javax.persistence.*;
 import java.util.Collection;
 
 /**
- * Created by japnica on 12/20/2016.
+ * Created by BiSAl MhRzn on 12/29/2016.
  */
 @Entity
-@Table(name="doctor")
 public class Doctor {
-    @Id
-    @GeneratedValue
-    @Column(name="doctorId")
-    private Long id;
-
-    @Column(name="doctorName", nullable = false)
+    private Integer id;
     private String doctorName;
-
-    @Column(name="doctorAddress", nullable = false)
     private String doctorAddress;
-
-    @Column(name="doctorContact", nullable = false)
     private String doctorContact;
-
-    @Column(name="doctorEmail", nullable = false)
     private String doctorEmail;
-
-    @Column(name="hospitalsAssociated", nullable = false)
     private String hospitalsAssociated;
+    private Integer specialistId;
+    private Specialist specialistBySpecialistId;
+    private Collection<DoctorSchedule> doctorSchedulesByDoctorId;
 
-    @ManyToOne
-    @JoinColumn(name="specialistId", referencedColumnName = "specialistId")
-    private Specialist specialist;
-
-//    @OneToMany(mappedBy = "doctor")
-//    private Collection<DoctorSchedule> doctorSchedules;
-
-    public Long getId() {
+    @Id
+    @Column(name = "doctor_id", nullable = false)
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "doctor_name", nullable = false, length = 255)
     public String getDoctorName() {
         return doctorName;
     }
@@ -52,6 +38,8 @@ public class Doctor {
         this.doctorName = doctorName;
     }
 
+    @Basic
+    @Column(name = "doctor_address", nullable = false, length = 255)
     public String getDoctorAddress() {
         return doctorAddress;
     }
@@ -60,6 +48,8 @@ public class Doctor {
         this.doctorAddress = doctorAddress;
     }
 
+    @Basic
+    @Column(name = "doctor_contact", nullable = false, length = 255)
     public String getDoctorContact() {
         return doctorContact;
     }
@@ -68,6 +58,8 @@ public class Doctor {
         this.doctorContact = doctorContact;
     }
 
+    @Basic
+    @Column(name = "doctor_email", nullable = false, length = 255)
     public String getDoctorEmail() {
         return doctorEmail;
     }
@@ -76,6 +68,8 @@ public class Doctor {
         this.doctorEmail = doctorEmail;
     }
 
+    @Basic
+    @Column(name = "hospitals_associated", nullable = false, length = 255)
     public String getHospitalsAssociated() {
         return hospitalsAssociated;
     }
@@ -84,33 +78,65 @@ public class Doctor {
         this.hospitalsAssociated = hospitalsAssociated;
     }
 
-    public Specialist getSpecialist() {
-        return specialist;
+    @Basic
+    @Column(name = "specialist_id", nullable = false)
+    public Integer getSpecialistId() {
+        return specialistId;
     }
 
-    public void setSpecialist(Specialist specialist) {
-        this.specialist = specialist;
+    public void setSpecialistId(Integer specialistId) {
+        this.specialistId = specialistId;
     }
-
-//    public Collection<DoctorSchedule> getDoctorSchedules() {
-//        return doctorSchedules;
-//    }
-//
-//    public void setDoctorSchedules(Collection<DoctorSchedule> doctorSchedules) {
-//        this.doctorSchedules = doctorSchedules;
-//    }
 
     @Override
-    public String toString() {
-        return "Doctor{" +
-                "id=" + id +
-                ", doctorName='" + doctorName + '\'' +
-                ", doctorAddress=" + doctorAddress +
-                ", doctorContact='" + doctorContact + '\'' +
-                ", doctorEmail='" + doctorEmail + '\'' +
-                ", hospitalsAssociated='" + hospitalsAssociated + '\'' +
-                ", specialist=" + specialist +
-//                ", doctorSchedules=" + doctorSchedules +
-                '}';
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Doctor doctor = (Doctor) o;
+
+        if (id != doctor.id) return false;
+        if (specialistId != doctor.specialistId) return false;
+        if (doctorName != null ? !doctorName.equals(doctor.doctorName) : doctor.doctorName != null) return false;
+        if (doctorAddress != null ? !doctorAddress.equals(doctor.doctorAddress) : doctor.doctorAddress != null)
+            return false;
+        if (doctorContact != null ? !doctorContact.equals(doctor.doctorContact) : doctor.doctorContact != null)
+            return false;
+        if (doctorEmail != null ? !doctorEmail.equals(doctor.doctorEmail) : doctor.doctorEmail != null) return false;
+        if (hospitalsAssociated != null ? !hospitalsAssociated.equals(doctor.hospitalsAssociated) : doctor.hospitalsAssociated != null)
+            return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (doctorName != null ? doctorName.hashCode() : 0);
+        result = 31 * result + (doctorAddress != null ? doctorAddress.hashCode() : 0);
+        result = 31 * result + (doctorContact != null ? doctorContact.hashCode() : 0);
+        result = 31 * result + (doctorEmail != null ? doctorEmail.hashCode() : 0);
+        result = 31 * result + (hospitalsAssociated != null ? hospitalsAssociated.hashCode() : 0);
+        result = 31 * result + specialistId;
+        return result;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "specialist_id", referencedColumnName = "specialist_id", nullable = false, insertable = false, updatable = false)
+    public Specialist getSpecialistBySpecialistId() {
+        return specialistBySpecialistId;
+    }
+
+    public void setSpecialistBySpecialistId(Specialist specialistBySpecialistId) {
+        this.specialistBySpecialistId = specialistBySpecialistId;
+    }
+
+    @OneToMany(mappedBy = "doctorByDoctorId")
+    public Collection<DoctorSchedule> getDoctorSchedulesByDoctorId() {
+        return doctorSchedulesByDoctorId;
+    }
+
+    public void setDoctorSchedulesByDoctorId(Collection<DoctorSchedule> doctorSchedulesByDoctorId) {
+        this.doctorSchedulesByDoctorId = doctorSchedulesByDoctorId;
     }
 }

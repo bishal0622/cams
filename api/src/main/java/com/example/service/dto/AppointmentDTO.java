@@ -3,8 +3,9 @@ package com.example.service.dto;
 import com.example.domain.Appointment;
 import com.example.domain.DoctorSchedule;
 import com.example.domain.NotificationLog;
-import com.example.domain.PatientAppointment;
+import com.example.domain.Patient;
 
+import java.sql.Timestamp;
 import java.util.Collection;
 
 /**
@@ -12,18 +13,26 @@ import java.util.Collection;
  */
 public class AppointmentDTO {
 
-    private Long id;
-    private DoctorSchedule doctorSchedule;
+    private Integer id;
+    private Timestamp appointmentDate;
+    private Integer doctorScheduleId;
     private String comment;
     private String status;
-    private NotificationLog notificationLog;
+    private Integer patientpatientId;
+    private DoctorSchedule doctorScheduleByDoctorScheduleId;
+    private Patient patientByPatientpatientId;
+    private Collection<NotificationLog> notificationLogsByAppointmentId;
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public DoctorSchedule getDoctorSchedule() {
-        return doctorSchedule;
+    public Timestamp getAppointmentDate() {
+        return appointmentDate;
+    }
+
+    public Integer getDoctorScheduleId() {
+        return doctorScheduleId;
     }
 
     public String getComment() {
@@ -34,32 +43,52 @@ public class AppointmentDTO {
         return status;
     }
 
-    public NotificationLog getNotificationLog() {
-        return notificationLog;
+    public Integer getPatientpatientId() {
+        return patientpatientId;
+    }
+
+    public DoctorSchedule getDoctorScheduleByDoctorScheduleId() {
+        return doctorScheduleByDoctorScheduleId;
+    }
+
+    public Patient getPatientByPatientpatientId() {
+        return patientByPatientpatientId;
+    }
+
+    public Collection<NotificationLog> getNotificationLogsByAppointmentId() {
+        return notificationLogsByAppointmentId;
     }
 
     public AppointmentDTO(){}
 
-    public AppointmentDTO(Long id, DoctorSchedule doctorSchedule, String comment, String status, NotificationLog notificationLog) {
+    public AppointmentDTO(Integer id, Timestamp appointmentDate, Integer doctorScheduleId, String comment, String status, Integer patientpatientId, DoctorSchedule doctorScheduleByDoctorScheduleId, Patient patientByPatientpatientId, Collection<NotificationLog> notificationLogsByAppointmentId) {
         this.id = id;
-        this.doctorSchedule = doctorSchedule;
+        this.appointmentDate = appointmentDate;
+        this.doctorScheduleId = doctorScheduleId;
         this.comment = comment;
         this.status = status;
-        this.notificationLog = notificationLog;
+        this.patientpatientId = patientpatientId;
+        this.doctorScheduleByDoctorScheduleId = doctorScheduleByDoctorScheduleId;
+        this.patientByPatientpatientId = patientByPatientpatientId;
+        this.notificationLogsByAppointmentId = notificationLogsByAppointmentId;
     }
 
     public AppointmentDTO(Appointment appointment){
-        this(appointment.getId(),appointment.getDoctorSchedule(),appointment.getComment(),appointment.getStatus(),appointment.getNotificationLogs());
+        this(appointment.getId(),appointment.getAppointmentDate(),appointment.getDoctorScheduleId(),appointment.getComment(),appointment.getStatus(),appointment.getPatientpatientId(),appointment.getDoctorScheduleByDoctorScheduleId(),appointment.getPatientByPatientpatientId(),appointment.getNotificationLogsByAppointmentId());
     }
 
     @Override
     public String toString() {
         return "AppointmentDTO{" +
                 "id=" + id +
-                ", doctorSchedule=" + doctorSchedule +
+                ", appointmentDate=" + appointmentDate +
+                ", doctorScheduleId=" + doctorScheduleId +
                 ", comment='" + comment + '\'' +
                 ", status='" + status + '\'' +
-                ", notificationLog=" + notificationLog +
+                ", patientpatientId=" + patientpatientId +
+                ", doctorScheduleByDoctorScheduleId=" + doctorScheduleByDoctorScheduleId +
+                ", patientByPatientpatientId=" + patientByPatientpatientId +
+                ", notificationLogsByAppointmentId=" + notificationLogsByAppointmentId +
                 '}';
     }
 }

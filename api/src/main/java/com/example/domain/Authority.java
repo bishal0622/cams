@@ -4,30 +4,26 @@ import javax.persistence.*;
 import java.util.Collection;
 
 /**
- * Created by japnica on 12/20/2016.
+ * Created by BiSAl MhRzn on 12/29/2016.
  */
 @Entity
-@Table(name="authority")
 public class Authority {
-    @Id
-    @GeneratedValue
-    @Column(name="authorityId")
-    private Long id;
-
-    @Column(name="authorityName", nullable = false)
+    private Integer id;
     private String authorityName;
+    private Collection<AuthorityStaff> authorityStaffsByAuthorityId;
 
-  //  @OneToMany(mappedBy = "authority")
-   // private Collection<AuthorityStaff> authorityStaffs;
-
-    public Long getId() {
+    @Id
+    @Column(name = "authority_id", nullable = false)
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "authority_name", nullable = false, length = 255)
     public String getAuthorityName() {
         return authorityName;
     }
@@ -37,10 +33,32 @@ public class Authority {
     }
 
     @Override
-    public String toString() {
-        return "Authority{" +
-                "id=" + id +
-                ", authorityName='" + authorityName + '\'' +
-                '}';
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Authority authority = (Authority) o;
+
+        if (id != authority.id) return false;
+        if (authorityName != null ? !authorityName.equals(authority.authorityName) : authority.authorityName != null)
+            return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (authorityName != null ? authorityName.hashCode() : 0);
+        return result;
+    }
+
+    @OneToMany(mappedBy = "authorityByAuthorityauthorityId")
+    public Collection<AuthorityStaff> getAuthorityStaffsByAuthorityId() {
+        return authorityStaffsByAuthorityId;
+    }
+
+    public void setAuthorityStaffsByAuthorityId(Collection<AuthorityStaff> authorityStaffsByAuthorityId) {
+        this.authorityStaffsByAuthorityId = authorityStaffsByAuthorityId;
     }
 }

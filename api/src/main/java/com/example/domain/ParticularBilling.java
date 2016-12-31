@@ -3,54 +3,86 @@ package com.example.domain;
 import javax.persistence.*;
 
 /**
- * Created by japnica on 12/20/2016.
+ * Created by BiSAl MhRzn on 12/29/2016.
  */
 @Entity
-@Table(name="particularBilling")
+@Table(name = "particular_billing", schema = "clinic", catalog = "")
 public class ParticularBilling {
+    private Integer id;
+    private Integer particularparticularId;
+    private Integer billingbillId;
+    private Particular particularByParticularparticularId;
+    private Billing billingByBillingbillId;
+
     @Id
-    @GeneratedValue
-    @Column(name="particularBillingId")
-    private Long id;
-
-    @ManyToOne
-    @JoinColumn(name="particularId", referencedColumnName = "particularId")
-    private Particular particular;
-
-    @ManyToOne
-    @JoinColumn(name="billId", referencedColumnName = "billId")
-    private Billing billing;
-
-    public Long getId() {
+    @Column(name = "particular_billing_id", nullable = false)
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public Particular getParticular() {
-        return particular;
+    @Basic
+    @Column(name = "particularparticular_id", nullable = false)
+    public Integer getParticularparticularId() {
+        return particularparticularId;
     }
 
-    public void setParticular(Particular particular) {
-        this.particular = particular;
+    public void setParticularparticularId(Integer particularparticularId) {
+        this.particularparticularId = particularparticularId;
     }
 
-    public Billing getBilling() {
-        return billing;
+    @Basic
+    @Column(name = "billingbill_id", nullable = false)
+    public Integer getBillingbillId() {
+        return billingbillId;
     }
 
-    public void setBilling(Billing billing) {
-        this.billing = billing;
+    public void setBillingbillId(Integer billingbillId) {
+        this.billingbillId = billingbillId;
     }
 
     @Override
-    public String toString() {
-        return "ParticularBilling{" +
-                "id=" + id +
-                ", particular=" + particular +
-                ", billing=" + billing +
-                '}';
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ParticularBilling that = (ParticularBilling) o;
+
+        if (id != that.id) return false;
+        if (particularparticularId != that.particularparticularId) return false;
+        if (billingbillId != that.billingbillId) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + particularparticularId;
+        result = 31 * result + billingbillId;
+        return result;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "particularparticular_id", referencedColumnName = "particular_id", nullable = false, insertable = false, updatable = false)
+    public Particular getParticularByParticularparticularId() {
+        return particularByParticularparticularId;
+    }
+
+    public void setParticularByParticularparticularId(Particular particularByParticularparticularId) {
+        this.particularByParticularparticularId = particularByParticularparticularId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "billingbill_id", referencedColumnName = "bill_id", nullable = false, insertable = false, updatable = false)
+    public Billing getBillingByBillingbillId() {
+        return billingByBillingbillId;
+    }
+
+    public void setBillingByBillingbillId(Billing billingByBillingbillId) {
+        this.billingByBillingbillId = billingByBillingbillId;
     }
 }

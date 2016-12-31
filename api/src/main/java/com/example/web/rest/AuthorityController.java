@@ -60,7 +60,7 @@ public class AuthorityController {
             produces = MediaType.APPLICATION_JSON_VALUE)
 
     public ResponseEntity<AuthorityDTO> updateAppointment(@RequestBody AuthorityDTO authorityDTO) {
-        authorityService.updateAuthority(authorityDTO.getId(),authorityDTO.getAuthorityName());
+        authorityService.updateAuthority(authorityDTO.getId(),authorityDTO.getAuthorityName(),authorityDTO.getAuthorityStaffsByAuthorityId());
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
@@ -68,7 +68,7 @@ public class AuthorityController {
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
 
-    public ResponseEntity<?> getAuthority(@PathVariable Long id)
+    public ResponseEntity<?> getAuthority(@PathVariable Integer id)
             throws URISyntaxException {
         System.out.println("get one user");
 
@@ -83,7 +83,7 @@ public class AuthorityController {
             method= RequestMethod.DELETE,
             produces = MediaType.APPLICATION_JSON_VALUE)
 
-    public void deleteAuthority(@PathVariable Long id) {
+    public void deleteAuthority(@PathVariable Integer id) {
         System.out.println("delete");
         authorityService.deleteAuthority(id);
     }

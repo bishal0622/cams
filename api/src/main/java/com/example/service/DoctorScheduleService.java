@@ -1,5 +1,6 @@
 package com.example.service;
 
+import com.example.domain.Appointment;
 import com.example.domain.Doctor;
 import com.example.domain.DoctorSchedule;
 import com.example.repository.DoctorScheduleRepository;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import java.sql.Timestamp;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,10 +29,12 @@ public class DoctorScheduleService {
 
     public DoctorSchedule saveSchedule(DoctorScheduleDTO doctorScheduleDTO){
         DoctorSchedule doctorSchedule=new DoctorSchedule();
-        doctorSchedule.setDoctor(doctorScheduleDTO.getDoctor());
+        doctorSchedule.setDoctorId(doctorScheduleDTO.getDoctorId());
         doctorSchedule.setDoctorScheduleTo(doctorScheduleDTO.getDoctorScheduleTo());
         doctorSchedule.setDoctorScheduleFrom(doctorScheduleDTO.getDoctorScheduleFrom());
         doctorSchedule.setDayOfWeek(doctorScheduleDTO.getDayOfWeek());
+        doctorSchedule.setAppointmentsByDoctorScheduleId(doctorScheduleDTO.getAppointmentsByDoctorScheduleId());
+        doctorSchedule.setDoctorByDoctorId(doctorScheduleDTO.getDoctorByDoctorId());
         doctorScheduleRepository.save(doctorSchedule);
         log.debug("Created Information for doctor schedule: {}", doctorSchedule);
         return doctorSchedule;
@@ -41,24 +45,25 @@ public class DoctorScheduleService {
         return doctorSchedules;
     }
 
-    public void updateSchedule(Long id, Doctor doctor, Timestamp doctorScheduleTo, Timestamp doctorScheduleFrom, Integer dayOfWeek){
-        doctorScheduleRepository.findOneById(id).ifPresent(doctorSchedule->{
-            doctorSchedule.setId(id);
-            doctorSchedule.setDoctor(doctor);
+    public void updateSchedule(Integer doctorScheduleId, Integer doctorId, Timestamp doctorScheduleTo, Timestamp doctorScheduleFrom, Integer dayOfWeek, Collection<Appointment> appointmentsByDoctorScheduleId, Doctor doctorByDoctorId){
+        doctorScheduleRepository.findOneById(doctorScheduleId).ifPresent(doctorSchedule->{
+            doctorSchedule.setDoctorId(doctorId);
             doctorSchedule.setDoctorScheduleTo(doctorScheduleTo);
             doctorSchedule.setDoctorScheduleFrom(doctorScheduleFrom);
             doctorSchedule.setDayOfWeek(dayOfWeek);
+            doctorSchedule.setAppointmentsByDoctorScheduleId(appointmentsByDoctorScheduleId);
+            doctorSchedule.setDoctorByDoctorId(doctorByDoctorId);
             log.debug("Update Schedule Information:{}", doctorSchedule);
             doctorScheduleRepository.save(doctorSchedule);
         });
     }
 
-    public Optional<DoctorSchedule> getScheduleById(Long id){
+    public Optional<DoctorSchedule> getScheduleById(Integer id){
         Optional<DoctorSchedule> doctorSchedule=doctorScheduleRepository.findOneById(id);
         return doctorSchedule;
     }
 
-    public void deleteSchedule(Long id){
+    public void deleteSchedule(Integer id){
         doctorScheduleRepository.findOneById(id).ifPresent(doctorSchedule->{
             doctorScheduleRepository.delete(doctorSchedule);
             log.debug("Deleted Information:{}", doctorSchedule);

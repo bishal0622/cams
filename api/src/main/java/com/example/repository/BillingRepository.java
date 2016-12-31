@@ -9,8 +9,8 @@ import java.util.Optional;
 /**
  * Created by japnica on 12/25/2016.
  */
-public interface BillingRepository extends JpaRepository<Billing, Long> {
+public interface BillingRepository extends JpaRepository<Billing, Integer> {
     List<Billing> findAll();
-    Optional<Billing> findOneById(Long id);
+    Optional<Billing> findOneById(Integer id);
     void delete(Billing b);
 }

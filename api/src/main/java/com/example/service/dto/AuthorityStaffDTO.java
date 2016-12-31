@@ -9,42 +9,55 @@ import com.example.domain.Staff;
  */
 public class AuthorityStaffDTO
 {
-    private Long id;
-    private Authority authority;
-    private Staff staff;
+    private Integer id;
+    private Integer authorityauthorityId;
+    private Integer staffstaffId;
+    private Authority authorityByAuthorityauthorityId;
+    private Staff staffByStaffstaffId;
 
     public AuthorityStaffDTO(){}
 
-    public AuthorityStaffDTO(Long id, Authority authority, Staff staff) {
+    public AuthorityStaffDTO(Integer id, Integer authorityauthorityId, Integer staffstaffId, Authority authorityByAuthorityauthorityId, Staff staffByStaffstaffId) {
         this.id = id;
-        this.authority = authority;
-        this.staff = staff;
+        this.authorityauthorityId = authorityauthorityId;
+        this.staffstaffId = staffstaffId;
+        this.authorityByAuthorityauthorityId = authorityByAuthorityauthorityId;
+        this.staffByStaffstaffId = staffByStaffstaffId;
     }
 
     public AuthorityStaffDTO(AuthorityStaff authorityStaff){
-        this(authorityStaff.getId(),authorityStaff.getAuthority(),authorityStaff.getStaff());
+        this(authorityStaff.getId(),authorityStaff.getAuthorityauthorityId(),authorityStaff.getStaffstaffId(),authorityStaff.getAuthorityByAuthorityauthorityId(),authorityStaff.getStaffByStaffstaffId());
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public Authority getAuthority() {
-        return authority;
+    public Integer getAuthorityauthorityId() {
+        return authorityauthorityId;
     }
 
-    public Staff getStaff() {
-        return staff;
+    public Integer getStaffstaffId() {
+        return staffstaffId;
+    }
+
+    public Authority getAuthorityByAuthorityauthorityId() {
+        return authorityByAuthorityauthorityId;
+    }
+
+    public Staff getStaffByStaffstaffId() {
+        return staffByStaffstaffId;
     }
 
     @Override
     public String toString() {
         return "AuthorityStaffDTO{" +
                 "id=" + id +
-                ", authority=" + authority +
-                ", staff=" + staff +
+                ", authorityauthorityId=" + authorityauthorityId +
+                ", staffstaffId=" + staffstaffId +
+                ", authorityByAuthorityauthorityId=" + authorityByAuthorityauthorityId +
+                ", staffByStaffstaffId=" + staffByStaffstaffId +
                 '}';
     }
-
 }
 

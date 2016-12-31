@@ -1,6 +1,8 @@
 package com.example.service.dto;
 
 import com.example.domain.Doctor;
+import com.example.domain.DoctorSchedule;
+import com.example.domain.Specialist;
 
 import java.util.Collection;
 
@@ -8,32 +10,37 @@ import java.util.Collection;
  * Created by japnica on 12/22/2016.
  */
 public class DoctorDTO {
-    private Long doctorId;
+    private Integer id;
     private String doctorName;
     private String doctorAddress;
     private String doctorContact;
     private String doctorEmail;
     private String hospitalsAssociated;
+    private Integer specialistId;
+    private Specialist specialistBySpecialistId;
+    private Collection<DoctorSchedule> doctorSchedulesByDoctorId;
 
+    public DoctorDTO() {
+    }
 
-    public DoctorDTO(Long doctorId, String doctorName, String doctorAddress, String doctorContact, String doctorEmail, String hospitalsAssociated) {
-        this.doctorId = doctorId;
+    public DoctorDTO(Integer id, String doctorName, String doctorAddress, String doctorContact, String doctorEmail, String hospitalsAssociated, Integer specialistId, Specialist specialistBySpecialistId, Collection<DoctorSchedule> doctorSchedulesByDoctorId) {
+        this.id = id;
         this.doctorName = doctorName;
         this.doctorAddress = doctorAddress;
         this.doctorContact = doctorContact;
         this.doctorEmail = doctorEmail;
         this.hospitalsAssociated = hospitalsAssociated;
-    }
-
-    public DoctorDTO() {
+        this.specialistId = specialistId;
+        this.specialistBySpecialistId = specialistBySpecialistId;
+        this.doctorSchedulesByDoctorId = doctorSchedulesByDoctorId;
     }
 
     public DoctorDTO(Doctor doctor){
-        this(doctor.getId(),doctor.getDoctorName(),doctor.getDoctorAddress(),doctor.getDoctorContact(),doctor.getDoctorEmail(),doctor.getHospitalsAssociated());
+        this(doctor.getId(),doctor.getDoctorName(),doctor.getDoctorAddress(),doctor.getDoctorContact(),doctor.getDoctorEmail(),doctor.getHospitalsAssociated(),doctor.getSpecialistId(),doctor.getSpecialistBySpecialistId(),doctor.getDoctorSchedulesByDoctorId());
     }
 
-    public Long getDoctorId() {
-        return doctorId;
+    public Integer getId() {
+        return id;
     }
 
     public String getDoctorName() {
@@ -56,16 +63,31 @@ public class DoctorDTO {
         return hospitalsAssociated;
     }
 
+    public Integer getSpecialistId() {
+        return specialistId;
+    }
+
+    public Specialist getSpecialistBySpecialistId() {
+        return specialistBySpecialistId;
+    }
+
+    public Collection<DoctorSchedule> getDoctorSchedulesByDoctorId() {
+        return doctorSchedulesByDoctorId;
+    }
 
     @Override
     public String toString() {
         return "DoctorDTO{" +
-                "doctorId=" + doctorId +
+                "id=" + id +
                 ", doctorName='" + doctorName + '\'' +
                 ", doctorAddress='" + doctorAddress + '\'' +
                 ", doctorContact='" + doctorContact + '\'' +
                 ", doctorEmail='" + doctorEmail + '\'' +
                 ", hospitalsAssociated='" + hospitalsAssociated + '\'' +
+                ", specialistId=" + specialistId +
+                ", specialistBySpecialistId=" + specialistBySpecialistId +
+                ", doctorSchedulesByDoctorId=" + doctorSchedulesByDoctorId +
                 '}';
     }
 }
+

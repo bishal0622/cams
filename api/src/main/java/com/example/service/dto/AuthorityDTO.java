@@ -2,26 +2,16 @@ package com.example.service.dto;
 
 
 import com.example.domain.Authority;
+import com.example.domain.AuthorityStaff;
+
+import java.util.Collection;
 
 public class AuthorityDTO {
-    private Long id;
+    private Integer id;
     private String authorityName;
+    private Collection<AuthorityStaff> authorityStaffsByAuthorityId;
 
-   // public AuthorityDTO(Long id, String authorityName)
-
-
-    public AuthorityDTO(Long id, String authorityName) {
-        this.id = id;
-        this.authorityName = authorityName;
-    }
-    public AuthorityDTO(){
-
-    }
-    public AuthorityDTO(Authority authority){
-        this(authority.getId(),authority.getAuthorityName());
-    }
-
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -29,13 +19,31 @@ public class AuthorityDTO {
         return authorityName;
     }
 
+    public Collection<AuthorityStaff> getAuthorityStaffsByAuthorityId() {
+        return authorityStaffsByAuthorityId;
+    }
+
+    public AuthorityDTO(){}
+
+    public AuthorityDTO(Integer id, String authorityName, Collection<AuthorityStaff> authorityStaffsByAuthorityId) {
+        this.id = id;
+        this.authorityName = authorityName;
+        this.authorityStaffsByAuthorityId = authorityStaffsByAuthorityId;
+    }
+
+    public AuthorityDTO(Authority authority){
+        this(authority.getId(),authority.getAuthorityName(),authority.getAuthorityStaffsByAuthorityId());
+    }
+
     @Override
     public String toString() {
         return "AuthorityDTO{" +
                 "id=" + id +
                 ", authorityName='" + authorityName + '\'' +
+                ", authorityStaffsByAuthorityId=" + authorityStaffsByAuthorityId +
                 '}';
     }
 }
+
 
 

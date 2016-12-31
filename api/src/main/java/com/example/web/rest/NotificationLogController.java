@@ -55,7 +55,7 @@ public class NotificationLogController {
             produces = MediaType.APPLICATION_JSON_VALUE)
 
     public ResponseEntity<NotificationLogDTO> updateNotification(@RequestBody NotificationLogDTO notificationLogDTO) {
-        notificationLogService.updateNotification(notificationLogDTO.getId(),notificationLogDTO.getNotificationDatetime(),notificationLogDTO.getConfirmedDatetime());
+        notificationLogService.updateNotification(notificationLogDTO.getId(),notificationLogDTO.getNotificationDatetime(),notificationLogDTO.getAppointmentId(),notificationLogDTO.getConfirmedDatetime(),notificationLogDTO.getAppointmentByAppointmentId());
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
@@ -63,7 +63,7 @@ public class NotificationLogController {
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
 
-    public ResponseEntity<?> getNotifications(@PathVariable Long id)
+    public ResponseEntity<?> getNotifications(@PathVariable Integer id)
             throws URISyntaxException {
         System.out.println("get one user");
 
@@ -76,7 +76,7 @@ public class NotificationLogController {
             method= RequestMethod.DELETE,
             produces = MediaType.APPLICATION_JSON_VALUE)
 
-    public void deleteNotification(@PathVariable Long id) {
+    public void deleteNotification(@PathVariable Integer id) {
         System.out.println("delete");
         notificationLogService.deleteNotification(id);
     }
