@@ -34,7 +34,7 @@ public class StaffService {
         staff.setStaffName(staffDTO.getStaffName());
         staff.setPassword(staffDTO.getPassword());
         staff.setStaffContact(staffDTO.getStaffContact());
-        staff.setBillingbillId(staffDTO.getBillingbillId());
+//        staff.setBillingbillId(staffDTO.getBillingbillId());
         staff.setAuthorityStaffsByStaffId(staffDTO.getAuthorityStaffsByStaffId());
         staff.setBillingsByStaffId(staffDTO.getBillingsByStaffId());
 
@@ -50,13 +50,13 @@ public class StaffService {
         return staff;
     }
 
-    public void updateStaff(Integer staffId, String staffName, String staffContact, String password, Integer billingbillId, Collection<AuthorityStaff> authorityStaffsByStaffId, Collection<Billing> billingsByStaffId ){
+    public void updateStaff(Integer staffId, String staffName, String staffContact, String password, Collection<AuthorityStaff> authorityStaffsByStaffId, Collection<Billing> billingsByStaffId ){
         staffRepository.findOneById(staffId).ifPresent(staff->{
 
             staff.setStaffName(staffName);
             staff.setPassword(password);
             staff.setStaffContact(staffContact);
-            staff.setBillingbillId(billingbillId);
+//            staff.setBillingbillId(billingbillId);
             staff.setAuthorityStaffsByStaffId(authorityStaffsByStaffId);
             staff.setBillingsByStaffId(billingsByStaffId);
 

@@ -1,5 +1,7 @@
 package com.example.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 
@@ -16,6 +18,7 @@ public class NotificationLog {
     private Appointment appointmentByAppointmentId;
 
     @Id
+    @GeneratedValue
     @Column(name = "notification_id", nullable = false)
     public Integer getId() {
         return id;
@@ -83,6 +86,7 @@ public class NotificationLog {
 
     @ManyToOne
     @JoinColumn(name = "appointment_id", referencedColumnName = "appointment_id", nullable = false, insertable = false, updatable = false)
+    @JsonIgnore
     public Appointment getAppointmentByAppointmentId() {
         return appointmentByAppointmentId;
     }

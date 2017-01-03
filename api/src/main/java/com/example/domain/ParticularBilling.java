@@ -1,5 +1,7 @@
 package com.example.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 /**
@@ -15,6 +17,7 @@ public class ParticularBilling {
     private Billing billingByBillingbillId;
 
     @Id
+    @GeneratedValue
     @Column(name = "particular_billing_id", nullable = false)
     public Integer getId() {
         return id;
@@ -68,6 +71,7 @@ public class ParticularBilling {
 
     @ManyToOne
     @JoinColumn(name = "particularparticular_id", referencedColumnName = "particular_id", nullable = false, insertable = false, updatable = false)
+    @JsonIgnore
     public Particular getParticularByParticularparticularId() {
         return particularByParticularparticularId;
     }
@@ -78,6 +82,7 @@ public class ParticularBilling {
 
     @ManyToOne
     @JoinColumn(name = "billingbill_id", referencedColumnName = "bill_id", nullable = false, insertable = false, updatable = false)
+    @JsonIgnore
     public Billing getBillingByBillingbillId() {
         return billingByBillingbillId;
     }

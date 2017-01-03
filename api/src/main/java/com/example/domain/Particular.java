@@ -1,5 +1,7 @@
 package com.example.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Collection;
 
@@ -14,6 +16,7 @@ public class Particular {
     private Collection<ParticularBilling> particularBillingsByParticularId;
 
     @Id
+    @GeneratedValue
     @Column(name = "particular_id", nullable = false)
     public Integer getId() {
         return id;
@@ -70,6 +73,7 @@ public class Particular {
     }
 
     @OneToMany(mappedBy = "particularByParticularparticularId")
+    @JsonIgnore
     public Collection<ParticularBilling> getParticularBillingsByParticularId() {
         return particularBillingsByParticularId;
     }

@@ -22,6 +22,7 @@ import java.util.List;
  * Package clinic com.example.web.rest
  */
 @RestController
+@CrossOrigin(origins = "http://localhost:9000")
 @RequestMapping("/api")
 public class AuthorityController {
     @Inject

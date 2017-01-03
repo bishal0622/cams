@@ -18,7 +18,7 @@ public class DemoApplication {
 		return new WebMvcConfigurerAdapter() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/api/specialist").allowedOrigins("http://localhost:9000");
+				registry.addMapping("/api").allowedOrigins("http://localhost:9000");
 			}
 		};
 	}

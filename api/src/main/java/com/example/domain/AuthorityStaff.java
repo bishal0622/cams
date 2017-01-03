@@ -1,5 +1,7 @@
 package com.example.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 /**
@@ -15,6 +17,7 @@ public class AuthorityStaff {
     private Staff staffByStaffstaffId;
 
     @Id
+    @GeneratedValue
     @Column(name = "authority_staff_id", nullable = false)
     public Integer getId() {
         return id;
@@ -66,6 +69,7 @@ public class AuthorityStaff {
         return result;
     }
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "authorityauthority_id", referencedColumnName = "authority_id", nullable = false, insertable = false, updatable = false)
     public Authority getAuthorityByAuthorityauthorityId() {
@@ -76,6 +80,7 @@ public class AuthorityStaff {
         this.authorityByAuthorityauthorityId = authorityByAuthorityauthorityId;
     }
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "staffstaff_id", referencedColumnName = "staff_id", nullable = false, insertable = false, updatable = false)
     public Staff getStaffByStaffstaffId() {

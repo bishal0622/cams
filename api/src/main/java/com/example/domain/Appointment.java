@@ -1,5 +1,7 @@
 package com.example.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Collection;
@@ -20,6 +22,7 @@ public class Appointment {
     private Collection<NotificationLog> notificationLogsByAppointmentId;
 
     @Id
+    @GeneratedValue
     @Column(name = "appointment_id", nullable = false)
     public Integer getId() {
         return id;
@@ -108,6 +111,7 @@ public class Appointment {
         return result;
     }
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "doctor_schedule_id", referencedColumnName = "doctor_schedule_id", nullable = false, insertable = false, updatable = false)
     public DoctorSchedule getDoctorScheduleByDoctorScheduleId() {
@@ -118,6 +122,8 @@ public class Appointment {
         this.doctorScheduleByDoctorScheduleId = doctorScheduleByDoctorScheduleId;
     }
 
+
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "patientpatient_id", referencedColumnName = "patient_id", nullable = false, insertable = false, updatable = false)
     public Patient getPatientByPatientpatientId() {
@@ -128,6 +134,7 @@ public class Appointment {
         this.patientByPatientpatientId = patientByPatientpatientId;
     }
 
+    @JsonIgnore
     @OneToMany(mappedBy = "appointmentByAppointmentId")
     public Collection<NotificationLog> getNotificationLogsByAppointmentId() {
         return notificationLogsByAppointmentId;

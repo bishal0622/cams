@@ -1,5 +1,7 @@
 package com.example.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Collection;
 
@@ -12,11 +14,12 @@ public class Staff {
     private String staffName;
     private String staffContact;
     private String password;
-    private Integer billingbillId;
+//    private Integer billingbillId;
     private Collection<AuthorityStaff> authorityStaffsByStaffId;
     private Collection<Billing> billingsByStaffId;
 
     @Id
+    @GeneratedValue
     @Column(name = "staff_id", nullable = false)
     public Integer getId() {
         return id;
@@ -56,15 +59,15 @@ public class Staff {
         this.password = password;
     }
 
-    @Basic
-    @Column(name = "billingbill_id", nullable = false)
-    public Integer getBillingbillId() {
-        return billingbillId;
-    }
-
-    public void setBillingbillId(Integer billingbillId) {
-        this.billingbillId = billingbillId;
-    }
+//    @Basic
+//    @Column(name = "billingbill_id", nullable = false)
+//    public Integer getBillingbillId() {
+//        return billingbillId;
+//    }
+//
+//    public void setBillingbillId(Integer billingbillId) {
+//        this.billingbillId = billingbillId;
+//    }
 
     @Override
     public boolean equals(Object o) {
@@ -74,7 +77,7 @@ public class Staff {
         Staff staff = (Staff) o;
 
         if (id != staff.id) return false;
-        if (billingbillId != staff.billingbillId) return false;
+//        if (billingbillId != staff.billingbillId) return false;
         if (staffName != null ? !staffName.equals(staff.staffName) : staff.staffName != null) return false;
         if (staffContact != null ? !staffContact.equals(staff.staffContact) : staff.staffContact != null) return false;
         if (password != null ? !password.equals(staff.password) : staff.password != null) return false;
@@ -88,11 +91,12 @@ public class Staff {
         result = 31 * result + (staffName != null ? staffName.hashCode() : 0);
         result = 31 * result + (staffContact != null ? staffContact.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
-        result = 31 * result + billingbillId;
+//        result = 31 * result + billingbillId;
         return result;
     }
 
     @OneToMany(mappedBy = "staffByStaffstaffId")
+    @JsonIgnore
     public Collection<AuthorityStaff> getAuthorityStaffsByStaffId() {
         return authorityStaffsByStaffId;
     }
@@ -102,6 +106,7 @@ public class Staff {
     }
 
     @OneToMany(mappedBy = "staffByStaffId")
+    @JsonIgnore
     public Collection<Billing> getBillingsByStaffId() {
         return billingsByStaffId;
     }

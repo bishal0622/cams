@@ -19,6 +19,7 @@ import java.util.List;
  * Created by HELLZ on 12/26/2016.
  */
 @RestController
+@CrossOrigin(origins = "http://localhost:9000")
 @RequestMapping("/api")
 public class AuthorityStaffController {
     @Inject

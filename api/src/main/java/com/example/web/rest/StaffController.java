@@ -19,6 +19,7 @@ import java.util.List;
  */
 
 @RestController
+@CrossOrigin(origins = "http://localhost:9000")
 @RequestMapping("/api")
 public class StaffController {
 
@@ -57,7 +58,7 @@ public class StaffController {
             produces = MediaType.APPLICATION_JSON_VALUE)
 
     public ResponseEntity<StaffDTO> updateStaff(@RequestBody StaffDTO staffDTO) {
-        staffService.updateStaff(staffDTO.getId(),staffDTO.getStaffName(),staffDTO.getStaffContact(),staffDTO.getPassword(),staffDTO.getBillingbillId(),staffDTO.getAuthorityStaffsByStaffId(),staffDTO.getBillingsByStaffId());
+        staffService.updateStaff(staffDTO.getId(),staffDTO.getStaffName(),staffDTO.getStaffContact(),staffDTO.getPassword(),staffDTO.getAuthorityStaffsByStaffId(),staffDTO.getBillingsByStaffId());
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 

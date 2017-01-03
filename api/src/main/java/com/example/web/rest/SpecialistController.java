@@ -32,8 +32,8 @@ public class SpecialistController {
         System.out.println("usercontroller");
         System.out.println(specialistDTO.toString());
 
-        HttpHeaders textPlainheaders = new HttpHeaders();
-        textPlainheaders.setContentType(MediaType.TEXT_PLAIN);
+//        HttpHeaders textPlainheaders = new HttpHeaders();
+//        textPlainheaders.setContentType(MediaType.TEXT_PLAIN);
 
         Specialist specialist=specialistService.saveSpecialist(specialistDTO);
 

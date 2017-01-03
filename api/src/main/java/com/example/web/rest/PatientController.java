@@ -18,6 +18,7 @@ import java.util.List;
  * Created by japnica on 12/23/2016.
  */
 @RestController
+@CrossOrigin(origins = "http://localhost:9000")
 @RequestMapping("/api")
 public class PatientController {
     @Inject

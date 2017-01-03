@@ -1,5 +1,7 @@
 package com.example.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Collection;
 
@@ -19,6 +21,7 @@ public class Doctor {
     private Collection<DoctorSchedule> doctorSchedulesByDoctorId;
 
     @Id
+    @GeneratedValue
     @Column(name = "doctor_id", nullable = false)
     public Integer getId() {
         return id;
@@ -123,6 +126,8 @@ public class Doctor {
 
     @ManyToOne
     @JoinColumn(name = "specialist_id", referencedColumnName = "specialist_id", nullable = false, insertable = false, updatable = false)
+   // @JsonIgnore
+
     public Specialist getSpecialistBySpecialistId() {
         return specialistBySpecialistId;
     }
@@ -132,6 +137,7 @@ public class Doctor {
     }
 
     @OneToMany(mappedBy = "doctorByDoctorId")
+
     public Collection<DoctorSchedule> getDoctorSchedulesByDoctorId() {
         return doctorSchedulesByDoctorId;
     }

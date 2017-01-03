@@ -1,0 +1,21 @@
+{
+  "name": "angular-testing",
+  "description": "Simple Application to learn the how we can unit test AngularJS application",
+  "main": "",
+  "authors": [
+    "Aman Tuladhar"
+  ],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.9",
+    "components-font-awesome": "^4.7.0"
+  }
+}
