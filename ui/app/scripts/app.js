@@ -1,6 +1,10 @@
 (function(angular) {
     'use strict';
     angular
-        .module('app', [])
+        .module('app', [
+            'ui.router',
+            'ngResource',
+            'ui.bootstrap'
+        ])
     ;
 })(angular);
