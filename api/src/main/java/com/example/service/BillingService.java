@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
-import java.sql.Timestamp;
+
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -52,7 +52,7 @@ public class BillingService {
         return billings;
     }
 
-    public void updateBilling(Integer id, Integer patientid, Timestamp billingDate, Integer staffid, double discount, double tax, double grandTotal, double amount, Patient patientByPatientId, Staff staff, Collection<ParticularBilling> particularBillings){
+    public void updateBilling(Integer id, Integer patientid, String billingDate, Integer staffid, double discount, double tax, double grandTotal, double amount, Patient patientByPatientId, Staff staff, Collection<ParticularBilling> particularBillings){
         billingRepository.findOneById(id).ifPresent(billing -> {
             billing.setId(id);
             billing.setPatientId(patientid);

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
-import java.sql.Timestamp;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -47,7 +47,7 @@ public class NotificationLogService {
         return notification;
     }
 
-    public void updateNotification(Integer notificationId, Timestamp notificationDatetime, Integer appointmentId, Timestamp confirmedDatetime, Appointment appointmentByAppointmentId){
+    public void updateNotification(Integer notificationId, String notificationDatetime, Integer appointmentId, String confirmedDatetime, Appointment appointmentByAppointmentId){
         notificationLogRepository.findOneById(notificationId).ifPresent(notification->{
             notification.setNotificationDatetime(notificationDatetime);
             notification.setConfirmedDatetime(confirmedDatetime);

@@ -1,0 +1,48 @@
+<div class="row">
+    <div class="col-xs-12 col-sm-8 col-md-10 col-sm-offset-2 col-md-offset-1 card card-center card-outline-info text-xs-center">
+        <h1>Patient Details</h1>
+
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th><span>Id</span></th>
+                    <th><span>Name</span></th>
+                    <th><span>Age</span></th>
+                    <th><span>Weight</span></th>
+                    <th><span>Gender</span></th>
+                    <th><span>Address</span></th>
+                    <th><span>Contact</span></th>
+                    <th><span>Email</span></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="patient in vm.patients">
+                    <td>{{patient.id}}</td>
+                    <td>{{patient.patientName}}</td>
+                    <td>{{patient.age}}</td>
+                    <td>{{patient.weight}}</td>
+                    <td>{{patient.gender}}</td>
+                    <td>{{patient.patientAddress}}</td>
+                    <td>{{patient.patientContact}}</td>
+                    <td>{{patient.patientEmail}}</td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="displayPatient.edit({id:patient.id})"
+                                    class="btn btn-primary btn-sm">Edit
+                            </button>
+
+                            <button type="submit"
+                                    ui-sref="displayPatient.delete({id:patient.id})"
+                                    class="btn btn-danger btn-sm">Delete
+                            </button>
+
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

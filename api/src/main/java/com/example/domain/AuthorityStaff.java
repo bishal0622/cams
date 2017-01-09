@@ -80,8 +80,9 @@ public class AuthorityStaff {
         this.authorityByAuthorityauthorityId = authorityByAuthorityauthorityId;
     }
 
-    @JsonIgnore
+
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "staffstaff_id", referencedColumnName = "staff_id", nullable = false, insertable = false, updatable = false)
     public Staff getStaffByStaffstaffId() {
         return staffByStaffstaffId;

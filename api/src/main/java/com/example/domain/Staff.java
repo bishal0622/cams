@@ -59,16 +59,6 @@ public class Staff {
         this.password = password;
     }
 
-//    @Basic
-//    @Column(name = "billingbill_id", nullable = false)
-//    public Integer getBillingbillId() {
-//        return billingbillId;
-//    }
-//
-//    public void setBillingbillId(Integer billingbillId) {
-//        this.billingbillId = billingbillId;
-//    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -96,7 +86,7 @@ public class Staff {
     }
 
     @OneToMany(mappedBy = "staffByStaffstaffId")
-    @JsonIgnore
+
     public Collection<AuthorityStaff> getAuthorityStaffsByStaffId() {
         return authorityStaffsByStaffId;
     }

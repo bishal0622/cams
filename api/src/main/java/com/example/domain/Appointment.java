@@ -3,7 +3,6 @@ package com.example.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
 import java.util.Collection;
 
 /**
@@ -12,7 +11,7 @@ import java.util.Collection;
 @Entity
 public class Appointment {
     private Integer id;
-    private Timestamp appointmentDate;
+    private String appointmentDate;
     private Integer doctorScheduleId;
     private String comment;
     private String status;
@@ -34,11 +33,11 @@ public class Appointment {
 
     @Basic
     @Column(name = "appointment_date", nullable = false)
-    public Timestamp getAppointmentDate() {
+    public String getAppointmentDate() {
         return appointmentDate;
     }
 
-    public void setAppointmentDate(Timestamp appointmentDate) {
+    public void setAppointmentDate(String appointmentDate) {
         this.appointmentDate = appointmentDate;
     }
 

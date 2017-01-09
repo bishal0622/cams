@@ -1,0 +1,24 @@
+<div class="row">
+    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3 card card-center card-outline-info text-xs-center">
+        <h1 class="text-center">Particular Detail</h1>
+        <hr>
+        <form ng-submit="vm.updateParticular()">
+
+            <div class="md-form">
+                <label for="id" class="active"> Id:</label>
+                <input type="text" class="form-control" id="id" ng-model="vm.particular.id" readonly>
+            </div>
+
+            <div class="md-form">
+                <label for="pname"> Name:</label>
+                <input type="text" class="form-control" id="pname" ng-model="vm.particular.particularName">
+            </div>
+            
+            <div class="md-form">
+                <label for="paddress" >Rate:</label>
+                <input type="text" class="form-control" id="paddress" ng-model="vm.particular.particularRate">
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+    </div>
+</div>

@@ -3,7 +3,6 @@ package com.example.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
 
 /**
  * Created by BiSAl MhRzn on 12/29/2016.
@@ -12,9 +11,9 @@ import java.sql.Timestamp;
 @Table(name = "notification_log", schema = "clinic", catalog = "")
 public class NotificationLog {
     private Integer id;
-    private Timestamp notificationDatetime;
+    private String notificationDatetime;
     private Integer appointmentId;
-    private Timestamp confirmedDatetime;
+    private String confirmedDatetime;
     private Appointment appointmentByAppointmentId;
 
     @Id
@@ -30,11 +29,11 @@ public class NotificationLog {
 
     @Basic
     @Column(name = "notification_datetime", nullable = false)
-    public Timestamp getNotificationDatetime() {
+    public String getNotificationDatetime() {
         return notificationDatetime;
     }
 
-    public void setNotificationDatetime(Timestamp notificationDatetime) {
+    public void setNotificationDatetime(String notificationDatetime) {
         this.notificationDatetime = notificationDatetime;
     }
 
@@ -50,11 +49,11 @@ public class NotificationLog {
 
     @Basic
     @Column(name = "confirmed_datetime", nullable = false)
-    public Timestamp getConfirmedDatetime() {
+    public String getConfirmedDatetime() {
         return confirmedDatetime;
     }
 
-    public void setConfirmedDatetime(Timestamp confirmedDatetime) {
+    public void setConfirmedDatetime(String confirmedDatetime) {
         this.confirmedDatetime = confirmedDatetime;
     }
 

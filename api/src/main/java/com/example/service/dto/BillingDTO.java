@@ -5,7 +5,7 @@ import com.example.domain.ParticularBilling;
 import com.example.domain.Patient;
 import com.example.domain.Staff;
 
-import java.sql.Timestamp;
+
 import java.util.Collection;
 
 /**
@@ -14,7 +14,7 @@ import java.util.Collection;
 public class BillingDTO {
     private Integer id;
     private Integer patientId;
-    private Timestamp billingDate;
+    private String billingDate;
     private Integer staffId;
     private double discount;
     private double tax;
@@ -27,7 +27,7 @@ public class BillingDTO {
     public BillingDTO() {
     }
 
-    public BillingDTO(Integer id, Integer patientId, Timestamp billingDate, Integer staffId, double discount, double tax, double grandTotal, double amount, Patient patientByPatientId, Staff staffByStaffId, Collection<ParticularBilling> particularBillingsByBillId) {
+    public BillingDTO(Integer id, Integer patientId, String billingDate, Integer staffId, double discount, double tax, double grandTotal, double amount, Patient patientByPatientId, Staff staffByStaffId, Collection<ParticularBilling> particularBillingsByBillId) {
         this.id = id;
         this.patientId = patientId;
         this.billingDate = billingDate;
@@ -53,7 +53,7 @@ public class BillingDTO {
         return patientId;
     }
 
-    public Timestamp getBillingDate() {
+    public String getBillingDate() {
         return billingDate;
     }
 

@@ -4,7 +4,7 @@ import com.example.domain.Appointment;
 import com.example.domain.Doctor;
 import com.example.domain.DoctorSchedule;
 
-import java.sql.Timestamp;
+
 import java.util.Collection;
 
 /**
@@ -13,8 +13,8 @@ import java.util.Collection;
 public class DoctorScheduleDTO {
     private Integer id;
     private Integer doctorId;
-    private Timestamp doctorScheduleTo;
-    private Timestamp doctorScheduleFrom;
+    private String doctorScheduleTo;
+    private String doctorScheduleFrom;
     private Integer dayOfWeek;
     private Collection<Appointment> appointmentsByDoctorScheduleId;
     private Doctor doctorByDoctorId;
@@ -22,7 +22,7 @@ public class DoctorScheduleDTO {
     public DoctorScheduleDTO() {
     }
 
-    public DoctorScheduleDTO(Integer id, Integer doctorId, Timestamp doctorScheduleTo, Timestamp doctorScheduleFrom, Integer dayOfWeek, Collection<Appointment> appointmentsByDoctorScheduleId, Doctor doctorByDoctorId) {
+    public DoctorScheduleDTO(Integer id, Integer doctorId, String doctorScheduleTo, String doctorScheduleFrom, Integer dayOfWeek, Collection<Appointment> appointmentsByDoctorScheduleId, Doctor doctorByDoctorId) {
         this.id = id;
         this.doctorId = doctorId;
         this.doctorScheduleTo = doctorScheduleTo;
@@ -44,11 +44,11 @@ public class DoctorScheduleDTO {
         return doctorId;
     }
 
-    public Timestamp getDoctorScheduleTo() {
+    public String getDoctorScheduleTo() {
         return doctorScheduleTo;
     }
 
-    public Timestamp getDoctorScheduleFrom() {
+    public String getDoctorScheduleFrom() {
         return doctorScheduleFrom;
     }
 

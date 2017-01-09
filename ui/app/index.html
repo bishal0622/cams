@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="bower_components/components-font-awesome/css/font-awesome.min.css">
         <link rel="stylesheet" href="bower_components/MDBootstrap/css/mdb.min.css">
         <link rel="stylesheet" href="style/main.css">
+        <link rel="stylesheet" href="bower_components/animate.css/animate.min.css">
 
 
     </head>
@@ -33,7 +34,7 @@
                     <!--Links-->
                     <ul class="nav navbar-nav">
                         <li class="nav-item active">
-                            <a class="nav-link" ui-sref="login">Home <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" ui-sref="home">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" ui-sref="specialist">Specialist</a>
@@ -59,7 +60,7 @@
     </header>
 
     <main>
-        <div class="container">
+        <div class="wrapper">
 
             <div ui-view></div>
 
@@ -70,21 +71,23 @@
     <footer class="page-footer blue center-on-small-only">
 
     <!--Footer Links-->
-    <div class="container-fluid">
+    <div class="container-fluid" >
         <div class="row">
 
             <!--First column-->
             <div class="col-md-6">
-                <h5 class="title">About Us</h5>
-                <p>Here you can use rows and columns here to organize your footer content.</p>
+                <h5 class="title"><h3>About Us</h3></h5>
+                <p class="about">ABCD Hospital, Kathmandu is a multi-specialty hospital that offers preventive and curative healthcare services. It was established with a motive “Care to Cure” in February 2010. It began as an idea of a patient-oriented, socially responsible center, making superior quality healthcare services convenient and accessible for the community it serves. It aims to meet all healthcare needs of the nation through unparalleled patient care and wellness programs.</p>
             </div>
             <!--/.First column-->
 
             <!--Second column-->
-            <div class="col-md-6">
-                <h5 class="title">Links</h5>
-                <ul>
-                    <li><a href="#!">Site Maps</a></li>
+            <div class="col-md-6" id="address">
+                <h3>Address</h3>
+                <ul >
+                    <li class="addressright"><i class="fa fa-envelope-open"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Chamati, vanasthali, Kathmandu</li>
+                    <li class="addressright"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Clinc@gmail.com</li>
+                    <li class="addressright"><i class="fa fa-phone"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+977-9841414141, 01-43242342</li>
                 </ul>
             </div>
             <!--/.Second column-->
@@ -113,10 +116,14 @@
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="bower_components/MDBootstrap/js/mdb.min.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="bower_components/ngmap/build/scripts/ng-map.min.js"></script>
+    <script src="http://maps.google.com/maps/api/js"></script>
+
 
     <!--user built javascript-->
     <script src="scripts/app.js"></script>
     <script src="scripts/routes.js"></script>
+    <script src="scripts/date.directive.js"></script>
     <!--specalist-->
     <script src="views/specialist/specialist.controller.js"></script>
     <script src="services/specialist.service.js"></script>
@@ -125,16 +132,50 @@
     <script src="views/specialist/specialist-delete.controller.js"></script>
     <script src="views/specialist/specialist-edit.controller.js"></script>
 
-    <!--doctor-->
-    <script src="views/doctor/doctor.controller.js"></script>
-    <script src="services/doctor.service.js"></script>
-
     <!--doctorSchedule-->
     <script src="services/doctorSchedule.service.js"></script>
+    <script src="views/doctorSchedule/doctor-schedule.state.js"></script>
     <script src="views/doctorSchedule/doctor-schedule.controller.js"></script>
+    <script src="views/doctorSchedule/display-doctor-schedule.controller.js"></script>
+    <script src="views/doctorSchedule/doctor-schedule-edit.controller.js"></script>
+    <script src="views/doctorSchedule/doctor-schedule-delete.controller.js"></script>
+    <script src="views/doctorSchedule/timeslot.controlller.js"></script>
 
     <!--patient-->
     <script src="views/patient/patient.state.js"></script>
+    <script src="services/patient.service.js"></script>
+    <script src="views/patient/patient.controller.js"></script>
+    <script src="views/patient/display-patient.controller.js"></script>
+    <script src="views/patient/patient-edit.controller.js"></script>
+    <script src="views/patient/patient-delete.controller.js"></script>
+
+    <!--staff and authority staff-->
+    <script src="views/staff/staff.state.js"></script>
+    <script src="services/staff.service.js"></script>
+    <script src="services/authorityStaff.service.js"></script>
+    <script src="views/staff/staff-delete.controller.js"></script>
+    <script src="views/staff/display-staff.controller.js"></script>
+    <script src="views/staff/staff-edit.controller.js"></script>
+    <script src="views/staff/staff.controller.js"></script>'
+
+    <!--doctor-->
+    <script src="views/doctor/doctor.state.js"></script>
+    <script src="services/doctor.service.js"></script>
+    <script src="views/doctor/display-doctor.controller.js"></script>
+    <script src="views/doctor/doctor-delete.controller.js"></script>
+    <script src="views/doctor/doctor-edit.controller.js"></script>
+    <script src="views/doctor/doctor.controller.js"></script>
+
+    <!--particular-->
+    <script src="views/particular/particular.state.js"></script>
+    <script src="services/particular.service.js"></script>
+    <script src="views/particular/particular-delete.controller.js"></script>
+    <script src="views/particular/particular-edit.controller.js"></script>
+    <script src="views/particular/display-particular.controller.js"></script>
+    <script src="views/particular/particular.controller.js"></script>
+
+    <!--home-->
+    <script src="views/home/home.state.js"></script>
 
     </body>
 </html>

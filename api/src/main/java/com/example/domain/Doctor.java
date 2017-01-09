@@ -1,6 +1,7 @@
 package com.example.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -137,7 +138,7 @@ public class Doctor {
     }
 
     @OneToMany(mappedBy = "doctorByDoctorId")
-
+    @JsonIgnore
     public Collection<DoctorSchedule> getDoctorSchedulesByDoctorId() {
         return doctorSchedulesByDoctorId;
     }

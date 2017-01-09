@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
-import java.sql.Timestamp;
+
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -45,7 +45,7 @@ public class DoctorScheduleService {
         return doctorSchedules;
     }
 
-    public void updateSchedule(Integer doctorScheduleId, Integer doctorId, Timestamp doctorScheduleTo, Timestamp doctorScheduleFrom, Integer dayOfWeek, Collection<Appointment> appointmentsByDoctorScheduleId, Doctor doctorByDoctorId){
+    public void updateSchedule(Integer doctorScheduleId, Integer doctorId, String doctorScheduleTo, String doctorScheduleFrom, Integer dayOfWeek, Collection<Appointment> appointmentsByDoctorScheduleId, Doctor doctorByDoctorId){
         doctorScheduleRepository.findOneById(doctorScheduleId).ifPresent(doctorSchedule->{
             doctorSchedule.setDoctorId(doctorId);
             doctorSchedule.setDoctorScheduleTo(doctorScheduleTo);

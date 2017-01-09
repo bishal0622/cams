@@ -3,7 +3,6 @@ package com.example.service.dto;
 import com.example.domain.Appointment;
 import com.example.domain.NotificationLog;
 
-import java.sql.Timestamp;
 
 /**
  * Created by BiSAl MhRzn on 12/23/2016.
@@ -11,14 +10,14 @@ import java.sql.Timestamp;
 public class NotificationLogDTO {
 
     private Integer id;
-    private Timestamp notificationDatetime;
+    private String notificationDatetime;
     private Integer appointmentId;
-    private Timestamp confirmedDatetime;
+    private String confirmedDatetime;
     private Appointment appointmentByAppointmentId;
 
     public NotificationLogDTO(){}
 
-    public NotificationLogDTO(Integer id, Timestamp notificationDatetime, Integer appointmentId, Timestamp confirmedDatetime, Appointment appointmentByAppointmentId) {
+    public NotificationLogDTO(Integer id, String notificationDatetime, Integer appointmentId, String confirmedDatetime, Appointment appointmentByAppointmentId) {
         this.id = id;
         this.notificationDatetime = notificationDatetime;
         this.appointmentId = appointmentId;
@@ -34,7 +33,7 @@ public class NotificationLogDTO {
         return id;
     }
 
-    public Timestamp getNotificationDatetime() {
+    public String getNotificationDatetime() {
         return notificationDatetime;
     }
 
@@ -42,7 +41,7 @@ public class NotificationLogDTO {
         return appointmentId;
     }
 
-    public Timestamp getConfirmedDatetime() {
+    public String getConfirmedDatetime() {
         return confirmedDatetime;
     }
 

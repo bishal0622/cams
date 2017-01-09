@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import java.sql.Time;
-import java.sql.Timestamp;
+
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -50,7 +50,7 @@ public class AppointmentService {
         return appointments;
     }
 
-    public void updateAppointment(Integer appointmentId, Timestamp appointmentDate, Integer doctorScheduleId, String comment, String status, Integer patientpatientId, DoctorSchedule doctorSchedule, Patient patient,Collection<NotificationLog> notificationLog){
+    public void updateAppointment(Integer appointmentId, String appointmentDate, Integer doctorScheduleId, String comment, String status, Integer patientpatientId, DoctorSchedule doctorSchedule, Patient patient,Collection<NotificationLog> notificationLog){
         appointmentRepository.findOneById(appointmentId).ifPresent(appointment->{
             appointment.setAppointmentDate(appointmentDate);
             appointment.setDoctorScheduleId(doctorScheduleId);

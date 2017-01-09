@@ -12,6 +12,11 @@
 
     function stateConfig($stateProvider){
         $stateProvider
+            .state('display',{
+                url:'/display',
+                templateUrl:'views/doctorSchedule/display.html'
+
+            })
             .state('doctorSchedule',{
                 url:'/doctorSchedule',
                 templateUrl:'views/doctorSchedule/doctor-schedule.html',
@@ -57,6 +62,25 @@
                     }).result.then(function(){
                         $state.go('displayDoctorSchedule', null, {reload:true});
                     });
+                }]
+            })
+
+            .state('displayDoctorSchedule.timeslot',{
+                url:'/{id}/timeslot',
+                onEnter:['$stateParams','$state','$uibModal', function($stateParams, $state, $uibModal){
+                    $uibModal.open({
+                        templateUrl:'views/doctorSchedule/timeslot.html',
+                        controller:'TimeslotController',
+                        controllerAs:'vm',
+                        resolve:{
+                            entity:['DoctorSchedule', function(DoctorSchedule){
+                                return DoctorSchedule.get({id:$stateParams.id});
+                            }]
+                        }
+                    }).result.then(function(){
+                        $state.go('displayDoctorSchedule', null, {reload: true});
+                    });
+
                 }]
             });
 

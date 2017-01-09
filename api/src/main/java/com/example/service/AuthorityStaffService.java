@@ -29,7 +29,7 @@ public class AuthorityStaffService {
     public AuthorityStaff saveAuthorityStaff(AuthorityStaffDTO authorityStaffDTO ){
         AuthorityStaff authorityStaff=new AuthorityStaff();
 
-        authorityStaff.setAuthorityauthorityId(authorityStaffDTO.getAuthorityauthorityId());
+        authorityStaff.setAuthorityauthorityId(2);
         authorityStaff.setStaffstaffId(authorityStaffDTO.getStaffstaffId());
         authorityStaff.setAuthorityByAuthorityauthorityId(authorityStaffDTO.getAuthorityByAuthorityauthorityId());
         authorityStaff.setStaffByStaffstaffId(authorityStaffDTO.getStaffByStaffstaffId());
