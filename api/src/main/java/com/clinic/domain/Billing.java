@@ -143,6 +143,7 @@ public class Billing {
     }
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "patient_id", referencedColumnName = "patient_id", nullable = false, insertable = false, updatable = false)
     public Patient getPatientByPatientId() {
         return patientByPatientId;
@@ -153,6 +154,7 @@ public class Billing {
     }
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "staff_id", referencedColumnName = "staff_id", nullable = false, insertable = false, updatable = false)
     public Staff getStaffByStaffId() {
         return staffByStaffId;
@@ -163,6 +165,7 @@ public class Billing {
     }
 
     @OneToMany(mappedBy = "billingByBillingbillId")
+    @JsonIgnore
     public Collection<ParticularBilling> getParticularBillingsByBillId() {
         return particularBillingsByBillId;
     }

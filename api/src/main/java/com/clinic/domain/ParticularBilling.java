@@ -70,6 +70,7 @@ public class ParticularBilling {
     }
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "particularparticular_id", referencedColumnName = "particular_id", nullable = false, insertable = false, updatable = false)
     public Particular getParticularByParticularparticularId() {
         return particularByParticularparticularId;
@@ -80,6 +81,7 @@ public class ParticularBilling {
     }
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "billingbill_id", referencedColumnName = "bill_id", nullable = false, insertable = false, updatable = false)
     public Billing getBillingByBillingbillId() {
         return billingByBillingbillId;

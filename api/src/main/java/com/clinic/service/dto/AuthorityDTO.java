@@ -2,14 +2,14 @@ package com.clinic.service.dto;
 
 
 import com.clinic.domain.Authority;
-import com.clinic.domain.AuthorityStaff;
+//import com.clinic.domain.AuthorityStaff;
 
 import java.util.Collection;
 
 public class AuthorityDTO {
     private Integer id;
     private String authorityName;
-    private Collection<AuthorityStaff> authorityStaffsByAuthorityId;
+//    private Collection<AuthorityStaff> authorityStaffsByAuthorityId;
 
     public Integer getId() {
         return id;
@@ -19,20 +19,20 @@ public class AuthorityDTO {
         return authorityName;
     }
 
-    public Collection<AuthorityStaff> getAuthorityStaffsByAuthorityId() {
-        return authorityStaffsByAuthorityId;
-    }
+//    public Collection<AuthorityStaff> getAuthorityStaffsByAuthorityId() {
+//        return authorityStaffsByAuthorityId;
+//    }
 
     public AuthorityDTO(){}
 
-    public AuthorityDTO(Integer id, String authorityName, Collection<AuthorityStaff> authorityStaffsByAuthorityId) {
+    public AuthorityDTO(Integer id, String authorityName) {
         this.id = id;
         this.authorityName = authorityName;
-        this.authorityStaffsByAuthorityId = authorityStaffsByAuthorityId;
+//        this.authorityStaffsByAuthorityId = authorityStaffsByAuthorityId;
     }
 
     public AuthorityDTO(Authority authority){
-        this(authority.getId(),authority.getAuthorityName(),authority.getAuthorityStaffsByAuthorityId());
+        this(authority.getId(),authority.getAuthorityName());
     }
 
     @Override
@@ -40,7 +40,7 @@ public class AuthorityDTO {
         return "AuthorityDTO{" +
                 "id=" + id +
                 ", authorityName='" + authorityName + '\'' +
-                ", authorityStaffsByAuthorityId=" + authorityStaffsByAuthorityId +
+//                ", authorityStaffsByAuthorityId=" + authorityStaffsByAuthorityId +
                 '}';
     }
 

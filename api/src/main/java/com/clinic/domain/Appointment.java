@@ -112,6 +112,7 @@ public class Appointment {
     }
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "doctor_schedule_id", referencedColumnName = "doctor_schedule_id", nullable = false, insertable = false, updatable = false)
     public DoctorSchedule getDoctorScheduleByDoctorScheduleId() {
         return doctorScheduleByDoctorScheduleId;

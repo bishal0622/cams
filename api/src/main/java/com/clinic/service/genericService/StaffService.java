@@ -1,6 +1,8 @@
 package com.clinic.service.genericService;
 
+import com.clinic.domain.Authority;
 import com.clinic.domain.Staff;
+import com.clinic.repository.AuthorityRepository;
 import com.clinic.repository.StaffRepository;
 import com.clinic.service.dto.StaffDTO;
 import com.clinic.service.generic.StaffGeneric;
@@ -10,7 +12,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by BiSAl MhRzn on 12/25/2016.
@@ -21,6 +26,9 @@ public class StaffService implements StaffGeneric{
 
     @Inject
     StaffRepository staffRepository;
+
+    @Inject
+    AuthorityRepository authorityRepository;
 
     private final Logger log = LoggerFactory.getLogger(StaffService.class);
 
@@ -36,9 +44,14 @@ public class StaffService implements StaffGeneric{
         staff.setStaffName(staffDTO.getStaffName());
         staff.setPassword(staffDTO.getPassword());
         staff.setStaffContact(staffDTO.getStaffContact());
+        staff.setType(staffDTO.getType());
 //        staff.setBillingbillId(staffDTO.getBillingbillId());
-        staff.setAuthorityStaffsByStaffId(staffDTO.getAuthorityStaffsByStaffId());
+//        staff.setAuthorityStaffsByStaffId(staffDTO.getAuthorityStaffsByStaffId());
         staff.setBillingsByStaffId(staffDTO.getBillingsByStaffId());
+        Authority authority=authorityRepository.findOne(staffDTO.getType());
+        Set<Authority> authorities = new HashSet<>();
+        authorities.add(authority);
+        staff.setAuthorities(authorities);
 
         staffRepository.save(staff);
 
@@ -60,7 +73,7 @@ public class StaffService implements StaffGeneric{
             staff.setPassword(staffDTO.getPassword());
             staff.setStaffContact(staffDTO.getStaffContact());
 //        staff.setBillingbillId(staffDTO.getBillingbillId());
-            staff.setAuthorityStaffsByStaffId(staffDTO.getAuthorityStaffsByStaffId());
+//            staff.setAuthorityStaffsByStaffId(staffDTO.getAuthorityStaffsByStaffId());
             staff.setBillingsByStaffId(staffDTO.getBillingsByStaffId());
 
             log.debug("Updated staff information:{}", staff);

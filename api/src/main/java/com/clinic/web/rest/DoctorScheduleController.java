@@ -57,6 +57,7 @@ public class DoctorScheduleController {
             produces = MediaType.APPLICATION_JSON_VALUE)
 
     public ResponseEntity<DoctorScheduleDTO> updateDoctorSchedule(@PathVariable Integer id, @RequestBody DoctorScheduleDTO doctorScheduleDTO) {
+        System.out.println("update");
         DoctorSchedule doctorSchedule=doctorScheduleService.findOne(id);
         if(doctorSchedule==null){
             return new ResponseEntity<DoctorScheduleDTO>(HttpStatus.NOT_FOUND);

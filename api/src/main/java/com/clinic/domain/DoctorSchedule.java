@@ -3,6 +3,8 @@ package com.clinic.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.sql.Date;
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Collection;
 
@@ -14,8 +16,8 @@ import java.util.Collection;
 public class DoctorSchedule {
     private Integer id;
     private Integer doctorId;
-    private Timestamp doctorScheduleTo;
-    private Timestamp doctorScheduleFrom;
+    private String doctorScheduleTo;
+    private String doctorScheduleFrom;
     private Integer dayOfWeek;
     private Collection<Appointment> appointmentsByDoctorScheduleId;
     private Doctor doctorByDoctorId;
@@ -43,21 +45,21 @@ public class DoctorSchedule {
 
     @Basic
     @Column(name = "doctor_schedule_to", nullable = false)
-    public Timestamp getDoctorScheduleTo() {
+    public String getDoctorScheduleTo() {
         return doctorScheduleTo;
     }
 
-    public void setDoctorScheduleTo(Timestamp doctorScheduleTo) {
+    public void setDoctorScheduleTo(String doctorScheduleTo) {
         this.doctorScheduleTo = doctorScheduleTo;
     }
 
     @Basic
     @Column(name = "doctor_schedule_from", nullable = false)
-    public Timestamp getDoctorScheduleFrom() {
+    public String getDoctorScheduleFrom() {
         return doctorScheduleFrom;
     }
 
-    public void setDoctorScheduleFrom(Timestamp doctorScheduleFrom) {
+    public void setDoctorScheduleFrom(String doctorScheduleFrom) {
         this.doctorScheduleFrom = doctorScheduleFrom;
     }
 

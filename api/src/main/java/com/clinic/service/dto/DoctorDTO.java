@@ -19,11 +19,12 @@ public class DoctorDTO {
     private Integer specialistId;
     private Specialist specialistBySpecialistId;
     private Collection<DoctorSchedule> doctorSchedulesByDoctorId;
+    private String photo;
 
     public DoctorDTO() {
     }
 
-    public DoctorDTO(Integer id, String doctorName, String doctorAddress, String doctorContact, String doctorEmail, String hospitalsAssociated, Integer specialistId, Specialist specialistBySpecialistId, Collection<DoctorSchedule> doctorSchedulesByDoctorId) {
+    public DoctorDTO(Integer id, String doctorName, String doctorAddress, String doctorContact, String doctorEmail, String hospitalsAssociated, Integer specialistId, Specialist specialistBySpecialistId, Collection<DoctorSchedule> doctorSchedulesByDoctorId, String photo) {
         this.id = id;
         this.doctorName = doctorName;
         this.doctorAddress = doctorAddress;
@@ -33,10 +34,11 @@ public class DoctorDTO {
         this.specialistId = specialistId;
         this.specialistBySpecialistId = specialistBySpecialistId;
         this.doctorSchedulesByDoctorId = doctorSchedulesByDoctorId;
+        this.photo=photo;
     }
 
     public DoctorDTO(Doctor doctor){
-        this(doctor.getId(),doctor.getDoctorName(),doctor.getDoctorAddress(),doctor.getDoctorContact(),doctor.getDoctorEmail(),doctor.getHospitalsAssociated(),doctor.getSpecialistId(),doctor.getSpecialistBySpecialistId(),doctor.getDoctorSchedulesByDoctorId());
+        this(doctor.getId(),doctor.getDoctorName(),doctor.getDoctorAddress(),doctor.getDoctorContact(),doctor.getDoctorEmail(),doctor.getHospitalsAssociated(),doctor.getSpecialistId(),doctor.getSpecialistBySpecialistId(),doctor.getDoctorSchedulesByDoctorId(), doctor.getPhoto());
     }
 
     public Integer getId() {
@@ -75,6 +77,18 @@ public class DoctorDTO {
         return doctorSchedulesByDoctorId;
     }
 
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return "DoctorDTO{" +
@@ -87,11 +101,8 @@ public class DoctorDTO {
                 ", specialistId=" + specialistId +
                 ", specialistBySpecialistId=" + specialistBySpecialistId +
                 ", doctorSchedulesByDoctorId=" + doctorSchedulesByDoctorId +
+                ", photo='" + photo + '\'' +
                 '}';
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 }
 

@@ -12,7 +12,7 @@ import java.util.Collection;
 public class Authority {
     private Integer id;
     private String authorityName;
-    private Collection<AuthorityStaff> authorityStaffsByAuthorityId;
+//    private Collection<AuthorityStaff> authorityStaffsByAuthorityId;
 
     @Id
     @GeneratedValue
@@ -56,13 +56,13 @@ public class Authority {
         return result;
     }
 
-    @OneToMany(mappedBy = "authorityByAuthorityauthorityId")
-    @JsonIgnore
-    public Collection<AuthorityStaff> getAuthorityStaffsByAuthorityId() {
-        return authorityStaffsByAuthorityId;
-    }
-
-    public void setAuthorityStaffsByAuthorityId(Collection<AuthorityStaff> authorityStaffsByAuthorityId) {
-        this.authorityStaffsByAuthorityId = authorityStaffsByAuthorityId;
-    }
+//    @OneToMany(mappedBy = "authorityByAuthorityauthorityId")
+//    @JsonIgnore
+//    public Collection<AuthorityStaff> getAuthorityStaffsByAuthorityId() {
+//        return authorityStaffsByAuthorityId;
+//    }
+//
+//    public void setAuthorityStaffsByAuthorityId(Collection<AuthorityStaff> authorityStaffsByAuthorityId) {
+//        this.authorityStaffsByAuthorityId = authorityStaffsByAuthorityId;
+//    }
 }

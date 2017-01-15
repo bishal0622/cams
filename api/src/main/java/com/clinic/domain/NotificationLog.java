@@ -85,6 +85,7 @@ public class NotificationLog {
     }
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "appointment_id", referencedColumnName = "appointment_id", nullable = false, insertable = false, updatable = false)
     public Appointment getAppointmentByAppointmentId() {
         return appointmentByAppointmentId;

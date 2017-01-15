@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by BiSAl MhRzn on 12/29/2016.
@@ -14,9 +16,11 @@ public class Staff {
     private String staffName;
     private String staffContact;
     private String password;
+    private Integer type;
 //    private Integer billingbillId;
-    private Collection<AuthorityStaff> authorityStaffsByStaffId;
+//    private Collection<AuthorityStaff> authorityStaffsByStaffId;
     private Collection<Billing> billingsByStaffId;
+    private Collection<Authority> authorities;
 
     @Id
     @GeneratedValue
@@ -59,6 +63,17 @@ public class Staff {
         this.password = password;
     }
 
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    @Column(name="type", nullable= false)
+
+
 //    @Basic
 //    @Column(name = "billingbill_id", nullable = false)
 //    public Integer getBillingbillId() {
@@ -95,15 +110,15 @@ public class Staff {
         return result;
     }
 
-    @OneToMany(mappedBy = "staffByStaffstaffId")
-    @JsonIgnore
-    public Collection<AuthorityStaff> getAuthorityStaffsByStaffId() {
-        return authorityStaffsByStaffId;
-    }
-
-    public void setAuthorityStaffsByStaffId(Collection<AuthorityStaff> authorityStaffsByStaffId) {
-        this.authorityStaffsByStaffId = authorityStaffsByStaffId;
-    }
+//    @OneToMany(mappedBy = "staffByStaffstaffId")
+//
+//    public Collection<AuthorityStaff> getAuthorityStaffsByStaffId() {
+//        return authorityStaffsByStaffId;
+//    }
+//
+//    public void setAuthorityStaffsByStaffId(Collection<AuthorityStaff> authorityStaffsByStaffId) {
+//        this.authorityStaffsByStaffId = authorityStaffsByStaffId;
+//    }
 
     @OneToMany(mappedBy = "staffByStaffId")
     @JsonIgnore
@@ -113,5 +128,20 @@ public class Staff {
 
     public void setBillingsByStaffId(Collection<Billing> billingsByStaffId) {
         this.billingsByStaffId = billingsByStaffId;
+    }
+
+    @JsonIgnore
+    @ManyToMany
+    @JoinTable(
+            name = "authorityStaff",
+            joinColumns = {@JoinColumn(name = "staff_id", referencedColumnName = "staff_id")},
+            inverseJoinColumns = {@JoinColumn(name = "authorityId", referencedColumnName = "authority_id")})
+
+    public Collection<Authority> getAuthorities() {
+        return authorities;
+    }
+
+    public void setAuthorities(Collection<Authority> authorities) {
+        this.authorities = authorities;
     }
 }

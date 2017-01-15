@@ -19,7 +19,11 @@
                     return data;
                 }
             },
-            'save':{method:'POST'},
+            'save':{method:'POST',
+                transformRequest : angular.identity,
+                headers : {
+                    'Content-Type' : undefined
+                }},
             'update':{method:'PUT'},
             'delete':{method:'DELETE'}
         });

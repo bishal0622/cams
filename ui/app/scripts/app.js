@@ -5,6 +5,5 @@
             'ui.router',
             'ngResource',
             'ui.bootstrap'
-        ])
-    ;
+        ]);
 })(angular);

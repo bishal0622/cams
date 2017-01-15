@@ -1,0 +1,47 @@
+<div class="row">
+    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3 card card-center card-outline-info text-xs-center">
+        <h1 class="text-center">Doctor</h1>
+        <hr>
+        <form ng-submit="vm.updateDoctor(vm.doctor.id)">
+
+            <div class="md-form">
+                <label for="id" class="active">Doctor Id:</label>
+                <input type="text" class="form-control" id="id" ng-model="vm.doctor.id" readonly>
+            </div>
+
+            <div class="md-form">
+                <label for="dname">Doctor Name:</label>
+                <input type="text" class="form-control" id="dname" ng-model="vm.doctor.doctorName">
+            </div>
+
+            <div class="md-form">
+                <label for="dadd">Doctor Address:</label>
+                <input type="text" class="form-control" id="dadd" ng-model="vm.doctor.doctorAddress">
+            </div>
+
+            <div class="md-form">
+                <label for="dcon">Doctor Contact:</label>
+                <input type="text" class="form-control" id="dcon" ng-model="vm.doctor.doctorContact">
+            </div>
+
+            <div class="md-form">
+                <label for="demail">Doctor Email:</label>
+                <input type="email" class="form-control" id="demail" ng-model="vm.doctor.doctorEmail">
+            </div>
+
+            <div class="md-form">
+                <label for="ahos">Associated Hospital:</label>
+                <input type="text" class="form-control" id="ahos" ng-model="vm.doctor.hospitalsAssociated">
+            </div>
+
+            <div class="form-group">
+                <label for="spec">Specialist:</label>
+                <select class="form-control" id="spec" ng-model="vm.doctor.specialistId">
+                    <option ng-repeat="specialist in vm.specialists" value="{{specialist.id}}">{{specialist.specialistName}}</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+    </div>
+</div>

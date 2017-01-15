@@ -35,7 +35,7 @@ public class AuthorityService implements AuthorityGeneric {
         Authority authority=new Authority();
 
         authority.setAuthorityName(authorityDTO.getAuthorityName());
-        authority.setAuthorityStaffsByAuthorityId(authorityDTO.getAuthorityStaffsByAuthorityId());
+//        authority.setAuthorityStaffsByAuthorityId(authorityDTO.getAuthorityStaffsByAuthorityId());
         authorityRepository.save(authority);
 
         return authority;
@@ -52,7 +52,7 @@ public class AuthorityService implements AuthorityGeneric {
         authorityRepository.findOneById(authorityDTO.getId()).ifPresent(authority -> {
             authority.setId(authorityDTO.getId());
             authority.setAuthorityName(authorityDTO.getAuthorityName());
-            authority.setAuthorityStaffsByAuthorityId(authorityDTO.getAuthorityStaffsByAuthorityId());
+//            authority.setAuthorityStaffsByAuthorityId(authorityDTO.getAuthorityStaffsByAuthorityId());
 
             log.debug("Updated information:{}", authority);
             authorityRepository.save(authority);

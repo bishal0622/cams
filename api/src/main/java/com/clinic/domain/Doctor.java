@@ -19,6 +19,7 @@ public class Doctor {
     private Integer specialistId;
     private Specialist specialistBySpecialistId;
     private Collection<DoctorSchedule> doctorSchedulesByDoctorId;
+    private String photo;
 
     @Id
     @GeneratedValue
@@ -142,5 +143,16 @@ public class Doctor {
 
     public void setDoctorSchedulesByDoctorId(Collection<DoctorSchedule> doctorSchedulesByDoctorId) {
         this.doctorSchedulesByDoctorId = doctorSchedulesByDoctorId;
+    }
+
+    @Basic
+    @Column(name="photo", nullable=true)
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 }

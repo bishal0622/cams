@@ -1,0 +1,45 @@
+<div class="row">
+    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3 card card-center card-outline-info text-xs-center">
+        <h1 class="text-center">Doctor Schedule</h1>
+        <hr>
+        <form ng-submit="vm.updateDoctorSchedule(vm.schedule.id)">
+
+            <div class="md-form">
+                <label for="id" class="active">Schedule Id:</label>
+                <input type="text" class="form-control" id="id" ng-model="vm.schedule.id" readonly>
+            </div>
+
+
+            <div class="md-form">
+                <label for="dname" class="active">Doctor Name:</label>
+                <input type="text" class="form-control" id="dname" ng-model="vm.schedule.doctorByDoctorId.doctorName" readonly>
+            </div>
+
+
+            <div class="form-group">
+                <label for="day">Day of the week:</label>
+                <select class="form-control" id="day" ng-model="vm.schedule.dayOfWeek" value="vm.schedule.dayOfWeek">
+                    <option value="1">Sunday</option>
+                    <option value="2">Monday</option>
+                    <option value="3">Tuesday</option>
+                    <option value="4">Wednesday</option>
+                    <option value="5">Thursday</option>
+                    <option value="6">Friday</option>
+                    <option value="7">Saturday</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="intime">Incomming time:</label>
+                <input type="time" class="form-control" id="intime" ng-model="vm.schedule.doctorScheduleFrom" format-date>
+            </div>
+
+            <div class="form-group">
+                <label for="outtime">Outgoing time:</label>
+                <input type="time" class="form-control" id="outtime" ng-model="vm.schedule.doctorScheduleTo" format-date>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+    </div>
+</div>

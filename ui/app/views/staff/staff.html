@@ -1,21 +1,23 @@
 <div class="row">
-    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3 card card-outline-info text-xs-center" style="padding: 25px;">
-        <form class="md-form ">
+    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3 card card-center card-outline-info text-xs-center">
+        <form class="md-form" ng-submit="vm.insert()">
             <h1 class="text-center">Staff</h1>
             <hr>
-            <div class="form-group">
+            <div class="md-form">
                 <label for="name">Staff Name:</label>
-                <input type="text" class="form-control" id="name">
+                <input type="text" class="form-control" id="name" ng-model="vm.staff.staffName">
             </div>
-            <div class="form-group">
+            <input type="text"  ng-model="vm.staff.type">
+
+            <div class="md-form">
                 <label for="contact">Contact:</label>
-                <input type="text" class="form-control" id="contact">
+                <input type="text" class="form-control" id="contact" ng-model="vm.staff.staffContact">
             </div>
-            <div class="form-group">
+            <div class="md-form">
                 <label for="pass">Password:</label>
-                <input type="password" class="form-control" id="pass">
+                <input type="password" class="form-control" id="pass" ng-model="vm.staff.password" >
             </div>
-            <button type="button" class="btn btn-primary">Save</button>
+            <button type="submit" class="btn btn-primary">Save</button>
         </form>
     </div>
 </div>

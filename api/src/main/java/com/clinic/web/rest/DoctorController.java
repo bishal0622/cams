@@ -3,14 +3,19 @@ package com.clinic.web.rest;
 import com.clinic.domain.Doctor;
 import com.clinic.service.genericService.DoctorService;
 import com.clinic.service.dto.DoctorDTO;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.List;
 
@@ -26,16 +31,40 @@ public class DoctorController {
     DoctorService doctorService;
 
     @RequestMapping(value="/doctor",
-    method = RequestMethod.POST,
-    produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.TEXT_PLAIN_VALUE})
-    public ResponseEntity<?> insertDoctor(@RequestBody DoctorDTO doctorDTO, HttpServletRequest httpServletRequest){
+    method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseEntity<?> insertDoctor(@RequestParam MultipartFile file, @RequestParam String doctor, HttpServletRequest httpServletRequest) throws IOException {
         System.out.println("usercontroller");
-        System.out.println(doctorDTO.toString());
+        System.out.println(doctor);
+        System.out.println(file);
+        Doctor doctor1= new Doctor();
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            DoctorDTO doctorDTO = mapper.readValue(doctor, DoctorDTO.class);
+            String picName=doctorService.photoName(file);
+            System.out.println(picName);
+            doctorDTO.setPhoto(picName);
+            System.out.println(doctorDTO.toString());
+            doctor1=doctorService.save(doctorDTO);
+        } catch (JsonParseException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        } catch (JsonMappingException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        } catch (IOException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
 
         HttpHeaders textPlainheaders = new HttpHeaders();
         textPlainheaders.setContentType(MediaType.TEXT_PLAIN);
 
-        Doctor doctor=doctorService.save(doctorDTO);
+
+
+
+
+
 
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
