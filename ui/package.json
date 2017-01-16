@@ -12,5 +12,8 @@
     "gulp-load-plugins": "^1.4.0"
   },
   "scripts": {},
-  "author": "Aman Tuladhar"
+  "author": "Aman Tuladhar",
+  "dependencies": {
+    "gulp-install": "^0.6.0"
+  }
 }

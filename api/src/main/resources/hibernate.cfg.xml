@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="connection.url">jdbc:mysql://localhost:3306/clinic</property>
+    <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+      <mapping class="com.clinic.domain.Appointment"/>
+      <mapping class="com.clinic.domain.Authority"/>
+      <mapping class="com.clinic.domain.AuthorityStaff"/>
+      <mapping class="com.clinic.domain.Billing"/>
+      <mapping class="com.clinic.domain.Doctor"/>
+      <mapping class="com.clinic.domain.DoctorSchedule"/>
+      <mapping class="com.clinic.domain.NotificationLog"/>
+      <mapping class="com.clinic.domain.Particular"/>
+      <mapping class="com.clinic.domain.ParticularBilling"/>
+      <mapping class="com.clinic.domain.Patient"/>
+      <mapping class="com.clinic.domain.PatientAppointment"/>
+      <mapping class="com.clinic.domain.Specialist"/>
+      <mapping class="com.clinic.domain.Staff"/>
+      <!-- DB schema will be updated if needed -->
+    <!-- <property name="hbm2ddl.auto">update</property> -->
+  </session-factory>
+</hibernate-configuration>

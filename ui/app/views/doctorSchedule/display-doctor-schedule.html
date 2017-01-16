@@ -1,0 +1,43 @@
+<div class="row">
+    <div class="col-xs-12 col-sm-8 col-md-10 col-sm-offset-2 col-md-offset-1 card card-center card-outline-info text-xs-center">
+        <h1>Doctor Schedule</h1>
+
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th><span>Doctor Schdule Id</span></th>
+                    <th><span>Doctor Name</span></th>
+                    <th><span>Day of the week</span></th>
+                    <th><span>Incomming Time</span></th>
+                    <th><span>Outgoing Time</span></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="doctorSchedule in vm.doctorSchedules">
+                    <td>{{doctorSchedule.id}}</td>
+                    <td>{{doctorSchedule.doctorByDoctorId.doctorName}}</td>
+                    <td>{{doctorSchedule.dayOfWeek}}</td>
+                    <td>{{doctorSchedule.doctorScheduleFrom | date:'HH:mm'}}</td>
+                    <td>{{doctorSchedule.doctorScheduleTo | date:'HH:mm'}}</td>
+
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="displayDoctorSchedule.edit({id:doctorSchedule.id})"
+                                    class="btn btn-primary btn-sm">Edit
+                            </button>
+
+                            <button type="submit"
+                                    ui-sref="displayDoctorSchedule.delete({id:doctorSchedule.id})"
+                                    class="btn btn-danger btn-sm">Delete
+                            </button>
+
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
