@@ -24,6 +24,12 @@
                 controller:'DoctorDisplayController',
                 controllerAs:'vm'
             })
+            .state('displayAllDoctor',{
+                url:'/displayAllDoctor',
+                templateUrl:'views/doctor/display-all-doctor.html',
+                controller:'DoctorDisplayController',
+                controllerAs:'vm'
+            })
             .state('displayDoctor.edit',{
                 url:'/{id}/edit',
                 onEnter:['$stateParams','$state','$uibModal', function($stateParams, $state, $uibModal){

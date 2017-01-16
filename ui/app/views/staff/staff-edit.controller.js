@@ -15,9 +15,9 @@
         vm.updateStaff=updateStaff;
         vm.staff=entity ;
 
-        function updateStaff(){
+        function updateStaff(id){
             vm.isSaving=true;
-            Staff.update(vm.staff, OnSaveSuccess, OnSaveError);
+            Staff.update({id:id}, vm.staff, OnSaveSuccess, OnSaveError);
         }
 
         function OnSaveSuccess(result){

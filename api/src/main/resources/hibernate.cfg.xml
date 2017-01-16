@@ -6,19 +6,19 @@
   <session-factory>
     <property name="connection.url">jdbc:mysql://localhost:3306/clinic</property>
     <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-      <mapping class="com.example.domain.Appointment"/>
-      <mapping class="com.example.domain.Authority"/>
-      <mapping class="com.example.domain.AuthorityStaff"/>
-      <mapping class="com.example.domain.Billing"/>
-      <mapping class="com.example.domain.Doctor"/>
-      <mapping class="com.example.domain.DoctorSchedule"/>
-      <mapping class="com.example.domain.NotificationLog"/>
-      <mapping class="com.example.domain.Particular"/>
-      <mapping class="com.example.domain.ParticularBilling"/>
-      <mapping class="com.example.domain.Patient"/>
-      <mapping class="com.example.domain.PatientAppointment"/>
-      <mapping class="com.example.domain.Specialist"/>
-      <mapping class="com.example.domain.Staff"/>
+      <mapping class="com.clinic.domain.Appointment"/>
+      <mapping class="com.clinic.domain.Authority"/>
+      <mapping class="com.clinic.domain.AuthorityStaff"/>
+      <mapping class="com.clinic.domain.Billing"/>
+      <mapping class="com.clinic.domain.Doctor"/>
+      <mapping class="com.clinic.domain.DoctorSchedule"/>
+      <mapping class="com.clinic.domain.NotificationLog"/>
+      <mapping class="com.clinic.domain.Particular"/>
+      <mapping class="com.clinic.domain.ParticularBilling"/>
+      <mapping class="com.clinic.domain.Patient"/>
+      <mapping class="com.clinic.domain.PatientAppointment"/>
+      <mapping class="com.clinic.domain.Specialist"/>
+      <mapping class="com.clinic.domain.Staff"/>
       <!-- DB schema will be updated if needed -->
     <!-- <property name="hbm2ddl.auto">update</property> -->
   </session-factory>

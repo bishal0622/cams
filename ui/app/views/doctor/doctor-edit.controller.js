@@ -16,9 +16,9 @@
         vm.updateDoctor=updateDoctor;
         vm.doctor=entity;
 
-        function updateDoctor(){
+        function updateDoctor(id){
             vm.isSaving=true;
-            Doctor.update(vm.doctor, OnSaveSuccess, OnSaveError);
+            Doctor.update({id:id},vm.doctor, OnSaveSuccess, OnSaveError);
         }
 
         function OnSaveSuccess(result){

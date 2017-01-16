@@ -15,9 +15,9 @@
         vm.updateSpecialist=updateSpecialist;
         vm.specialist=entity;
 
-        function updateSpecialist(){
+        function updateSpecialist(id){
             vm.isSaving=true;
-            Specialist.update(vm.specialist, OnSaveSuccess, OnSaveError);
+            Specialist.update({id:id}, vm.specialist, OnSaveSuccess, OnSaveError);
         }
 
         function OnSaveSuccess(result){

@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="bower_components/MDBootstrap/css/mdb.min.css">
         <link rel="stylesheet" href="style/main.css">
         <link rel="stylesheet" href="bower_components/animate.css/animate.min.css">
+        <link rel="stylesheet" href="style/compiled.min.css">
 
 
     </head>
@@ -118,12 +119,18 @@
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
     <script src="bower_components/ngmap/build/scripts/ng-map.min.js"></script>
     <script src="http://maps.google.com/maps/api/js"></script>
-
+    <script>
+        $(document).ready(function() {
+            $('.mdb-select').material_select();
+        });
+    </script>
+    <script src="scripts/compiled.min.js"></script>
 
     <!--user built javascript-->
     <script src="scripts/app.js"></script>
     <script src="scripts/routes.js"></script>
     <script src="scripts/date.directive.js"></script>
+    <script src="scripts/file-model.directive.js"></script>
     <!--specalist-->
     <script src="views/specialist/specialist.controller.js"></script>
     <script src="services/specialist.service.js"></script>
@@ -176,6 +183,9 @@
 
     <!--home-->
     <script src="views/home/home.state.js"></script>
+
+    <!--appointment-->
+    <script src="services/Appointment.js"></script>
 
     </body>
 </html>

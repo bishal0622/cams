@@ -15,10 +15,10 @@
         vm.updateDoctorSchedule=updateDoctorSchedule;
         vm.schedule=entity;
 
-        function updateDoctorSchedule(){
+        function updateDoctorSchedule(id){
             vm.isSaving=true;
             console.log(vm.schedule);
-            DoctorSchedule.update(vm.schedule, OnSaveSuccess, OnSaveError);
+            DoctorSchedule.update({id:id}, vm.schedule, OnSaveSuccess, OnSaveError);
         }
 
         function OnSaveSuccess(result){

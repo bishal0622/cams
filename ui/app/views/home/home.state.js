@@ -13,7 +13,7 @@
     function stateConfig($stateProvider){
         $stateProvider
             .state('home',{
-                url:'/home',
+                url:'/',
                 templateUrl:'views/home/home.html'
             })
     }

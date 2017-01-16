@@ -4,48 +4,6 @@
     padding: 25px;
 }
 
-/* checkbox - each time slot */
-.time-slot               {  }
-
-/* hide the checkbox itself - the label will be styled */
-.time-slot input     {
-    display:none;
-}
-
-/* default styling for our labels */
-.time-slot label     {
-    padding:10px 20px;
-    color:#FFF;
-    cursor:pointer;
-    background:#EEE;
-    border-radius:5px;
-    transition:0.3s ease all;
-}
-
-/* if the label is checked */
-.time-slot input:checked ~ label {
-    background:#f2dede;
-    cursor:not-allowed;
-    animation:flashBooked 0.5s ease;
-}
-
-/* if the label is not checked */
-.time-slot input:not(:checked) ~ label {
-    background:#6AB074;
-    animation:flashAvailable 0.5s ease;
-}
-
-/* animation for the time slot to flash red */
-@keyframes flashBooked {
-    0%, 100%  { background:#f2dede; transform:scale(1); }
-    50%       { background:#F99090; transform:scale(1.5); }
-}
-
-/* animation for the time slot to flash green */
-@keyframes flashAvailable {
-    0%, 100%  { background:#6AB074; transform:scale(1); }
-    50%       { background:rgb(119, 218, 78); transform:scale(1.5); }
-}
 
 
 #a{
@@ -64,7 +22,7 @@
 }
 
 #c{
-    background: url('../image/c.jpeg');
+    /*background: url('../image/c.jpeg');*/
     height: 700px;
     background-size: cover;
 }
@@ -151,9 +109,7 @@
 }
 
 #quote{
-@import url('https://fonts.googleapis.com/css?family=Roboto+Slab');
 
-    font-family: 'Roboto Slab', serif;
     font-size: 220%;
     color: white;
     width: 750px;
@@ -198,10 +154,10 @@
 .box > .icon:hover > .image > i { color: white !important; }
 .box > .icon > .info { margin-top: -24px; background: rgba(0, 0, 0, 0.04); border: 1px solid #e0e0e0; padding: 55px 0 10px 0; }
 .box > .icon:hover > .info { background: rgba(0, 0, 0, 0.04); border-color: #e0e0e0; color: white; }
-.box > .icon > .info > h3.title { font-family: "Roboto",sans-serif !important; font-size: 22px; color: #222; font-weight: 500; }
-.box > .icon > .info > p { font-family: "Roboto",sans-serif !important; font-size: 18px; color: #666; line-height: 1.5em; margin: 20px;}
+.box > .icon > .info > h3.title {  font-size: 22px; color: #222; font-weight: 500; }
+.box > .icon > .info > p {  font-size: 18px; color: #666; line-height: 1.5em; margin: 20px;}
 .box > .icon:hover > .info > h3.title, .box > .icon:hover > .info > p, .box > .icon:hover > .info > .more > a { color: #222; }
-.box > .icon > .info > .more a { font-family: "Roboto",sans-serif !important; font-size: 12px; color: #222; line-height: 12px; text-transform: uppercase; text-decoration: none; }
+.box > .icon > .info > .more a { font-size: 12px; color: #222; line-height: 12px; text-transform: uppercase; text-decoration: none; }
 .box > .icon:hover > .info > .more > a { color: #fff; padding: 6px 8px; background-color: #63B76C; }
 .box .space { height: 30px; }
 
@@ -214,3 +170,12 @@
     font-size: 120%;
 }
 
+#doctorDisplay{
+
+    text-align: center;
+    margin:30px auto;
+}
+
+#cardimage{
+
+}

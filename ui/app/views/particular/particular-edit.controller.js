@@ -15,9 +15,9 @@
         vm.updateParticular=updateParticular;
         vm.particular=entity;
 
-        function updateParticular(){
+        function updateParticular(id){
             vm.isSaving=true;
-            Particular.update(vm.particular, OnSaveSuccess, OnSaveError);
+            Particular.update({id:id}, vm.particular, OnSaveSuccess, OnSaveError);
         }
 
         function OnSaveSuccess(result){
