@@ -1,0 +1,23 @@
+<div class="row col-md-12 card card-center text-xs-center">
+
+    <h1>Doctor Schedule</h1>
+    <h1 class="text-center">{{vm.currentDate}}</h1>
+    <hr>
+
+    <div class="col-md-12 text-center" ng-repeat="doctor in vm.doctors.doctorSchedulesByDoctorId">
+        <div ng-if="doctor.dayOfWeek==vm.currentDate">
+            <button class="btn-floating btn-small blue"  ng-click="vm.show(doctor)"><i class="fa fa-eye"></i></button>
+           <h3> <span>{{doctor.doctorScheduleFrom | date: 'HH:mm'}}</span>
+               <span>To</span>
+               <span>{{doctor.doctorScheduleTo | date: 'HH:mm'}}</span></h3>
+            <div class="time-slot" ng-repeat="a in vm.timeArray" ng-show="vm.clicked">
+                <label class="btn btn-primary btn-sm">
+                <input type="radio" autocomplete="off" id="{{$index+1}}" value="{{a| date: 'HH:mm'}}" ng-model="vm.share.timeChecked">
+
+                <label for="{{$index+1}}" ui-sref="patient({shareData:vm.share})" ng-click="vm.formPatient(vm.share)">{{a | date: 'HH:mm'}}</label>
+                    </label>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -20,7 +20,8 @@ angular.module('app')
                     url:'/patient',
                     templateUrl:'views/patient/patient.html',
                     controller: 'PatientController',
-                    controllerAs:'vm'
+                    controllerAs:'vm',
+                    params:{shareData:null}
                 })
                 .state('displayPatient',{
                     url:'/displayPatient',

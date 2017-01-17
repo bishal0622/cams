@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Time;
-import java.sql.Timestamp;
 import java.util.Collection;
 
 /**
@@ -112,6 +111,7 @@ public class DoctorSchedule {
     }
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "doctor_id", referencedColumnName = "doctor_id", nullable = false, insertable = false, updatable = false)
     public Doctor getDoctorByDoctorId() {
         return doctorByDoctorId;

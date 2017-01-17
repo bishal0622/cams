@@ -6,7 +6,6 @@ import com.clinic.domain.DoctorSchedule;
 
 import java.sql.Date;
 import java.sql.Time;
-import java.sql.Timestamp;
 import java.util.Collection;
 
 /**

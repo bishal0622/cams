@@ -11,7 +11,7 @@ angular.module('app')
     function($stateProvider, $urlRouterProvider) {
 
         // For unmatched routes
-        $urlRouterProvider.otherwise('/doctor');
+        $urlRouterProvider.otherwise('/');
 
         // Application routes
         $stateProvider

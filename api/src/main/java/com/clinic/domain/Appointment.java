@@ -12,7 +12,7 @@ import java.util.Collection;
 @Entity
 public class Appointment {
     private Integer id;
-    private Timestamp appointmentDate;
+    private String appointmentDate;
     private Integer doctorScheduleId;
     private String comment;
     private String status;
@@ -34,11 +34,12 @@ public class Appointment {
 
     @Basic
     @Column(name = "appointment_date", nullable = false)
-    public Timestamp getAppointmentDate() {
+
+    public String getAppointmentDate() {
         return appointmentDate;
     }
 
-    public void setAppointmentDate(Timestamp appointmentDate) {
+    public void setAppointmentDate(String appointmentDate) {
         this.appointmentDate = appointmentDate;
     }
 
@@ -53,7 +54,8 @@ public class Appointment {
     }
 
     @Basic
-    @Column(name = "comment", nullable = false, length = 255)
+
+    @Column(name = "comment", nullable = true, length = 255)
     public String getComment() {
         return comment;
     }

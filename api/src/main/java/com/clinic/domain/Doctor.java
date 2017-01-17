@@ -136,7 +136,6 @@ public class Doctor {
     }
 
     @OneToMany(mappedBy = "doctorByDoctorId")
-    @JsonIgnore
     public Collection<DoctorSchedule> getDoctorSchedulesByDoctorId() {
         return doctorSchedulesByDoctorId;
     }

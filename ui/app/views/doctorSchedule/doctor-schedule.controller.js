@@ -19,7 +19,7 @@
         console.log(vm.doctorSchedule);
 
         function insert(){
-            console.log(vm.doctorSchedule);
+            console.log(vm.doctor);
             DoctorSchedule.save(vm.doctorSchedule,OnSuccess,OnError);
             function OnSuccess(){
                 console.log("success");

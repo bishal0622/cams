@@ -18,7 +18,7 @@
 
         function updateDoctor(id){
             vm.isSaving=true;
-            Doctor.update({id:id}, vm.doctor, OnSaveSuccess, OnSaveError);
+            Doctor.update({id:id},vm.doctor, OnSaveSuccess, OnSaveError);
         }
 
         function OnSaveSuccess(result){

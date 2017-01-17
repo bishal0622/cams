@@ -12,6 +12,26 @@
 
     function stateConfig($stateProvider){
         $stateProvider
+            .state('display',{
+                url:'/display',
+                templateUrl:'views/doctorSchedule/display.html'
+
+            })
+            .state('timeslot', {
+                url: '/{id}/timeslot',
+                onEnter:['$stateParams','$state','$uibModal', function($stateParams, $state, $uibModal){
+                    $uibModal.open({
+                        templateUrl:'views/doctorSchedule/timeslot.html',
+                        controller: 'TimeslotController',
+                        controllerAs:'vm',
+                        resolve:{
+                            entity:['Doctor', function(Doctor){
+                                return Doctor.get({id:$stateParams.id});
+                            }]
+                        }
+                    })
+                }]
+            })
             .state('doctorSchedule',{
                 url:'/doctorSchedule',
                 templateUrl:'views/doctorSchedule/doctor-schedule.html',
@@ -59,6 +79,5 @@
                     });
                 }]
             });
-
     }
 })();

@@ -4,8 +4,6 @@ import com.clinic.domain.Appointment;
 import com.clinic.domain.DoctorSchedule;
 import com.clinic.domain.NotificationLog;
 import com.clinic.domain.Patient;
-
-import java.sql.Timestamp;
 import java.util.Collection;
 
 /**
@@ -14,7 +12,7 @@ import java.util.Collection;
 public class AppointmentDTO {
 
     private Integer id;
-    private Timestamp appointmentDate;
+    private String appointmentDate;
     private Integer doctorScheduleId;
     private String comment;
     private String status;
@@ -32,7 +30,7 @@ public class AppointmentDTO {
         return id;
     }
 
-    public Timestamp getAppointmentDate() {
+    public String getAppointmentDate() {
         return appointmentDate;
     }
 
@@ -66,7 +64,7 @@ public class AppointmentDTO {
 
     public AppointmentDTO(){}
 
-    public AppointmentDTO(Integer id, Timestamp appointmentDate, Integer doctorScheduleId, String comment, String status, Integer patientpatientId, DoctorSchedule doctorScheduleByDoctorScheduleId, Patient patientByPatientpatientId, Collection<NotificationLog> notificationLogsByAppointmentId) {
+    public AppointmentDTO(Integer id, String appointmentDate, Integer doctorScheduleId, String comment, String status, Integer patientpatientId, DoctorSchedule doctorScheduleByDoctorScheduleId, Patient patientByPatientpatientId, Collection<NotificationLog> notificationLogsByAppointmentId) {
         this.id = id;
         this.appointmentDate = appointmentDate;
         this.doctorScheduleId = doctorScheduleId;
