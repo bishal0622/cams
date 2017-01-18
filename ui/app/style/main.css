@@ -149,8 +149,20 @@
     padding-top: 100px;
 }
 
+#navbar{
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+#navbar-content{
+    float: right;
+    margin-right: 0px;
+    margin-top: 10px;
+    font-size: larger;
+}
+
 .box > .icon { text-align: center; position: relative; }
-.box > .icon > .image { position: relative; z-index: 2; margin: auto; width: 88px; height: 88px; border: 8px solid white; line-height: 88px; border-radius: 50%; background: #63B76C; vertical-align: middle; }
+.box > .icon > .image { position: relative; z-index: 2; margin: auto; width: 88px; height: 88px; border: 8px solid white; line-height: 88px; border-radius: 50%; background:  rgba(61,161,255,1); vertical-align: middle; }
 .box > .icon:hover > .image { background: #333; }
 .box > .icon > .image > i { font-size: 36px !important; color: #fff !important; }
 .box > .icon:hover > .image > i { color: white !important; }
@@ -160,7 +172,7 @@
 .box > .icon > .info > p {  font-size: 18px; color: #666; line-height: 1.5em; margin: 20px;}
 .box > .icon:hover > .info > h3.title, .box > .icon:hover > .info > p, .box > .icon:hover > .info > .more > a { color: #222; }
 .box > .icon > .info > .more a { font-size: 12px; color: #222; line-height: 12px; text-transform: uppercase; text-decoration: none; }
-.box > .icon:hover > .info > .more > a { color: #fff; padding: 6px 8px; background-color: #63B76C; }
+.box > .icon:hover > .info > .more > a { color: #fff; padding: 6px 8px; background-color:  rgba(61,161,255,1); }
 .box .space { height: 30px; }
 
 .about{
@@ -176,8 +188,4 @@
 
     text-align: center;
     margin:30px auto;
-}
-
-#cardimage{
-
 }

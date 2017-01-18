@@ -1,5 +1,6 @@
 package com.clinic.web.rest;
 
+import com.clinic.config.MailService;
 import com.clinic.domain.Specialist;
 import com.clinic.service.genericService.SpecialistService;
 import com.clinic.service.dto.SpecialistDTO;
@@ -23,6 +24,9 @@ import java.util.List;
 public class SpecialistController {
     @Inject
     SpecialistService specialistService;
+//
+//    @Inject
+//    MailService mailService;
 
     @RequestMapping(value="/specialist",
             method = RequestMethod.POST,
@@ -33,6 +37,8 @@ public class SpecialistController {
 
         HttpHeaders textPlainheaders = new HttpHeaders();
         textPlainheaders.setContentType(MediaType.TEXT_PLAIN);
+
+//        mailService.sendMail("k cha??","monster_bishal@live.com","testing mail");
 
         Specialist specialist=specialistService.save(specialistDTO);
 
