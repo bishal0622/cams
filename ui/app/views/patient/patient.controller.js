@@ -8,16 +8,16 @@
         .module('app')
         .controller('PatientController', PatientController);
 
-    PatientController.$inject=['Patient','$stateParams','Appointment'];
+    PatientController.$inject=['Patient','$stateParams','Appointment','LastPatient'];
 
-    function PatientController(Patient,$stateParams,Appointment){
+    function PatientController(Patient,$stateParams,Appointment,LastPatient){
         var vm=this;
         vm.insert=insert;
         vm.patient={};
         console.log('inside  patient ko controller');
         console.log($stateParams.shareData);
         var shareData=$stateParams.shareData;
-        vm.patientData=[];
+        vm.patientData={};
         vm.appointment={};
 
         // console.log("timechecked"+shareData.timeChecked);
@@ -34,18 +34,20 @@
             Patient.save(vm.patient, onSuccess, onError);
             function onSuccess(){
                 console.log('success');
-                vm.p=Patient.query();
-
-                vm.patientData=Patient.get({id:vm.p.indexOf($last)});
-                console.log(vm.patientData);
-                // var a=vm.patientData[0];
+                // vm.patientData=LastPatient.query();
+                // console.log(vm.patientData);
+                // var a=vm.patientData;
                 // console.log(a);
-                //
-                // console.log("last ko data");
-                // console.log(vm.patientData.length);
+                // // vm.appointment.patientId=vm.patientData.l.id;
+                // // console.log(vm.appointment);
 
-                // vm.appointment.patientId=
-                // Appointment.save();
+                Appointment.save(vm.appointment,onSuccess, onError);
+                function onSuccess(){
+                    console.log("appointment registered");
+                }
+                function onError(){
+                    console.log("appointment failed");
+                }
             }
 
             function onError(){

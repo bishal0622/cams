@@ -2,9 +2,11 @@ package com.clinic.web.rest;
 
 
 import com.clinic.domain.Appointment;
+import com.clinic.domain.Patient;
 import com.clinic.service.genericService.AppointmentService;
 
 import com.clinic.service.dto.AppointmentDTO;
+import com.clinic.service.genericService.PatientService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -27,11 +29,16 @@ public class AppointmentController {
     @Inject
     AppointmentService appointmentService;
 
+    @Inject
+    PatientService patientService;
+
     @RequestMapping(value="/appointment",
             method = RequestMethod.POST,
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.TEXT_PLAIN_VALUE})
     public ResponseEntity<?> insertAppointment(@RequestBody AppointmentDTO appointmentDTO, HttpServletRequest httpServletRequest){
         System.out.println("appointment Controller");
+        Patient patient=patientService.lastEntryPatient();
+        appointmentDTO.setPatientpatientId(patient.getId());
         System.out.println(appointmentDTO.toString());
 
         HttpHeaders textPlainheaders = new HttpHeaders();

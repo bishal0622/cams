@@ -95,4 +95,8 @@ public class AppointmentDTO {
                 ", notificationLogsByAppointmentId=" + notificationLogsByAppointmentId +
                 '}';
     }
+
+    public void setPatientpatientId(Integer patientpatientId) {
+        this.patientpatientId = patientpatientId;
+    }
 }

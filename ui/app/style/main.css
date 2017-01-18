@@ -1,18 +1,18 @@
-.card-center{
+#card-center{
     float:none;
     margin: 25px auto;
-    padding: 25px;
+    padding: 50px;
 }
 
-
-
+#search-center{
+    float: none;
+    margin:25px auto;
+}
 #a{
     background: url('../image/a.jpeg');
     height: 700px;
     background-size: cover;
     position:relative;
-
-
 }
 
 #b{
@@ -50,7 +50,7 @@
     width: 500px;
     /*background: #0043ff;*/
     opacity: 0.8;
-    font-size: xx-large;
+    font-size: 300%;
     -webkit-box-shadow: 10px 10px 5px 2px rgba(0,0,0,0.75);
     -moz-box-shadow: 10px 10px 5px 2px rgba(0,0,0,0.75);
     box-shadow: 10px 10px 5px 2px rgba(0,0,0,0.75);
@@ -58,41 +58,43 @@
 #a2{
     position: absolute;
     margin-left: 55px;
-    margin-top:300px;
+    margin-top:290px;
     width: 500px;
     /*background: #0043ff;*/
     opacity: 0.8;
-    font-size: xx-large;
+    font-size: 250%;
 
 }
 #a3{
     position: absolute;
     margin-left: 55px;
-    margin-top:450px;
+    margin-top:420px;
     width: 500px;
     /*background: #0043ff;*/
     opacity: 0.8;
-    font-size: xx-large;
+    font-size: 280%;
 
 
 }
 
 #a4{
     position: absolute;
-    margin-top: 250px;
+    margin-top: 200px;
     float: left;
     margin-left: 600px;
     width: 500px;
     /*background: #0043ff;*/
+    height: 160px;
 
-
-    font-size: 320%;
+    padding-top: 2%;
+    text-align: center;
+    font-size: 450%;
 
     opacity: 0.8;
-    border-radius: 0px 200px 200px 200px;
-    -moz-border-radius: 0px 200px 200px 200px;
-    -webkit-border-radius: 0px 200px 200px 200px;
-    border: 0px outset #000000;
+    border-radius: 77px 77px 77px 77px;
+    -moz-border-radius: 77px 77px 77px 77px;
+    -webkit-border-radius: 77px 77px 77px 77px;
+    border: 0px solid #000000;
 
     -webkit-box-shadow: 10px 10px 5px 2px rgba(0,0,0,0.75);
     -moz-box-shadow: 10px 10px 5px 2px rgba(0,0,0,0.75);

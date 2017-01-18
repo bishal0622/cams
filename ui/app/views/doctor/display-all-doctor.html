@@ -1,5 +1,15 @@
 <div class="row" id="doctorDisplay">
 
+    <div class="col-md-4" id="search-center">
+        <div class="form-group">
+            <label for="spec">Specialist:</label>
+            <select class="form-control" id="spec" ng-model="vm.specialistId">
+                <option ng-repeat="specialist in vm.specialists" value="{{specialist.id}}" >{{specialist.specialistName}}</option>
+            </select>
+            <button ng-click="vm.loadAll(vm.specialistId)">Search</button>
+        </div>
+    </div>
+
 <div class="grid col-md-4" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 200 }'  ng-repeat="doctor in vm.doctors">
     <div class="grid-item">
         <div class="card card-cascade" >
@@ -7,10 +17,7 @@
                 <img class="img-fluid" src="../../upload/{{doctor.photo}}" style="margin: 0 auto;height: 280px;width: 300px; margin-bottom: 0">
             </div>
             <div class="card-block" style="padding-top: 1rem">
-
-
                 <div class="card-text">
-
                     <h4 class="card-title">Dr. {{doctor.doctorName}}</h4>
                     <p>"{{doctor.specialistBySpecialistId.specialistName}}"</p>
                     <p>{{doctor.doctorEmail}}</p>
