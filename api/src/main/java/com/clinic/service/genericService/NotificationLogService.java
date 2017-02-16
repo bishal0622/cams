@@ -1,6 +1,8 @@
 package com.clinic.service.genericService;
 
+import com.clinic.domain.Appointment;
 import com.clinic.domain.NotificationLog;
+import com.clinic.repository.AppointmentRepository;
 import com.clinic.repository.NotificationLogRepository;
 import com.clinic.service.dto.NotificationLogDTO;
 import com.clinic.service.generic.NotificationLogGeneric;
@@ -24,21 +26,21 @@ public class NotificationLogService implements NotificationLogGeneric{
     @Inject
     NotificationLogRepository notificationLogRepository;
 
+    @Inject
+    AppointmentService appointmentService;
+
     private final Logger log = LoggerFactory.getLogger(DoctorService.class);
 
-//    public Optional<NotificationLog> getNotificationById(Integer id){
-//        Optional<NotificationLog> notify=notificationLogRepository.findOneById(id);
-//        return notify;
-//    }
 
     @Override
     public NotificationLog save(NotificationLogDTO notificationLogDTO) {
         NotificationLog notify=new NotificationLog();
 
         notify.setNotificationDatetime(notificationLogDTO.getNotificationDatetime());
-        notify.setAppointmentId(notificationLogDTO.getAppointmentId());
+        Appointment appointment=appointmentService.lastEntryAppointment();
+        notify.setAppointmentId(appointment.getId());
         notify.setConfirmedDatetime(notificationLogDTO.getConfirmedDatetime());
-        notify.setAppointmentByAppointmentId(notificationLogDTO.getAppointmentByAppointmentId());
+        notify.setStatus(notificationLogDTO.getStatus());
 
         notificationLogRepository.save(notify);
 
@@ -58,6 +60,7 @@ public class NotificationLogService implements NotificationLogGeneric{
         notificationLogRepository.findOneById(notificationLogDTO.getId()).ifPresent(notification -> {
             notification.setNotificationDatetime(notificationLogDTO.getNotificationDatetime());
             notification.setConfirmedDatetime(notificationLogDTO.getConfirmedDatetime());
+            notification.setStatus(notificationLogDTO.getStatus());
             log.debug("Updated doctor Information:{}", notification);
             notificationLogRepository.save(notification);
         });

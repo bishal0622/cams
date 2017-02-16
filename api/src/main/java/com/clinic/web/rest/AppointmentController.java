@@ -99,5 +99,16 @@ public class AppointmentController {
         appointmentService.delete(id);
     }
 
+    @RequestMapping(value ="/appointment/lastEntry",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> getLastEntry(){
+        Appointment last=new Appointment();
+        last=appointmentService.lastEntryAppointment();
+        if(last==null){
+            return new ResponseEntity<AppointmentDTO>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(last, HttpStatus.CREATED);
+    }
 
 }

@@ -16,6 +16,7 @@ public class NotificationLog {
     private Integer appointmentId;
     private String confirmedDatetime;
     private Appointment appointmentByAppointmentId;
+    private String status;
 
     @Id
     @GeneratedValue
@@ -49,7 +50,17 @@ public class NotificationLog {
     }
 
     @Basic
-    @Column(name = "confirmed_datetime", nullable = false)
+    @Column(name = "status", nullable = false)
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    @Basic
+    @Column(name = "confirmed_datetime", nullable = true)
     public String getConfirmedDatetime() {
         return confirmedDatetime;
     }
@@ -57,6 +68,8 @@ public class NotificationLog {
     public void setConfirmedDatetime(String confirmedDatetime) {
         this.confirmedDatetime = confirmedDatetime;
     }
+
+
 
     @Override
     public boolean equals(Object o) {
@@ -85,7 +98,7 @@ public class NotificationLog {
     }
 
     @ManyToOne
-    @JsonIgnore
+
     @JoinColumn(name = "appointment_id", referencedColumnName = "appointment_id", nullable = false, insertable = false, updatable = false)
     public Appointment getAppointmentByAppointmentId() {
         return appointmentByAppointmentId;

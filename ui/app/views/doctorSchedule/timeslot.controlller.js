@@ -8,9 +8,9 @@
         .module('app')
         .controller('TimeslotController',TimeslotController);
 
-    TimeslotController.$inject=['$stateParams','entity','Doctor','$filter','$state','$uibModalInstance'];
+    TimeslotController.$inject=['$stateParams','entity','Doctor','$filter','$state','$uibModalInstance', 'AppointmentByDoctorSchedule'];
 
-    function TimeslotController($stateParams, entity, Doctor, $filter,$state,$uibModalInstance) {
+    function TimeslotController($stateParams, entity, Doctor, $filter,$state,$uibModalInstance, AppointmentByDoctorSchedule) {
         var vm = this;
         console.log("timeslot enter");
         vm.doctors = entity;
@@ -19,7 +19,8 @@
         vm.timeArray=[];
         vm.formPatient=formPatient;
         vm.share={};
-
+        vm.appointmentList={};
+        vm.timefilter=[];
 
 
         console.log(vm.doctors);
@@ -70,6 +71,13 @@
 
 
              }while (newstartdate.getHours()!=newstopdate.getHours());
+
+            angular.forEach(vm.timeArray, function(t){
+                var a=$filter('date')(t,"HH:mm");
+                vm.timefilter.push(a);
+            });
+            console.log(vm.timefilter);
+            vm.appointmentList=AppointmentByDoctorSchedule.get({id:a.id, time:vm.timefilter});
 
             console.log(vm.timeArray);
             vm.share.doctor=a;

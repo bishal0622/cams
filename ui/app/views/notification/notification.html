@@ -1,0 +1,44 @@
+<div class="row">
+    <div id="card-center" class="col-xs-12 col-sm-8 col-md-10 col-sm-offset-2 col-md-offset-1 card card-center card-outline-info text-xs-center">
+        <h1>Notification Details</h1>
+
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th><span>Id</span></th>
+                    <th><span>Notification DateTime</span></th>
+                    <th><span>Appointment Name</span></th>
+                    <th><span>Confirmed DateTime</span></th>
+                    <th><span>Status</span></th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="a in vm.notifications">
+                    <td>{{a.id}}</td>
+                    <td>{{a.notificationDatetime}}</td>
+                    <td>{{a.appointmentByAppointmentId.patientByPatientpatientId.patientName}}</td>
+                    <td>{{a.confirmedDatetime}}</td>
+                    <td>{{a.status}}</td>
+
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="notification.accept({id:a.id})"
+                                    class="btn btn-primary btn-sm">Accept
+                            </button>
+
+                            <button type="submit"
+                                    ui-sref="notification.delete({id:a.id})"
+                                    class="btn btn-danger btn-sm">Delete
+                            </button>
+
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
