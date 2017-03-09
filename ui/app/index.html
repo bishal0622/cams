@@ -41,6 +41,26 @@
                         <li class="nav-item">
                             <a class="nav-link" ui-sref="displayAllDoctor">Make Appointment</a>
                         </li>
+                        <li class="nav-item">
+                            <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Services</button>
+
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a ui-sref="specialist">Add Specialist</a></li>
+                                    <li><a ui-sref="doctor">Add Doctor</a></li>
+                                    <li><a ui-sref="doctorSchedule">Add Schedule</a></li>
+                                    <li><a ui-sref="staff">Add Staff</a></li>
+                                    <li><a ui-sref="displaySpecialist">Display Specialist</a></li>
+                                    <li><a ui-sref="displayDoctor">Display Doctor</a></li>
+                                    <li><a ui-sref="displayDoctorSchedule">Display Schedule</a></li>
+                                    <li><a ui-sref="displayStaff">Display Staff</a></li>
+
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" ui-sref="notification">Notification</a>
+                        </li>
 
                         <li class="nav-item">
                             <a class="nav-link" href="#">About</a>
@@ -108,7 +128,6 @@
     <!--/.Footer-->
 
     <!--javascript bower component-->
-    <script src="bower_components/MDBootstrap/js/jquery-2.2.3.min.js"></script>
     <script src="bower_components/angular/angular.min.js"></script>
     <script src="bower_components/angular-resource/angular-resource.min.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
@@ -175,22 +194,13 @@
     <script src="views/doctor/doctor-edit.controller.js"></script>
     <script src="views/doctor/doctor.controller.js"></script>
 
-    <!--particular-->
-    <script src="views/particular/particular.state.js"></script>
-    <script src="services/particular.service.js"></script>
-    <script src="views/particular/particular-delete.controller.js"></script>
-    <script src="views/particular/particular-edit.controller.js"></script>
-    <script src="views/particular/display-particular.controller.js"></script>
-    <script src="views/particular/particular.controller.js"></script>
 
     <!--home-->
     <script src="views/home/home.state.js"></script>
 
-    <!--appointment-->
-    <script src="services/appointment.js"></script>
 
     <!--lastpatient-->
-    <script src="services/lastPatient.service.js"></script>
+    <!--<script src="services/lastPatient.service.js"></script>-->
 
     <!--search-->
     <script src="services/search.service.js"></script>

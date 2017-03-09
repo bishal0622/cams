@@ -161,6 +161,10 @@
     font-weight: bolder;
 }
 
+#timeslot{
+    font-size: 1000%;
+}
+
 #navbar-content{
     float: right;
     margin-right: 0px;

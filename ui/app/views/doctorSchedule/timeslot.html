@@ -5,17 +5,17 @@
     <hr>
 
     <div class="col-md-12 text-center" ng-repeat="doctor in vm.doctors.doctorSchedulesByDoctorId">
-        <div ng-if="doctor.dayOfWeek==vm.currentDate">
+        <div ng-if="doctor.dayOfWeek==vm.currentDate" >
             <button class="btn-floating btn-small blue" ng-click="vm.show(doctor)"><i class="fa fa-eye"></i></button>
             <h3><span>{{doctor.doctorScheduleFrom | date: 'HH:mm'}}</span>
                 <span>To</span>
                 <span>{{doctor.doctorScheduleTo | date: 'HH:mm'}}</span></h3>
             <div ng-show="vm.clicked">
-                <div class="time-slot" ng-repeat="a in vm.appointmentList">
+                <div class="time-slot" ng-repeat="a in vm.appointmentList" >
                     <label>
                         <input type="radio" autocomplete="off" id="{{$index+1}}"
                                style="visibility: visible; position: inherit; left: -10px;" value="{{a}}"
-                               ng-model="vm.share.timeChecked">{{a | date: 'HH:mm'}}
+                               ng-model="vm.share.timeChecked"><span style="font-size:larger;">{{a | date: 'HH:mm'}}</span>
                     </label>
                 </div>
                 <button class="btn btn-primary btn-sm" for="{{index+1}}" ui-sref="patient({shareData:vm.share})"
