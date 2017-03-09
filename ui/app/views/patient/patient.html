@@ -3,6 +3,16 @@
         <form class="form-group" ng-submit="vm.insert()">
             <h1 class="text-center">Patient Registration</h1>
             <hr>
+
+            <div class="alert alert-success" ng-show="vm.success">
+                <strong>Success!</strong>
+            </div>
+
+
+            <div class="alert alert-danger" ng-show="vm.error">
+                <strong>Error!</strong>
+            </div>
+
             <div class="md-form">
                 <label for="pname">Patient Name:</label>
                 <input type="text" class="form-control" id="pname" ng-model="vm.patient.patientName">

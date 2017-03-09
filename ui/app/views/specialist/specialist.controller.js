@@ -15,11 +15,20 @@
         vm.insert=insert;
         vm.specialist={};
         console.log('inside controller');
+        vm.success=false;
+        vm.error=false;
 
         function insert(){
             console.log("specialist controller");
             console.log(vm.specialist);
-            Specialist.save(vm.specialist);
+            Specialist.save(vm.specialist,onSuccess,onError);
+
+            function onSuccess(){
+                vm.success=true;
+            }
+            function onError(){
+                vm.error=true;
+            }
         }
     }
 })();

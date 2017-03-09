@@ -16,16 +16,20 @@
         vm.loadAll = loadAll;
         vm.notifications = {};
         vm.loadAll();
+        vm.success=false;
+        vm.error=false;
 
         function loadAll() {
             Notification.query({}, onSuccess, onError);
 
             function onSuccess(data) {
                 vm.notifications = data;
+                vm.success=true;
             }
 
             function onError() {
                 console.log("error");
+                vm.error=true;
             }
         }
     }
