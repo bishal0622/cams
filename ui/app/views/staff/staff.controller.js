@@ -15,11 +15,21 @@
         vm.insert=insert;
         vm.staff={};
         console.log('inside controller');
+        vm.success=false;
+        vm.error=false;
 
         function insert(){
             console.log("Staff controller");
             console.log(vm.staff);
-            Staff.save(vm.staff);
+            Staff.save(vm.staff,onSuccess,onError);
+
+            function onSuccess(){
+                vm.sucess=true;
+            }
+
+            function onError(){
+                vm.error=true;
+            }
         }
     }
 })();

@@ -14,19 +14,21 @@ public class NotificationLogDTO {
     private Integer appointmentId;
     private String confirmedDatetime;
     private Appointment appointmentByAppointmentId;
+    private String status;
 
     public NotificationLogDTO(){}
 
-    public NotificationLogDTO(Integer id, String notificationDatetime, Integer appointmentId, String confirmedDatetime, Appointment appointmentByAppointmentId) {
+    public NotificationLogDTO(Integer id, String notificationDatetime, Integer appointmentId, String confirmedDatetime, Appointment appointmentByAppointmentId, String status) {
         this.id = id;
         this.notificationDatetime = notificationDatetime;
         this.appointmentId = appointmentId;
         this.confirmedDatetime = confirmedDatetime;
         this.appointmentByAppointmentId = appointmentByAppointmentId;
+        this.status=status;
     }
 
     public NotificationLogDTO(NotificationLog notificationLog){
-        this(notificationLog.getId(),notificationLog.getNotificationDatetime(),notificationLog.getAppointmentId(),notificationLog.getConfirmedDatetime(),notificationLog.getAppointmentByAppointmentId());
+        this(notificationLog.getId(),notificationLog.getNotificationDatetime(),notificationLog.getAppointmentId(),notificationLog.getConfirmedDatetime(),notificationLog.getAppointmentByAppointmentId(),notificationLog.getStatus());
     }
 
     public Integer getId() {
@@ -49,14 +51,17 @@ public class NotificationLogDTO {
         return appointmentByAppointmentId;
     }
 
+    public String getStatus(){ return status;}
+
     @Override
     public String toString() {
         return "NotificationLogDTO{" +
                 "id=" + id +
-                ", notificationDatetime=" + notificationDatetime +
+                ", notificationDatetime='" + notificationDatetime + '\'' +
                 ", appointmentId=" + appointmentId +
-                ", confirmedDatetime=" + confirmedDatetime +
+                ", confirmedDatetime='" + confirmedDatetime + '\'' +
                 ", appointmentByAppointmentId=" + appointmentByAppointmentId +
+                ", status='" + status + '\'' +
                 '}';
     }
 

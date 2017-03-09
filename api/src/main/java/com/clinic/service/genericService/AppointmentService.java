@@ -1,6 +1,7 @@
 package com.clinic.service.genericService;
 
 import com.clinic.domain.Appointment;
+import com.clinic.domain.Patient;
 import com.clinic.repository.AppointmentRepository;
 import com.clinic.service.dto.AppointmentDTO;
 import com.clinic.service.generic.AppointmentGeneric;
@@ -81,6 +82,11 @@ public class AppointmentService implements AppointmentGeneric{
             log.debug("Deleted Information:{}", appointment);
         });
     }
+
+    public Appointment lastEntryAppointment(){
+        return appointmentRepository.findAppointment();
+    }
+
 }
 
 

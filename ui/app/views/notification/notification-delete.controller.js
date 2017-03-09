@@ -1,16 +1,18 @@
+
 /**
- * Created by BiSAl MhRzn on 1/4/2017.
+ * Created by BiSAl MhRzn on 1/27/2017.
  */
+
 (function(){
     'use strict';
     angular
         .module('app')
-        .controller('ParticularDeleteController', ParticularDeleteController);
-    ParticularDeleteController.$inject=['Particular','$uibModalInstance','entity'];
+        .controller('NotificationDeleteController', NotificationDeleteController);
+    NotificationDeleteController.$inject=['Notification','$uibModalInstance','entity'];
 
-    function ParticularDeleteController(Particular, $uibModalInstance, entity){
+    function NotificationDeleteController(Notification, $uibModalInstance, entity){
         var vm=this;
-        vm.particular=entity;
+        vm.notification=entity;
         vm.clear=clear;
         vm.confirmDelete=confirmDelete;
 
@@ -19,7 +21,7 @@
         }
 
         function confirmDelete(id){
-            Particular.delete({id:id},
+            Notification.delete({id:id},
                 function(){
                     $uibModalInstance.close(true);
                 });

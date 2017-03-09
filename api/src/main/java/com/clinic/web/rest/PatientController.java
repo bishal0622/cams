@@ -87,4 +87,16 @@ public class PatientController {
         System.out.println("delete");
         patientService.delete(id);
     }
+
+    @RequestMapping(value ="/patient/lastEntry",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> getLastEntry(){
+        Patient last=new Patient();
+        last=patientService.lastEntryPatient();
+        if(last==null){
+            return new ResponseEntity<PatientDTO>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(last, HttpStatus.CREATED);
+    }
 }

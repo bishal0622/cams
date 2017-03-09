@@ -16,6 +16,8 @@
         vm.insert=insert;
         vm.doctor={};
         console.log(vm.doctor);
+        vm.error=false;
+        vm.success=false;
 
 
         function insert(){
@@ -31,10 +33,12 @@
             Doctor.save(vm.fd,OnSuccess,OnError);
             function OnSuccess(){
                 console.log("success");
+                vm.success=true;
             }
 
             function OnError(){
                 console.log("Error");
+                vm.error=false;
             }
         }
     }

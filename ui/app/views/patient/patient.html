@@ -1,8 +1,18 @@
 <div class="row">
-    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3 card card-center card-outline-info text-xs-center">
+    <div id="card-center" class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3 card card-center card-outline-info text-xs-center">
         <form class="form-group" ng-submit="vm.insert()">
             <h1 class="text-center">Patient Registration</h1>
             <hr>
+
+            <div class="alert alert-success" ng-show="vm.success">
+                <strong>Success!</strong>
+            </div>
+
+
+            <div class="alert alert-danger" ng-show="vm.error">
+                <strong>Error!</strong>
+            </div>
+
             <div class="md-form">
                 <label for="pname">Patient Name:</label>
                 <input type="text" class="form-control" id="pname" ng-model="vm.patient.patientName">
@@ -36,8 +46,53 @@
                 <input type="number" class="form-control" id="weight" ng-model="vm.patient.weight">
             </div>
 
-            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Save</button>
 
         </form>
+        <div class="modal fade" id="myModal" role="dialog" ng-show="vm.success">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Appointment Success</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Your Appointment have been successfully registered.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" ui-sref="home" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="modal fade" id="myModal2" role="dialog" ng-show="vm.error">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Appointment Error</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Your Appointment have been not been registered.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" ui-sref="home" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+
     </div>
+
+
 </div>

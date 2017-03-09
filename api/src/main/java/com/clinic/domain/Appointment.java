@@ -122,7 +122,7 @@ public class Appointment {
     }
 
 
-    @JsonIgnore
+
     @ManyToOne
     @JoinColumn(name = "patientpatient_id", referencedColumnName = "patient_id", nullable = false, insertable = false, updatable = false)
     public Patient getPatientByPatientpatientId() {

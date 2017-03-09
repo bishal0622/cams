@@ -7,25 +7,25 @@
         .module('app')
         .controller('DoctorDisplayController', DoctorDisplayController);
 
-    DoctorDisplayController.$inject = ['Doctor'];
+    DoctorDisplayController.$inject = ['Doctor','Specialist','Search'];
 
-    function DoctorDisplayController(Doctor) {
+    function DoctorDisplayController(Doctor,Specialist,Search) {
         console.log('doctor controller');
         var vm = this;
+        vm.specialists=Specialist.query();
         vm.loadAll = loadAll;
-        vm.doctors = [];
-        vm.loadAll();
+        vm.doctors = {};
 
-        function loadAll() {
-            Doctor.query({}, onSuccess, onError);
+        function loadAll(id) {
+            console.log(id);
+            vm.doctors= Search.get({id:id}, onSuccess, onError);
+            console.log(vm.doctors);
         }
 
-        function onSuccess(data) {
-            vm.doctors = data;
+        function onSuccess() {
         }
 
-        function onError(error) {
-
+        function onError() {
         }
     }
 })();

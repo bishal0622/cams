@@ -11,6 +11,7 @@
         <link rel="stylesheet" href="style/main.css">
         <link rel="stylesheet" href="bower_components/animate.css/animate.min.css">
         <link rel="stylesheet" href="style/compiled.min.css">
+        <link rel="stylesheet" href="bower_components/angular-material/angular-material.min.css">
 
 
     </head>
@@ -19,38 +20,56 @@
     <header>
 
         <!--Navbar-->
-        <nav class="navbar navbar-dark bg-primary">
+        <nav class="navbar navbar-dark bg-primary" style="margin-right: 0px">
 
-            <!-- Collapse button-->
-            <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#collapseEx2">
-                <i class="fa fa-bars"></i>
-            </button>
+            <!--&lt;!&ndash; Collapse button&ndash;&gt;-->
+            <!--<button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#collapseEx2">-->
+                <!--<i class="fa fa-bars"></i>-->
+            <!--</button>-->
 
-            <div class="container">
+            <div class="container" id="navbar">
 
                 <!--Collapse content-->
                 <div class="collapse navbar-toggleable-xs" id="collapseEx2">
                     <!--Navbar Brand-->
-                    <a class="navbar-brand" href="#"><i class="fa fa-medkit">  Clinic</i></a>
+                    <a class="navbar-brand" href="#" style="font-size: xx-large"><i class="fa  fa-plus-square">  Clinic</i></a>
                     <!--Links-->
-                    <ul class="nav navbar-nav">
+                    <ul class="nav navbar-nav pull-right" id="navbar-content" >
                         <li class="nav-item active">
                             <a class="nav-link" ui-sref="home">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" ui-sref="specialist">Specialist</a>
+                            <a class="nav-link" ui-sref="displayAllDoctor">Make Appointment</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" ui-sref="doctor">Doctor</a>
+                            <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Services</button>
+
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a ui-sref="specialist">Add Specialist</a></li>
+                                    <li><a ui-sref="doctor">Add Doctor</a></li>
+                                    <li><a ui-sref="doctorSchedule">Add Schedule</a></li>
+                                    <li><a ui-sref="staff">Add Staff</a></li>
+                                    <li><a ui-sref="displaySpecialist">Display Specialist</a></li>
+                                    <li><a ui-sref="displayDoctor">Display Doctor</a></li>
+                                    <li><a ui-sref="displayDoctorSchedule">Display Schedule</a></li>
+                                    <li><a ui-sref="displayStaff">Display Staff</a></li>
+
+                                </ul>
+                            </div>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" ui-sref="notification">Notification</a>
+                        </li>
+
                         <li class="nav-item">
                             <a class="nav-link" href="#">About</a>
                         </li>
                     </ul>
                     <!--Search form-->
-                    <form class="form-inline">
-                        <input class="form-control" type="text" placeholder="Search">
-                    </form>
+                    <!--<form class="form-inline">-->
+                        <!--<input class="form-control" type="text" placeholder="Search">-->
+                    <!--</form>-->
                 </div>
                 <!--/.Collapse content-->
 
@@ -97,9 +116,9 @@
     <!--/.Footer Links-->
 
     <!--Copyright-->
-    <div class="footer-copyright">
+    <div class="footer-copyright" >
         <div class="container-fluid">
-            © 2015 Copyright: <a href="http://www.MDBootstrap.com"> MDBootstrap.com </a>
+            © 2015 Copyright: <a href="http://www.CAMS.com"> MDBootstrap.com </a>
 
         </div>
     </div>
@@ -109,7 +128,6 @@
     <!--/.Footer-->
 
     <!--javascript bower component-->
-    <script src="bower_components/MDBootstrap/js/jquery-2.2.3.min.js"></script>
     <script src="bower_components/angular/angular.min.js"></script>
     <script src="bower_components/angular-resource/angular-resource.min.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
@@ -125,6 +143,9 @@
         });
     </script>
     <script src="scripts/compiled.min.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.min.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+    <script src="bower_components/angular-material/angular-material.min.js"></script>
 
     <!--user built javascript-->
     <script src="scripts/app.js"></script>
@@ -173,19 +194,26 @@
     <script src="views/doctor/doctor-edit.controller.js"></script>
     <script src="views/doctor/doctor.controller.js"></script>
 
-    <!--particular-->
-    <script src="views/particular/particular.state.js"></script>
-    <script src="services/particular.service.js"></script>
-    <script src="views/particular/particular-delete.controller.js"></script>
-    <script src="views/particular/particular-edit.controller.js"></script>
-    <script src="views/particular/display-particular.controller.js"></script>
-    <script src="views/particular/particular.controller.js"></script>
 
     <!--home-->
     <script src="views/home/home.state.js"></script>
 
-    <!--appointment-->
-    <script src="services/Appointment.js"></script>
+
+    <!--lastpatient-->
+    <!--<script src="services/lastPatient.service.js"></script>-->
+
+    <!--search-->
+    <script src="services/search.service.js"></script>
+
+    <!--notification-->
+    <script src="services/notification.service.js"></script>
+    <script src="views/notification/notification.state.js"></script>
+    <script src="views/notification/notification.controller.js"></script>
+    <script src="views/notification/notification-accept.controller.js"></script>
+    <script src="views/notification/notification-delete.controller.js"></script>
+    <script src="services/notificationPending.js"></script>
+    <script src="views/notification/notification-home.controller.js"></script>
+    <script src="services/AppointmentByDoctorSchedule.service.js"></script>
 
     </body>
 </html>

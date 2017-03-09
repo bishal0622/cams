@@ -85,4 +85,8 @@ public class PatientService implements PatientGeneric{
         });
 
     }
+
+    public Patient lastEntryPatient(){
+        return patientRepository.findPatient();
+    }
 }
